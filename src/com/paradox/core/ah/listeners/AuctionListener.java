@@ -35,31 +35,31 @@ public class AuctionListener implements Listener {
 			if (e.getWindow() instanceof FormWindowSimple) {
 				FormWindowSimple gui = (FormWindowSimple) e.getWindow();
 				if (gui != null) {
-					if (gui.getTitle().equals(StringUtils.translateColors("&9&lParadox Auctions"))) {
+					if (gui.getTitle().equals(StringUtils.translateColors("&9&lChợ đen"))) {
 						if (gui.getResponse().getClickedButton().getText() != null) {
 							String responseName = gui.getResponse().getClickedButton().getText();
 							if (responseName != null) {
-								if (responseName.equals(StringUtils.translateColors("&bSell Item"))) {
+								if (responseName.equals(StringUtils.translateColors("&bBán vật phẩm"))) {
 									p.removeAllWindows();
 									if (i == null || i.getId() == 0) {
 										p.showFormWindow(FormStorage.NoItemInHnad());
 									} else {
 										p.showFormWindow(FormStorage.sellItem(i));
 									}
-								} else if (responseName.equals(StringUtils.translateColors("&aMain menu"))) {
+								} else if (responseName.equals(StringUtils.translateColors("&aTrang chính"))) {
 									p.removeAllWindows();
 									p.showFormWindow(FormStorage.AHMenu());
-								} else if (responseName.equals(StringUtils.translateColors("&bView Listings"))) {
+								} else if (responseName.equals(StringUtils.translateColors("&b&bXem chợ"))) {
 									p.removeAllWindows();
 									p.showFormWindow(FormStorage.AHList());
 								} else if (responseName
-										.equals(StringUtils.translateColors("&bCheck Your Auction Info"))) {
+										.equals(StringUtils.translateColors("&bThông tin kệ của bạn"))) {
 									p.removeAllWindows();
 									p.showFormWindow(FormStorage.getPersonalListings(p));
 								}
 							}
 						}
-					} else if (gui.getTitle().equals(StringUtils.translateColors("&9&lYour Listings"))) {
+					} else if (gui.getTitle().equals(StringUtils.translateColors("&9&lKệ của bạn"))) {
 						if (gui.getResponse().getClickedButton().getText() != null) {
 							String responseName = gui.getResponse().getClickedButton().getText();
 							if (responseName != null) {
@@ -67,7 +67,7 @@ public class AuctionListener implements Listener {
 									if (responseName.contains(StringUtils.translateColors("&8#" + l.getId()))) {
 										ListingHandler.removeListingFromConfig(l.getId() + "");
 										p.sendMessage(StringUtils.getPrefix()
-												+ "Item removed from auctions, and returned to you!");
+												+ "Vật phẩm đã bị xóa khỏi chợ");
 										p.getInventory().addItem(l.getItem());
 									}
 								}
@@ -77,7 +77,7 @@ public class AuctionListener implements Listener {
 				}
 			} else if (e.getWindow() instanceof FormWindowCustom) {
 				FormWindowCustom gui = (FormWindowCustom) e.getWindow();
-				if (gui.getTitle().equals(StringUtils.translateColors("&9&lAh Sell"))) {
+				if (gui.getTitle().equals(StringUtils.translateColors("&9&lBán vật phẩm"))) {
 					if (e.getResponse() != null) {
 						try {
 							Item item = p.getInventory().getItemInHand();
@@ -89,7 +89,7 @@ public class AuctionListener implements Listener {
 							if (getTotalListingsByPlayer(p) > 1) {
 								p.removeAllWindows();
 								p.sendMessage(
-										StringUtils.getPrefix() + "You already have more than 2 auctions(max) listed.");
+										StringUtils.getPrefix() + "Bạn đang treo 1 vật phẩm rồi.");
 								return;
 							}
 							int price = Integer.parseInt(gui.getResponse().getInputResponse(1));
@@ -121,16 +121,16 @@ public class AuctionListener implements Listener {
 								}
 								dataCfg.save(dataFile);
 								p.sendMessage(StringUtils.getPrefix() + StringUtils.translateColors(
-										"&7You have put up " + i.getCount() + "x " + i.getName() + "."));
+										"&7Treo thành công " + i.getCount() + "x " + i.getName() + "."));
 								p.getInventory().remove(item);
 
 							} else {
 								p.removeAllWindows();
-								p.sendMessage((StringUtils.getPrefix() + "Price must be above $100."));
+								p.sendMessage((StringUtils.getPrefix() + "Giá của vật phẩm phải trên 100 xu"));
 							}
 						} catch (NumberFormatException err) {
 							p.removeAllWindows();
-							p.sendMessage(StringUtils.getPrefix() + "You need to specify a number for price.");
+							p.sendMessage(StringUtils.getPrefix() + "Vui lòng nhập giá.");
 						}
 					}
 				}
@@ -145,7 +145,7 @@ public class AuctionListener implements Listener {
 			if (e.getWindow() instanceof FormWindowSimple) {
 				FormWindowSimple gui = (FormWindowSimple) e.getWindow();
 				if (gui != null) {
-					if (gui.getTitle().equals(StringUtils.translateColors("&9&lAH List"))) {
+					if (gui.getTitle().equals(StringUtils.translateColors("&9&lCác vật phẩm đang rao bán"))) {
 						if (gui.getResponse().getClickedButton().getText() != null) {
 							String responseName = gui.getResponse().getClickedButton().getText();
 							if (responseName != null) {
@@ -166,19 +166,19 @@ public class AuctionListener implements Listener {
 				FormWindowCustom gui = (FormWindowCustom) e.getWindow();
 				for (Listing l : ListingHandler.getAllListingsFromConfig()) {
 					if (gui != null) {
-						if (gui.getTitle().equals(StringUtils.translateColors("&9&lAh Info &r&8#" + l.getId()))) {
+						if (gui.getTitle().equals(StringUtils.translateColors("&9&lThông tin vật phẩm &r&8#" + l.getId()))) {
 							String response = gui.getResponse().getInputResponse(1);
 							if (response.equals("true")) {
 								Player target = Loader.getLoader().getServer().getPlayer(l.getSellerUUID()).get();
 								if (target.getName().equals(p.getName())) {
 									p.removeAllWindows();
-									p.sendMessage(StringUtils.getPrefix() + "You cannot purchase your own item.");
+									p.sendMessage(StringUtils.getPrefix() + "Bạn không thể mua vật phẩm của chính mình.");
 									return;
 								}
 								if (EconomyAPI.getInstance().myMoney(p) >= l.getPricing()) {
 									p.getInventory().addItem(l.getItem());
-									p.sendMessage(StringUtils.getPrefix() + "You have purchased " + target.getName()
-											+ "'s item for " + l.getPricing());
+									p.sendMessage(StringUtils.getPrefix() + "Bạn đã mua " + target.getName()
+											+ " với giá " + l.getPricing() + " xu");
 									IPlayer t = Loader.getLoader().getServer().getOfflinePlayer(l.getSellerUUID());
 									EconomyAPI.getInstance().reduceMoney(p, l.getPricing());
 									EconomyAPI.getInstance().addMoney(t, l.getPricing());
@@ -186,7 +186,7 @@ public class AuctionListener implements Listener {
 									return;
 								} else {
 									p.sendMessage(StringUtils.getPrefix()
-											+ "You do not have enough money to make this purchase.");
+											+ "Bạn không đủ tiền để mua.");
 								}
 							}
 						}

@@ -8,7 +8,7 @@ import cn.nukkit.form.window.FormWindowSimple;
 
 public class FormStorage {
 	public static FormWindowSimple kitMenu() {
-		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&9&lParadox Kits"),
+		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&9&lLocm Kits"),
 				StringUtils.translateColors("&b&l&nChoose a kit below!"));
 		for (Kit kit : KitHandler.getAllKitsFromConfig()) {
 			fs.addButton(new ElementButton(StringUtils.translateColors("&b") + kit.getName()));

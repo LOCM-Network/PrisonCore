@@ -15,7 +15,7 @@ import cn.nukkit.item.Item;
 
 public class FormStorage {
 	public static FormWindowSimple enchanterMenu() {
-		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lParadox &d&lPrisons"),
+		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lLocm &d&lPrisons"),
 				StringUtils.translateColors("&b&l&nChoose a CE to purchase!"));
 		for (CustomEnchant ce : EnchantHandler.getAllEnchants()) {
 			fs.addButton(new ElementButton(ce.getDisplayNameOfEnchantment()));
