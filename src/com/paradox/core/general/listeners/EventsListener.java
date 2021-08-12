@@ -30,6 +30,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
+import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
@@ -104,6 +105,12 @@ public class EventsListener implements Listener {
 			players.set("Players." + e.getPlayer().getName() + ".prestigeLevel", 1);
 			players.save(playersFile);
 		}
+		e.setJoinMessage("§l§a•§f " + e.getPlayer().getName());
+	}
+
+	@EventHandler
+	public void onQuit(PlayerQuitEvent e) {
+		e.setQuitMessage("§l§c•§f " + e.getPlayer().getName());
 	}
 
 	@EventHandler
