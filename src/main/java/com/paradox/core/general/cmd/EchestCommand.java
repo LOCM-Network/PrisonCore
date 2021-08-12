@@ -1,6 +1,7 @@
 package com.paradox.core.general.cmd;
 
 import com.nukkitx.fakeinventories.inventory.ChestFakeInventory;
+import com.nukkitx.fakeinventories.inventory.FakeInventories;
 import com.nukkitx.fakeinventories.inventory.FakeSlotChangeEvent;
 import com.paradox.core.Loader;
 
@@ -18,9 +19,9 @@ public class EchestCommand extends Command {
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		if (sender instanceof Player) {
-			final ChestFakeInventory inv = new ChestFakeInventory();
+			ChestFakeInventory inv = new FakeInventories().createChestInventory();
 			if (args.length == 1) {
-				final Player target = Loader.getLoader().getServer().getPlayer(args[0]);
+				Player target = Loader.getLoader().getServer().getPlayer(args[0]);
 				inv.addListener(this::onSlotChange);
 				inv.setContents(target.getEnderChestInventory().getContents());
 				inv.setName(target.getName() + "'s ender chest inventory");
@@ -37,7 +38,7 @@ public class EchestCommand extends Command {
 		return false;
 	}
 
-	private void onSlotChange(final FakeSlotChangeEvent e) {
+	private void onSlotChange(FakeSlotChangeEvent e) {
 		if (e.getInventory() instanceof ChestFakeInventory
 				&& (e.getInventory().getName().contains("'s ender chest inventory")
 						|| e.getInventory().getName().contains("'s inventory"))) {

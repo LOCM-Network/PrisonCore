@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.paradox.core.Loader;
 
-import Sergey_Dertan.SRegionProtector.Main.SRegionProtectorMain;
+//import Sergey_Dertan.SRegionProtector.Main.SRegionProtectorMain;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
@@ -56,11 +56,11 @@ public class GeneralUtils {
 	}
 
 	public static boolean canPlayerBuild(Player p) {
-		SRegionProtectorMain api = SRegionProtectorMain.getInstance();
+/*		SRegionProtectorMain api = SRegionProtectorMain.getInstance();
 		if (!p.getBoundingBox().intersectsWith(api.getRegionManager().getRegion("spawn").getBoundingBox())) {
 			return true;
-		}
-		return false;
+		}*/
+		return true;
 	}
 
 }

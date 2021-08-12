@@ -3,7 +3,9 @@ package com.paradox.core.ranks.cmd;
 import java.util.HashMap;
 
 import com.paradox.core.Loader;
+import com.paradox.core.utils.StringUtils;
 
+import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.form.element.ElementLabel;
@@ -23,7 +25,7 @@ public class PrestigeTopCmd extends Command {
 		for (String playerName : Loader.getLoader().getPlayerCfg().getSection("Players").getKeys(false)) {
 			list.put(playerName, Loader.getLoader().getPlayerCfg().getInt("Players." + playerName + ".prestigeLevel"));
 		}
-		FormWindowCustom fc = new FormWindowCustom(StringUtils.translateColors("&9&lBXH UY TÍN"));
+		FormWindowCustom fc = new FormWindowCustom(StringUtils.translateColors("&9&lBXH"));
 		String nextTop = "";
 		Integer nextTopKills = 0;
 
@@ -39,7 +41,7 @@ public class PrestigeTopCmd extends Command {
 			nextTop = "";
 			nextTopKills = 0;
 		}
-		sender.showFormWindow(fc);
+		((Player) sender).showFormWindow(fc);
 		return false;
 	}
 }

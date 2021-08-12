@@ -1,5 +1,6 @@
 package com.paradox.core.general.cmd;
 
+import com.nukkitx.fakeinventories.inventory.FakeInventories;
 import com.nukkitx.fakeinventories.inventory.DoubleChestFakeInventory;
 import com.paradox.core.Loader;
 import com.paradox.core.utils.StringUtils;
@@ -33,7 +34,7 @@ public class InvseeCommand extends Command {
 				sender.sendMessage(StringUtils.getPrefix() + "Cannot use this command for own inventory.");
 				return true;
 			}
-			final DoubleChestFakeInventory inv = new DoubleChestFakeInventory();
+			DoubleChestFakeInventory inv = new FakeInventories().createDoubleChestInventory();
 			inv.setContents(target.getInventory().getContents());
 			inv.setName(target.getName() + "'s inventory");
 			((Player) sender).addWindow((Inventory) inv);
