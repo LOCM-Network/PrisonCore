@@ -34,7 +34,7 @@ public class PrestigeTopCmd extends Command {
 					nextTopKills = list.get(playerName);
 				}
 			}
-			fc.addElement(new ElementLabel("§b#" + i + " §e" + nextTop + " §8: §b" + nextTopKills));
+			fc.addElement(new ElementLabel(" " + i + " " + nextTop + " " + nextTopKills));
 			list.remove(nextTop);
 			nextTop = "";
 			nextTopKills = 0;

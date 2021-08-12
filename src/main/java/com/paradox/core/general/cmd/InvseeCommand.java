@@ -17,11 +17,11 @@ public class InvseeCommand extends Command {
 	public boolean execute(final CommandSender sender, final String label, final String[] args) {
 		if (sender instanceof Player) {
 			if (args.length == 0) {
-				sender.sendMessage("§cUsage: /invsee <player>");
+				sender.sendMessage("Usage: /invsee <player>");
 				return false;
 			}
 			if (!sender.hasPermission("paradox.invsee")){
-				sender.sendMessage("§cNo permission.");
+				sender.sendMessage("No permission.");
 				return false;
 			}
 			final Player target = Loader.getLoader().getServer().getPlayer(args[0]);
@@ -39,7 +39,7 @@ public class InvseeCommand extends Command {
 			((Player) sender).addWindow((Inventory) inv);
 			return true;
 		} else {
-			sender.sendMessage("§cYou can run this command only as a player");
+			sender.sendMessage("You can run this command only as a player");
 		}
 		return true;
 	}

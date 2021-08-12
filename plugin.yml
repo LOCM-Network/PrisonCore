@@ -1,6 +1,0 @@
-name: LOCMCore
-api: ["1.0.5"]
-author: YaUhYeah
-main: com.paradox.core.Loader
-version: "0.1"
-depend: ["PlaceholderAPI", "SRegionProtector"]

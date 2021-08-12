@@ -20,15 +20,15 @@ public class RepairCommand extends Command {
 		if (i.isArmor() || i.isPickaxe() || i.isSword() || i.isAxe() || i.isShears() || i.isPickaxe() || i.isShovel()) {
 			if (api.myMoney(p)>=5000){
 				api.reduceMoney(p, 5000);
-				p.sendMessage("§b§l(§d!§b)§r§7 Repaired the item you wield.");
+				p.sendMessage("Repaired the item you wield.");
 				p.getInventory().remove(i);
 				i.setDamage(0);
 				p.getInventory().addItem(i);
 			} else {
-				p.sendMessage("§b§l(§d!§b)§r§7 Cannot afford this purchase.");	
+				p.sendMessage("Cannot afford this purchase.");	
 			}
 		} else {
-			p.sendMessage("§b§l(§d!§b)§r§7 Incompatible item.");
+			p.sendMessage("Incompatible item.");
 		}
 		return false;
 	}
