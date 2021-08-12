@@ -17,7 +17,7 @@ public class EnchanterCmd extends Command {
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
-			if (p.getInventory().getItemInHand().getId() == 278) {
+			if (p.getInventory().getItemInHand().isPickaxe()) {
 				p.showFormWindow(FormStorage.enchanterMenu());
 			} else {
 				p.sendMessage(StringUtils.getPrefix()+"You need to hold a pickaxe to open the CE Menu.");
