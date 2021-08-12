@@ -33,7 +33,7 @@ public class OrbsCmd extends Command {
 						try {
 							int amount = Integer.parseInt(args[2]);
 							OrbEconomyUtils.addPlayerBalance(target, amount);
-							target.sendMessage(StringUtils.getPrefix() + "You were given " + amount + " orbs!");
+							target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được " + amount + " orbs!");
 							sender.sendMessage(
 									StringUtils.getPrefix() + "Gave " + target.getName() + " " + amount + " orbs!");
 						} catch (NumberFormatException e) {
@@ -48,8 +48,8 @@ public class OrbsCmd extends Command {
 						try {
 							int amount = Integer.parseInt(args[2]);
 							OrbEconomyUtils.removePlayerBalance(target, amount);
-							target.sendMessage(StringUtils.getPrefix() + "You have had " + amount
-									+ " orbs removed from your balance!");
+							target.sendMessage(StringUtils.getPrefix() + "Bạn vừa bị trừ " + amount
+									+ " orb! (Người xóa: "+ sender.getName() +")");
 							sender.sendMessage(StringUtils.getPrefix() + "Removed " + amount + " orbs from"
 									+ target.getName() + "'s balance. ");
 						} catch (NumberFormatException e) {
@@ -85,7 +85,7 @@ public class OrbsCmd extends Command {
 								Item i = ItemStorage.orbPouchTierOne();
 								i.setCount(amount);
 								target.getInventory().addItem(i);
-								target.sendMessage(StringUtils.getPrefix() + "You were given a Tier one OrbPouch!");
+								target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được túi quà (OrbPouch) cấp 1!");
 								sender.sendMessage(StringUtils.getPrefix() + "Gave " + target.getName()
 										+ " a tier one orb pouch!");
 								break;
@@ -93,7 +93,7 @@ public class OrbsCmd extends Command {
 								Item i1 = ItemStorage.orbPouchTierTwo();
 								i1.setCount(amount);
 								target.getInventory().addItem(i1);
-								target.sendMessage(StringUtils.getPrefix() + "You were given a Tier two OrbPouch!");
+								target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được túi quà (OrbPouch) cấp 2!");
 								sender.sendMessage(StringUtils.getPrefix() + "Gave " + target.getName()
 										+ " a tier two orb pouch!");
 								break;
@@ -101,7 +101,7 @@ public class OrbsCmd extends Command {
 								Item i11 = ItemStorage.orbPouchTierThree();
 								i11.setCount(amount);
 								target.getInventory().addItem(i11);
-								target.sendMessage(StringUtils.getPrefix() + "You were given a Tier three OrbPouch!");
+								target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được túi quà (OrbPouch) cấp 3!");
 								sender.sendMessage(StringUtils.getPrefix() + "Gave " + target.getName()
 										+ " a tier three orb pouch!");
 								break;

@@ -26,19 +26,19 @@ public class OrbsListener implements Listener {
 			GeneralUtils.pop(i, p, 1);
 			int amount = GeneralUtils.getRandomNumberInRange(1000, 10000);
 			OrbEconomyUtils.addPlayerBalance(p, amount);
-			p.sendMessage(StringUtils.getPrefix() + "You were given " + amount + " orbs!");
+			p.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được " + amount + " orb!");
 		} else if (i.getCustomName().equals(ItemStorage.orbPouchTierTwo().getCustomName())) {
 			e.setCancelled();
 			GeneralUtils.pop(i, p, 1);
 			int amount = GeneralUtils.getRandomNumberInRange(10000, 100000);
 			OrbEconomyUtils.addPlayerBalance(p, amount);
-			p.sendMessage(StringUtils.getPrefix() + "You were given " + amount + " orbs!");
+			p.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được " + amount + " orbs!");
 		} else if (i.getCustomName().equals(ItemStorage.orbPouchTierThree().getCustomName())) {
 			e.setCancelled();
 			GeneralUtils.pop(i, p, 1);
 			int amount = GeneralUtils.getRandomNumberInRange(100000, 1000000);
 			OrbEconomyUtils.addPlayerBalance(p, amount);
-			p.sendMessage(StringUtils.getPrefix() + "You were given " + amount + " orbs!");
+			p.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được " + amount + " orbs!");
 		}
 	}
 

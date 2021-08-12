@@ -13,28 +13,28 @@ public class ItemStorage {
 	public static Item orbPouchTierOne() {
 		Item it = new Item(130);
 		it.setCustomName(StringUtils.translateColors(
-				"&b&lOrbs Pouch &r&7(Right Click)\nThis is a tier one Orbs Pouch!\n\n&f((Right Click for 1,000-10,000 orbs!))"));
+				"&b&lOrbs Pouch\n&eTúi quà cấp&f 1!\n\n&f((Right Click for 1,000-10,000 orbs!))"));
 		return it;
 	}
 
 	public static Item orbPouchTierTwo() {
 		Item it = new Item(130);
 		it.setCustomName(StringUtils.translateColors(
-				"&b&lOrbs Pouch &r&7(Right Click)\nThis is a tier two Orbs Pouch!\n\n&f((Right Click for 10,000-100,000 orbs!))"));
+				"&b&lOrbs Pouch\n&eTúi quà cấp&f 2!\n\n&f((Right Click for 10,000-100,000 orbs!))"));
 		return it;
 	}
 
 	public static Item orbPouchTierThree() {
 		Item it = new Item(130);
 		it.setCustomName(StringUtils.translateColors(
-				"&b&lOrbs Pouch &r&7(Right Click)\nThis is a tier three Orbs Pouch!\n\n&f((Right Click for 100,000-1,000,000 orbs!))"));
+				"&b&lOrbs Pouch\n&eTúi quà cấp&f 3!\n\n&f((Right Click for 100,000-1,000,000 orbs!))"));
 		return it;
 	}
 
 	public static Item sellBoosterTenMinutes(int multiplier) {
 		Item it = new Item(347);
 		it.setCustomName(StringUtils.translateColors("&b&l" + multiplier
-				+ "x Sell Booster &r&7(Right Click)\nMultiplies the money from any items \nsold for 10 minutes.\n\n&f((Right Click to activate!))"));
+				+ "x Sell Booster &r&7(Right Click)\nNhận gấp "+ multiplier +" số tiền trong 10 phút"));
 		return it;
 	}
 	
