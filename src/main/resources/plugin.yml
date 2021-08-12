@@ -3,4 +3,3 @@ api: ["1.0.0"]
 author: YaUhYeah
 main: com.paradox.core.Loader
 version: "0.1"
-depend: ["PlaceholderAPI"]
