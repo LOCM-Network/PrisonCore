@@ -50,7 +50,7 @@ public class EnchantListener implements Listener {
 		if (e.getWindow() != null) {
 			if (e.getWindow() instanceof FormWindowSimple) {
 				FormWindowSimple gui = (FormWindowSimple) e.getWindow();
-				if (gui != null) {
+				if (gui != null && gui.getResponse() != null) {
 					if (gui.getResponse().getClickedButton().getText() != null) {
 						String responseName = gui.getResponse().getClickedButton().getText();
 						if (responseName != null) {
@@ -116,8 +116,10 @@ public class EnchantListener implements Listener {
 											EnchantHandler.applyEnchantment(p, p.getInventory().getItemInHand(), ce,
 													costOfEnchantByPlayer.get(p).getLevel());
 											costOfEnchantByPlayer.remove(p);
-											OrbEconomyUtils.removePlayerBalance(p,
-													costOfEnchantByPlayer.get(p).getCost());
+											if(costOfEnchantByPlayer.get(p) != null){
+												OrbEconomyUtils.removePlayerBalance(p,
+														costOfEnchantByPlayer.get(p).getCost());												
+											}
 										} else {
 											p.sendMessage(StringUtils.getPrefix()
 													+ "Cúp của bạn đã có phù phép xịn hơn!.");

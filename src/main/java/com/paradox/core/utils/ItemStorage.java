@@ -13,28 +13,28 @@ public class ItemStorage {
 	public static Item orbPouchTierOne() {
 		Item it = new Item(130);
 		it.setCustomName(StringUtils.translateColors(
-				"&b&lOrbs Pouch\n&eTúi quà cấp&f 1!\n\n&f((Right Click for 1,000-10,000 orbs!))"));
+				"&b&lOrbs Pouch\n&eTúi quà cấp&f 1!\n\n&fNhận ngẫu nhiên 1,000-10,000 orbs!"));
 		return it;
 	}
 
 	public static Item orbPouchTierTwo() {
 		Item it = new Item(130);
 		it.setCustomName(StringUtils.translateColors(
-				"&b&lOrbs Pouch\n&eTúi quà cấp&f 2!\n\n&f((Right Click for 10,000-100,000 orbs!))"));
+				"&b&lOrbs Pouch\n&eTúi quà cấp&f 2!\n\n&fNhận ngẫu nhiên 10,000-100,000 orbs!"));
 		return it;
 	}
 
 	public static Item orbPouchTierThree() {
 		Item it = new Item(130);
 		it.setCustomName(StringUtils.translateColors(
-				"&b&lOrbs Pouch\n&eTúi quà cấp&f 3!\n\n&f((Right Click for 100,000-1,000,000 orbs!))"));
+				"&b&lOrbs Pouch\n&eTúi quà cấp&f 3!\n\n&fNhận ngẫu nhiên 100,000-1,000,000 orbs!"));
 		return it;
 	}
 
 	public static Item sellBoosterTenMinutes(int multiplier) {
 		Item it = new Item(347);
 		it.setCustomName(StringUtils.translateColors("&b&l" + multiplier
-				+ "x Sell Booster &r&7(Right Click)\nNhận gấp "+ multiplier +" số tiền trong 10 phút"));
+				+ "x Sell Booster &r&7\nNhận gấp "+ multiplier +" lần số tiền trong 10 phút"));
 		return it;
 	}
 	
@@ -48,21 +48,21 @@ public class ItemStorage {
 	public static Item smallBomb() {
 		Item it = new Item(381);
 		it.setCustomName(StringUtils.translateColors(
-				"&c&lSmall Bomb &r&7(Throw)\nCreates a &csmall&7 explosion when thrown into a mine.\n\n&f((Throw to detonate!))"));
+				"&c&lSmall Bomb\n&l&fBoom loại nhỏ"));
 		return it;
 	}
 	
 	public static Item mediumBomb() {
 		Item it = new Item(381);
 		it.setCustomName(StringUtils.translateColors(
-				"&c&lMedium Bomb &r&7(Throw)\nCreates a &cmedium-sized&7 explosion when thrown into a mine.\n\n&f((Throw to detonate!))"));
+				"&c&lMedium Bomb &r&7(Throw)\nBoom loại vừa"));
 		return it;
 	}
 
 	public static Item largeBomb() {
 		Item it = new Item(381);
 		it.setCustomName(StringUtils.translateColors(
-				"&c&lLarge Bomb &r&7(Throw)\nCreates a &clarge&7 explosion when thrown into a mine.\n\n&f((Throw to detonate!))"));
+				"&c&lLarge Bomb &r&7(Throw)\nBoom loại lớn"));
 		return it;
 	}
 

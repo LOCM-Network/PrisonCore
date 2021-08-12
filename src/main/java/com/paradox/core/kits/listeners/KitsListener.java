@@ -28,7 +28,7 @@ public class KitsListener implements Listener {
 				if (e.getWindow() instanceof FormWindowSimple) {
 					FormWindowSimple gui = (FormWindowSimple) e.getWindow();
 					if (gui != null) {
-						if (gui.getTitle().equals(StringUtils.translateColors("&9&lParadox Kits"))) {
+						if (gui.getTitle().equals(StringUtils.translateColors("&9&lLocm Kits"))) {
 							if (gui.getResponse().getClickedButton().getText() != null) {
 								String responseName = gui.getResponse().getClickedButton().getText();
 								if (responseName != null) {
