@@ -9,12 +9,12 @@ public class AutoSell extends CustomEnchant {
 
 	public AutoSell(int level) {
 		super("AutoSell", level, 1, StringUtils.translateColors("&dAutoSell"),
-				"Sell all the blocks you mine instantly!", 100000, EnchantType.CUSTOM);
+				"Tự động bán!", 100000, EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public AutoSell() {
-		super("AutoSell", 1, 1, StringUtils.translateColors("&dAutoSell"), "Sell all the blocks you mine instantly!",
+		super("AutoSell", 1, 1, StringUtils.translateColors("&dAutoSell"), "Tự động bán!",
 				100000, EnchantType.CUSTOM);
 	}
 

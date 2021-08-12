@@ -9,12 +9,12 @@ public class Donator extends CustomEnchant {
 
 	public Donator(int level) {
 		super("Donator", level, 10, StringUtils.translateColors("&6Donator"),
-				"Chance to donate all online players X orbs!", 15000, EnchantType.CUSTOM);
+				"Có cơ hội nhận X orbs toàn máy chủ!", 15000, EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public Donator() {
-		super("Donator", 1, 10, StringUtils.translateColors("&6Donator"), "Chance to donate all online players X orbs!",
+		super("Donator", 1, 10, StringUtils.translateColors("&6Donator"), "Có cơ hội nhận X orbs toàn máy chủ!",
 				15000, EnchantType.CUSTOM);
 	}
 

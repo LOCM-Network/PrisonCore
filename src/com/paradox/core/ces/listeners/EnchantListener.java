@@ -103,7 +103,7 @@ public class EnchantListener implements Listener {
 						CustomEnchant ce = costOfEnchantByPlayer.get(p).getCe();
 						if (gui != null) {
 							String responseName = gui.getResponse().getClickedButton().getText();
-							if (responseName.contains("Accept")) {
+							if (responseName.contains("Phù phép")) {
 								if (ce.getType().equals(EnchantType.CUSTOM)) {
 									if (OrbEconomyUtils.hasPlayerBalance(p, costOfEnchantByPlayer.get(p).getCost())) {
 										if (CEUtils.getLevelOfEnchantByDisplayName(ce.getDisplayNameOfEnchantment(),
@@ -112,7 +112,7 @@ public class EnchantListener implements Listener {
 											OrbEconomyUtils.removePlayerBalance(p,
 													costOfEnchantByPlayer.get(p).getCost());
 											p.sendMessage(StringUtils.translateColors(StringUtils.getPrefix()
-													+ "The purchased ce was applied to your pickaxe!"));
+													+ "Phù phép thành công!"));
 											EnchantHandler.applyEnchantment(p, p.getInventory().getItemInHand(), ce,
 													costOfEnchantByPlayer.get(p).getLevel());
 											costOfEnchantByPlayer.remove(p);
@@ -120,12 +120,12 @@ public class EnchantListener implements Listener {
 													costOfEnchantByPlayer.get(p).getCost());
 										} else {
 											p.sendMessage(StringUtils.getPrefix()
-													+ "Your pickaxe already has that enchantment at that level or better.");
+													+ "Cúp của bạn đã có phù phép xịn hơn!.");
 											costOfEnchantByPlayer.remove(p);
 										}
 									} else {
 										p.sendMessage(StringUtils.getPrefix()
-												+ "You do not have enough orbs to make that purchase.");
+												+ "Không đủ orbs để phù phép.");
 										costOfEnchantByPlayer.remove(p);
 									}
 								} else {
@@ -144,7 +144,7 @@ public class EnchantListener implements Listener {
 													costOfEnchantByPlayer.remove(p);
 												} else {
 													p.sendMessage(StringUtils.getPrefix()
-															+ "Your pickaxe already has that enchantment at that level or better.");
+															+ "Cúp của bạn đã có phù phép xịn hơn.");
 													costOfEnchantByPlayer.remove(p);
 												}
 											} else {
@@ -156,7 +156,7 @@ public class EnchantListener implements Listener {
 											}
 										} else {
 											p.sendMessage(StringUtils.getPrefix()
-													+ "You do not have enough orbs to make that purchase.");
+													+ "Bạn không đủ orbs để phù phép.");
 											costOfEnchantByPlayer.remove(p);
 										}
 									} else if (ce.getDisplayNameOfEnchantment().contains("Efficiency")) {
@@ -174,7 +174,7 @@ public class EnchantListener implements Listener {
 													costOfEnchantByPlayer.remove(p);
 												} else {
 													p.sendMessage(StringUtils.getPrefix()
-															+ "Your pickaxe already has that enchantment at that level or better.");
+															+ "Cúp của bạn đã có phù phép xịn hơn.");
 													costOfEnchantByPlayer.remove(p);
 												}
 											} else {
@@ -186,7 +186,7 @@ public class EnchantListener implements Listener {
 											}
 										} else {
 											p.sendMessage(StringUtils.getPrefix()
-													+ "You do not have enough orbs to make that purchase.");
+													+ "Bạn không đủ orbs để phù phép.");
 											costOfEnchantByPlayer.remove(p);
 										}
 									} else if (ce.getDisplayNameOfEnchantment().contains("Fortune")) {
@@ -204,7 +204,7 @@ public class EnchantListener implements Listener {
 													costOfEnchantByPlayer.remove(p);
 												} else {
 													p.sendMessage(StringUtils.getPrefix()
-															+ "Your pickaxe already has that enchantment at that level or better.");
+															+ "Cúp của bạn đã có phù phép xịn hơn.");
 													costOfEnchantByPlayer.remove(p);
 												}
 											} else {
@@ -216,14 +216,14 @@ public class EnchantListener implements Listener {
 											}
 										} else {
 											p.sendMessage(StringUtils.getPrefix()
-													+ "You do not have enough orbs to make that purchase.");
+													+ "Bạn không đủ orbs để phù phép.");
 											costOfEnchantByPlayer.remove(p);
 										}
 									}
 								}
-							} else if (responseName.contains("Deny")) {
-								p.sendMessage(StringUtils.translateColors(StringUtils.getPrefix()
-										+ "Denied purchase of " + " " + ce.getDisplayNameOfEnchantment() + "&7!"));
+							} else if (responseName.contains("Từ chối")) {
+/*								p.sendMessage(StringUtils.translateColors(StringUtils.getPrefix()
+										+ "Denied purchase of " + " " + ce.getDisplayNameOfEnchantment() + "&7!"));*/
 								costOfEnchantByPlayer.remove(p);
 							}
 						}
@@ -261,12 +261,12 @@ public class EnchantListener implements Listener {
 						e.setCancelled();
 						e.getPlayer().getLevel().setBlock(e.getBlock().getLocation(), new BlockAir());
 						LuckyReward realReward = randomrewards.next();
-						e.getPlayer().sendActionBar(StringUtils.getPrefix() + "You have been given the reward "
-								+ realReward.getName() + " from the luckyblock!");
+						e.getPlayer().sendActionBar(StringUtils.getPrefix() + "Bạn vừa nhận được "
+								+ realReward.getName() + " từ luckyblock!");
 						Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
 								realReward.getCmds().replace("{name}", e.getPlayer().getName()));
-						e.getPlayer().sendTitle(StringUtils.translateColors("&b&lA Lucky Block"),
-								StringUtils.translateColors("&bWas just mined!"));
+						e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
+								StringUtils.translateColors("&bVừa mới được khai thác!"));
 						return;
 					}
 					if (CEUtils.containsEnchantment(tool,
@@ -311,14 +311,14 @@ public class EnchantListener implements Listener {
 							for (Player o : Loader.getLoader().getServer().getOnlinePlayers().values()) {
 								if (!EventsListener.playersOrbsBooster.containsKey(e.getPlayer())) {
 									OrbEconomyUtils.addPlayerBalance(o, lvl * 10);
-									o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " donated everyone "
-											+ lvl * 10 + " orbs with donator enchant!");
+									o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " Vừa tặng cho toàn máy chủ "
+											+ lvl * 10 + " orbs (Phù phép Donator)!");
 								} else {
 									OrbEconomyUtils.addPlayerBalance(o,
 											(lvl * 10) * EventsListener.playersOrbsBooster.get(e.getPlayer()));
-									o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " donated everyone "
+									o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " Vừa tặng cho toàn máy chủ"
 											+ (lvl * 10) * EventsListener.playersOrbsBooster.get(e.getPlayer())
-											+ " orbs with donator enchant!");
+											+ " orbs (Phù phép Donator)");
 								}
 							}
 						}
@@ -464,10 +464,10 @@ public class EnchantListener implements Listener {
 						}
 						e.setCancelled();
 						LuckyReward realReward = randomrewards.next();
-						e.getPlayer().sendTitle(StringUtils.translateColors("&b&lA Lucky Block"),
-								StringUtils.translateColors("&bWas just mined!"));
-						e.getPlayer().sendActionBar(StringUtils.getPrefix() + "You have been given the reward "
-								+ realReward.getName() + " from the luckyblock!");
+						e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
+								StringUtils.translateColors("&bVừa mới được khai thác!"));
+						e.getPlayer().sendActionBar(StringUtils.getPrefix() + "Bạn vừa nhận được "
+								+ realReward.getName() + " từ Lucky Block!");
 						Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
 								realReward.getCmds().replace("{name}", e.getPlayer().getName()));
 					}
@@ -543,10 +543,10 @@ public class EnchantListener implements Listener {
 							}
 							e.setCancelled();
 							LuckyReward realReward = randomrewards.next();
-							e.getPlayer().sendTitle(StringUtils.translateColors("&b&lA Lucky Block"),
-									StringUtils.translateColors("&bWas just mined!"));
-							e.getPlayer().sendActionBar(StringUtils.getPrefix() + "You have been given the reward "
-									+ realReward.getName() + " from the luckyblock!");
+							e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
+									StringUtils.translateColors("&bVừa mới được khai thác!"));
+							e.getPlayer().sendActionBar(StringUtils.getPrefix() + "Bạn vừa nhận được phần thường "
+									+ realReward.getName() + " từ Lucky Block!");
 							Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
 									realReward.getCmds().replace("{name}", e.getPlayer().getName()));
 						}

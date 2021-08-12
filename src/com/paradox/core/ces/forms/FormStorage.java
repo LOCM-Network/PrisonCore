@@ -16,7 +16,7 @@ import cn.nukkit.item.Item;
 public class FormStorage {
 	public static FormWindowSimple enchanterMenu() {
 		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lLocm &d&lPrisons"),
-				StringUtils.translateColors("&b&l&nChoose a CE to purchase!"));
+				StringUtils.translateColors("&b&l&nChọn phù phép muốn mua!"));
 		for (CustomEnchant ce : EnchantHandler.getAllEnchants()) {
 			fs.addButton(new ElementButton(ce.getDisplayNameOfEnchantment()));
 		}
@@ -28,21 +28,21 @@ public class FormStorage {
 			int level = CEUtils.getLevelOfEnchantByDisplayName(ce.getDisplayNameOfEnchantment(), item);
 			FormWindowCustom fs = new FormWindowCustom(
 					StringUtils.translateColors(ce.getDisplayNameOfEnchantment() + " &r&b&nEnchantment&d&n Purchase"));
-			fs.addElement(new ElementLabel(StringUtils.translateColors("&7Description: " + ce.getDescription())));
-			fs.addElement(new ElementSlider(StringUtils.translateColors("&bLevel"), level, ce.getMaxLevelOfEnchantment(), 1));
+			fs.addElement(new ElementLabel(StringUtils.translateColors("&7Mô tả: " + ce.getDescription())));
+			fs.addElement(new ElementSlider(StringUtils.translateColors("&bCấp độ"), level, ce.getMaxLevelOfEnchantment(), 1));
 			return fs;
 		}
 		FormWindowCustom fs = new FormWindowCustom(
 				StringUtils.translateColors(ce.getDisplayNameOfEnchantment() + " &r&b&nEnchantment&d&n Purchase"));
-		fs.addElement(new ElementLabel(StringUtils.translateColors("&7Description: " + ce.getDescription())));
-		fs.addElement(new ElementSlider(StringUtils.translateColors("&bLevel"), 0F, ce.getMaxLevelOfEnchantment(), 1));
+		fs.addElement(new ElementLabel(StringUtils.translateColors("&7Mô tả: " + ce.getDescription())));
+		fs.addElement(new ElementSlider(StringUtils.translateColors("&bCấp độl"), 0F, ce.getMaxLevelOfEnchantment(), 1));
 		return fs;
 	}
 
 	public static FormWindowSimple confirmMenu(int lvl, CustomEnchant ce) {
-		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lConfirm Purchase?"), StringUtils.translateColors("&7Cost in orbs: "+NumberUtils.getCostOfEnchantmentByLevel(lvl, ce.getCostMultiplier())));
-		fs.addButton(new ElementButton(StringUtils.translateColors("&8Accept")));
-		fs.addButton(new ElementButton(StringUtils.translateColors("&8Deny")));
+		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lXác nhận phù phép!"), StringUtils.translateColors("&7Cost in orbs: "+NumberUtils.getCostOfEnchantmentByLevel(lvl, ce.getCostMultiplier())));
+		fs.addButton(new ElementButton(StringUtils.translateColors("&8Phù phép")));
+		fs.addButton(new ElementButton(StringUtils.translateColors("&8Từ chối")));
 		return fs;
 	}
 }

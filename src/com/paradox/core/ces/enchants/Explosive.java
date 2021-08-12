@@ -8,13 +8,13 @@ public class Explosive extends CustomEnchant{
 	private int level;
 
 	public Explosive(int level) {
-		super("Explosive", level, 15, StringUtils.translateColors("&cExplosive"), "Chance to Explode blocks in mine!", 20000,
+		super("Explosive", level, 15, StringUtils.translateColors("&cExplosive"), "Cơ hội gây nổ!", 20000,
 				EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public Explosive() {
-		super("Explosive", 1, 15, StringUtils.translateColors("&cExplosive"), "Chance Explode blocks in mine!", 20000,
+		super("Explosive", 1, 15, StringUtils.translateColors("&cExplosive"), "Cơ hội gây nổ!", 20000,
 				EnchantType.CUSTOM);
 	}
 

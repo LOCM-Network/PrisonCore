@@ -8,13 +8,13 @@ public class Gears extends CustomEnchant {
 	private int level;
 
 	public Gears(int level) {
-		super("Gears", level, 3, StringUtils.translateColors("&3Gears"), "Recieve speed effect while holding.", 5000,
+		super("Gears", level, 3, StringUtils.translateColors("&3Gears"), "Nhận được hiệu ứng nhanh khi đào.", 5000,
 				EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public Gears() {
-		super("Gears", 1, 3, StringUtils.translateColors("&3Gears"), "Recieve speed effect while holding.", 5000,
+		super("Gears", 1, 3, StringUtils.translateColors("&3Gears"), "Nhận được hiệu ứng nhanh khi đào.", 5000,
 				EnchantType.CUSTOM);
 	}
 
