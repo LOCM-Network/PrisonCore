@@ -20,7 +20,7 @@ public class EnchanterCmd extends Command {
 			if (p.getInventory().getItemInHand().isPickaxe()) {
 				p.showFormWindow(FormStorage.enchanterMenu());
 			} else {
-				p.sendMessage(StringUtils.getPrefix()+"You need to hold a pickaxe to open the CE Menu.");
+				p.sendMessage(StringUtils.getPrefix()+"Bạn cần cầm cúp để mở menu enchant.");
 			}
 		}
 		return false;
