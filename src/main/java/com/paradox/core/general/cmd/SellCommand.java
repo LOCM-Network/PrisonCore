@@ -44,7 +44,7 @@ public class SellCommand extends Command {
 				}
 			}
 			EconomyAPI.getInstance().addMoney(p, total);
-			p.sendMessage(StringUtils.getPrefix() + "Sold blocks mined for $" + total + ".");
+			p.sendMessage(StringUtils.getPrefix() + "Các khối đã đào bán được  $" + total + ".");
 		} else {
 			int multiplier = EventsListener.playersSellBooster.get(p);
 			for (Item i : p.getInventory().getContents().values()) {
@@ -55,7 +55,7 @@ public class SellCommand extends Command {
 			}
 			EconomyAPI.getInstance().addMoney(p, total*multiplier);
 			double total2 = (multiplier*total);
-			p.sendMessage(StringUtils.getPrefix() + "Sold blocks mined for a "+multiplier+"x boosted $" + total2 + ".");
+			p.sendMessage(StringUtils.getPrefix() + "Các khối đã đào bán được"+multiplier+"x boosted $" + total2 + ".");
 		}
 	}
 
@@ -64,11 +64,11 @@ public class SellCommand extends Command {
 			if (EventsListener.playersSellBooster.containsKey(p)) {
 				EconomyAPI.getInstance().addMoney(p,
 						worth.getDouble("worth." + item.getId()) * EventsListener.playersSellBooster.get(p));
-				p.sendActionBar(StringUtils.translateColors("&b&l(!)&r&d AutoSell Enchant and Booster "
-						+ EventsListener.playersSellBooster.get(p) + "x activated!"));
+				p.sendActionBar(StringUtils.translateColors("&b&l(!)&r&d AutoSell Enchant và Booster "
+						+ EventsListener.playersSellBooster.get(p) + "x kích hoạt!"));
 			} else {
 				EconomyAPI.getInstance().addMoney(p, worth.getDouble("worth." + item.getId()));
-				p.sendActionBar(StringUtils.translateColors("&b&l(!)&r&d AutoSell Enchant Activated!"));
+				p.sendActionBar(StringUtils.translateColors("&b&l(!)&r&d AutoSell Enchant Đã Kích Hoạt!"));
 			}
 		}
 	}
