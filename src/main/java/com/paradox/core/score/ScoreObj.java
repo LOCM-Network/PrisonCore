@@ -6,6 +6,7 @@ import com.paradox.core.utils.RankUtils;
 import com.paradox.core.utils.OrbEconomyUtils;
 import com.paradox.core.ranks.obj.Rank;
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
@@ -32,15 +33,19 @@ public class ScoreObj implements Listener{
 		Integer money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine("Money ("+money+")", 2);
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
-		scoreboardDisplay.addLine("Money ("+prestige+")", 3);
-		scoreboardDisplay.addLine("Prison rank", 4);
+		scoreboardDisplay.addLine("Prestige ("+prestige+")", 3);
+		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
+
+		scoreboardDisplay.addLine("Onlines" + onlines, 4);
+		scoreboardDisplay.addLine("Prison rank", 5);
 		String rank = RankUtils.getRankByPlayer(p).getName();
-		scoreboardDisplay.addLine("Current " + rank);
+		scoreboardDisplay.addLine("Current " + rank, 6);
 		Rank nextrank = RankUtils.getNextRankByPlayer(p);
+		
 		if (nextrank.isLastRank()) {
-			scoreboardDisplay.addLine("Mày là trùm");
+			scoreboardDisplay.addLine("Mày là trùm", 6);
 		} else {
-			scoreboardDisplay.addLine("Next " + nextrank.getName() + "("+ rank.getCost() +")");
+			scoreboardDisplay.addLine("Next " + nextrank.getName() + "("+ rank.getCost() +")", 5);
 		}
 		scoreboard.setScoreboard(p, scoreboard);
 		Scoreboard.scoreboards.put(p, scoreboard);
