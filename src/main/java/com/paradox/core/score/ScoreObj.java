@@ -1,6 +1,9 @@
 package com.paradox.core.score;
 
-import de.theamychan.scoreboard.network.Scoreboard;
+import de.lucgameshd.scoreboard.api.ScoreboardAPI;
+import de.lucgameshd.scoreboard.network.Scoreboard;
+import de.lucgameshd.scoreboard.network.DisplaySlot;
+import de.lucgameshd.scoreboard.network.ScoreboardDisplay;
 import me.onebone.economyapi.EconomyAPI;
 import com.paradox.core.utils.RankUtils;
 import com.paradox.core.utils.OrbEconomyUtils;
