@@ -2,11 +2,16 @@ package com.paradox.core;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
 import com.paradox.core.ah.cmd.AuctionHouseComamnd;
 import com.paradox.core.ah.listeners.AuctionListener;
 import com.paradox.core.ces.listeners.EnchantListener;
+import com.paradox.core.general.listeners.EventsListener;
+import com.paradox.core.score.ScoreObj;
 import com.paradox.core.general.cmd.BombCommand;
 import com.paradox.core.general.cmd.BoosterCmd;
 import com.paradox.core.general.cmd.EchestCommand;
@@ -16,7 +21,6 @@ import com.paradox.core.general.cmd.RTagCmd;
 import com.paradox.core.general.cmd.RepairCommand;
 import com.paradox.core.general.cmd.SellCommand;
 import com.paradox.core.general.cmd.TPSCommand;
-import com.paradox.core.general.listeners.EventsListener;
 import com.paradox.core.kits.KitHandler;
 import com.paradox.core.kits.cmd.CreateKitCommand;
 import com.paradox.core.kits.cmd.DeleteKitCommand;
@@ -36,6 +40,8 @@ import com.paradox.core.utils.RankUtils;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
+import cn.nukkit.Server;
+import cn.nukkit.Player;
 
 public class Loader extends PluginBase {
 
@@ -65,6 +71,7 @@ public class Loader extends PluginBase {
 		registerCommands();
 		registerEvents();
 		runCooldowns();
+		startScoreTask();
 	}
 
 	public static void runCooldowns() {
@@ -112,6 +119,21 @@ public class Loader extends PluginBase {
 		}
 	}
 
+	public void startScoreTask() {
+		new NukkitRunnable() {
+
+			@Override
+			public void run() {
+				try {
+					Map<UUID, Player> players = Server.getInstance().getOnlinePlayers();
+					for (Player p : players.values()) {
+						ScoreObj.show(p);
+					}
+				}
+			}
+		}
+	}
+
 	@Override
 	public void onDisable() {
 
@@ -149,6 +171,7 @@ public class Loader extends PluginBase {
 		getServer().getPluginManager().registerEvents(new MinesListener(), this);
 		getServer().getPluginManager().registerEvents(new AuctionListener(), this);
 		getServer().getPluginManager().registerEvents(new KitsListener(), this);
+		getServer().getPluginManager().registerEvents(new Scoreboard(), this);
 	}
 
 	public static Loader getLoader() {

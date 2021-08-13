@@ -41,12 +41,21 @@
             <version>2.0.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+    <dependency>
+        <groupId>de.lucgameshd</groupId>
+        <artifactId>ScoreboardAPI</artifactId>
+        <version>1.4</version>
+    </dependency>
   </dependencies>
 
   <repositories>
     <repository>
       <id>nukkit-repo</id>
       <url>https://repo.nukkitx.com/snapshot</url>
+    </repository>
+    <repository>
+        <id>public</id>
+        <url>http://repo.lucgameshd.de/repository/maven-public</url>
     </repository>
   </repositories>
 
