@@ -131,7 +131,7 @@ public class Loader extends PluginBase {
 					}
 				} catch (Exception ignored) {}
 			}
-		}
+		}runTaskTimer(this, 0, 60);
 	}
 
 	@Override
