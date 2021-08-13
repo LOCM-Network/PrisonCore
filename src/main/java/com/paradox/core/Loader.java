@@ -129,7 +129,7 @@ public class Loader extends PluginBase {
 					for (Player p : players.values()) {
 						ScoreObj.show(p);
 					}
-				}
+				} catch (Exception ignored) {}
 			}
 		}
 	}
