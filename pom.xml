@@ -47,7 +47,7 @@
       <version>1.4</version>
       <optional>false</optional>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/ScoreboardAPI.jar</systemPath>
+      <systemPath>${basedir}/lib/ScoreboardAPI-1.4.jar</systemPath>
     </dependency>
   </dependencies>
 
