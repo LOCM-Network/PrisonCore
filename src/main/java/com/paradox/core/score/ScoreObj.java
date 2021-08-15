@@ -26,7 +26,6 @@ public class ScoreObj implements Listener{
 	@EventHandler
 	public void onJoin(PlayerLocallyInitializedEvent event) {
 		show(event.getPlayer());
-		scoreboards.put(event.getPlayer(), scoreboard);
 	}
 
 	@EventHandler
@@ -36,8 +35,8 @@ public class ScoreObj implements Listener{
 
     public static void show(Player p) {
     	Scoreboard old = scoreboards.get(p);
-    	ScoreboardAPI.removeScorebaord(old);
-    	
+    	ScoreboardAPI.removeScorebaord(p, old);
+
     	String tile = TextFormat.colorize("&l&eＬＯＣＭ&b ＰＲＩＳＯＮ");
 		Scoreboard scoreboard = ScoreboardAPI.createScoreboard();
 		ScoreboardDisplay scoreboardDisplay = scoreboard.addDisplay(DisplaySlot.SIDEBAR, "dumy", tile);
@@ -53,7 +52,7 @@ public class ScoreObj implements Listener{
 		scoreboardDisplay.addLine(TextFormat.colorize("&b"+prestige+" &f Prestige&b"), 3);
 		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
 
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&b"+ onlines +"&f Trực tuyến", 4));
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&b"+ onlines +"&f Trực tuyến"), 4);
 		String rank = RankUtils.getRankByPlayer(p).getName();
 
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&fKhu mỏ:&b " + rank), 6);

@@ -133,7 +133,7 @@ public class EventsListener implements Listener {
 				long secondsLeft = ((cooldown.get(p.getUniqueId()) / 1000) + 5) - (System.currentTimeMillis() / 1000);
 				if (secondsLeft > 0) {
 					p.sendActionBar(
-							StringUtils.getPrefix() + "You can throw another bomb in " + secondsLeft + " seconds.");
+							StringUtils.color("&l&fBạn có thể dùng boom sau &e" + secondsLeft + "&f giây."));
 					return;
 				}
 			}
@@ -163,7 +163,7 @@ public class EventsListener implements Listener {
 				long secondsLeft = ((cooldown.get(p.getUniqueId()) / 1000) + 5) - (System.currentTimeMillis() / 1000);
 				if (secondsLeft > 0) {
 					p.sendActionBar(
-							StringUtils.getPrefix() + "You can throw another bomb in " + secondsLeft + " seconds.");
+							StringUtils.color("&l&fBạn có thể dùng boom sau &e" + secondsLeft + "&f giây."));
 					return;
 				}
 			}
@@ -193,7 +193,7 @@ public class EventsListener implements Listener {
 				long secondsLeft = ((cooldown.get(p.getUniqueId()) / 1000) + 5) - (System.currentTimeMillis() / 1000);
 				if (secondsLeft > 0) {
 					p.sendActionBar(
-							StringUtils.getPrefix() + "You can throw another bomb in " + secondsLeft + " seconds.");
+							StringUtils.color("&l&fBạn có thể dùng boom sau &e" + secondsLeft + "&f giây."));
 					return;
 				}
 			}
@@ -257,10 +257,10 @@ public class EventsListener implements Listener {
 									randomrewards.add(lr.getChance(), lr);
 								}
 								LuckyReward realReward = randomrewards.next();
-								e.getPlayer().sendTitle(StringUtils.translateColors("&b&lA Lucky Block"),
-										StringUtils.translateColors("&bWas just mined!"));
-								e.getPlayer().sendActionBar(StringUtils.getPrefix() + "You have been given the reward "
-										+ realReward.getName() + " from the luckyblock!");
+								e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
+										StringUtils.translateColors("&bBạn vừa nhận được quà!"));
+								e.getPlayer().sendActionBar(StringUtils.color("&l&eBạn vừa nhận được&f "
+										+ realReward.getName() + " &etừ luckyblock!"));
 								Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
 										realReward.getCmds().replace("{name}", e.getPlayer().getName()));
 							}

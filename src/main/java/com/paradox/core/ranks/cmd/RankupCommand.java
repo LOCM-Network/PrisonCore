@@ -29,11 +29,11 @@ public class RankupCommand extends Command {
 					if (EconomyAPI.getInstance().myMoney(p) >= currentRank.getCost()) {
 						EconomyAPI.getInstance().reduceMoney(p, currentRank.getCost());
 						RankUtils.setRankByPlayer(p, nextRank);
-						p.sendMessage(StringUtils.getPrefix() + "Nâng cấp thành công (" + nextRank.getName() + ")");
-						Server.getInstance().broadcastMessage("Người chơi " + sender.getName() + " vừa nâng cấp ("+ nextRank.getName() +")");
+						p.sendMessage(StringUtils.color("&l&fNâng cấp thành công (&e" + nextRank.getName() + "&f)"));
+						Server.getInstance().broadcastMessage(StringUtils.color("&l&fNgười chơi&e " + sender.getName() + "&f đã đạt cấp (&e"+ nextRank.getName() +"&f)"));
 						return false;
 					} else {
-						p.sendMessage(StringUtils.getPrefix() + "Không đủ tiền để nâng cấp.");
+						p.sendMessage("&l&cKhông đủ tiền để nâng cấp.");
 						return false;
 					}
 				} else {
@@ -41,10 +41,10 @@ public class RankupCommand extends Command {
 						EconomyAPI.getInstance().reduceMoney(p, currentRank.getCost());
 						RankUtils.setRankByPlayer(p, RankStorage.A);
 						RankUtils.setPrestigeLevelForPlayer(p, 1);
-						p.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được "
-								+ RankUtils.getPrestigeLevelForPlayer(p) + " điểm uy tính");
-						Server.getInstance().broadcastMessage(StringUtils.getPrefix() + p.getName() + " vừa nhận được "
-									+ RankUtils.getPrestigeLevelForPlayer(p) + " điểm uy tính");
+						p.sendMessage(StringUtils.color("&l&fBạn vừa nhận được &e"
+								+ RankUtils.getPrestigeLevelForPlayer(p) + " &fPrestige"));
+						Server.getInstance().broadcastMessage(StringUtils.color("&l&e" + p.getName() + "&f vừa nhận được &e"
+									+ RankUtils.getPrestigeLevelForPlayer(p) + " &fPrestige"));
 					}
 				}
 			}

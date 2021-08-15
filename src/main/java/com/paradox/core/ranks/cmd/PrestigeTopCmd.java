@@ -25,7 +25,7 @@ public class PrestigeTopCmd extends Command {
 		for (String playerName : Loader.getLoader().getPlayerCfg().getSection("Players").getKeys(false)) {
 			list.put(playerName, Loader.getLoader().getPlayerCfg().getInt("Players." + playerName + ".prestigeLevel"));
 		}
-		FormWindowCustom fc = new FormWindowCustom(StringUtils.translateColors("&9&lBXH"));
+		FormWindowCustom fc = new FormWindowCustom(StringUtils.translateColors("&9&lBXH Prestige"));
 		String nextTop = "";
 		Integer nextTopKills = 0;
 
@@ -36,7 +36,7 @@ public class PrestigeTopCmd extends Command {
 					nextTopKills = list.get(playerName);
 				}
 			}
-			fc.addElement(new ElementLabel(" " + i + " " + nextTop + " " + nextTopKills));
+			fc.addElement(new ElementLabel("&l&eＴｏｐ " + i + ". &a" + nextTop + " &fcấp&a " + nextTopKills));
 			list.remove(nextTop);
 			nextTop = "";
 			nextTopKills = 0;
