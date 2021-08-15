@@ -1,9 +1,9 @@
 package com.paradox.core.score;
 
-import de.theamychan.scoreboard.api.ScoreboardAPI;
-import de.theamychan.scoreboard.network.DisplaySlot;
-import de.theamychan.scoreboard.network.Scoreboard;
-import de.theamychan.scoreboard.network.ScoreboardDisplay;
+import de.lucgameshd.scoreboard.api.ScoreboardAPI;
+import de.lucgameshd.scoreboard.network.DisplaySlot;
+import de.lucgameshd.scoreboard.network.Scoreboard;
+import de.lucgameshd.scoreboard.network.ScoreboardDisplay;
 import me.onebone.economyapi.EconomyAPI;
 import com.paradox.core.utils.RankUtils;
 import com.paradox.core.utils.OrbEconomyUtils;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class ScoreObj implements Listener{
 
-	static final Map<Player, Scoreboard> scoreboards = new HashMap<>();
+	/*static final Map<Player, Scoreboard> scoreboards = new HashMap<>();*/
 
     // @EventHandler
     // private void onQuit(PlayerQuitEvent event) {
@@ -50,7 +50,7 @@ public class ScoreObj implements Listener{
 		} else {
 			scoreboardDisplay.addLine("Next " + nextrank.getName() + "("+ nextrank.getCost() +")", 5);
 		}
-		scoreboard.showFor(p);
+		ScoreboardAPI.setScoreboard(p, scoreboard);
 		//scoreboards.put(p, scoreboard);
     } 
 }
