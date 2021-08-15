@@ -162,7 +162,7 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("bomb", new BombCommand());
 		getServer().getCommandMap().register("invsee", new InvseeCommand());
 		getServer().getCommandMap().register("echest", new EchestCommand());
-		getServer().getCommandMap().register("rtag", new RTagCmd());
+		//getServer().getCommandMap().register("rtag", new RTagCmd());
 	}
 
 	public void registerEvents() {
