@@ -11,6 +11,7 @@ import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
+import cn.nukkit.utils.TextFormat;
 import me.onebone.economyapi.EconomyAPI;
 
 public class SellCommand extends Command {
@@ -18,7 +19,7 @@ public class SellCommand extends Command {
 	public static File worthFile = Loader.getLoader().getWorthFile();
 
 	public SellCommand() {
-		super("sell");
+		super("sell", "Sell all mine item");
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class SellCommand extends Command {
 				}
 			}
 			EconomyAPI.getInstance().addMoney(p, total);
-			p.sendMessage(StringUtils.getPrefix() + "Các khối đã đào bán được  $" + total + ".");
+			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + total + "&f xu."));
 		} else {
 			int multiplier = EventsListener.playersSellBooster.get(p);
 			for (Item i : p.getInventory().getContents().values()) {
@@ -55,7 +56,7 @@ public class SellCommand extends Command {
 			}
 			EconomyAPI.getInstance().addMoney(p, total*multiplier);
 			double total2 = (multiplier*total);
-			p.sendMessage(StringUtils.getPrefix() + "Các khối đã đào bán được"+multiplier+"x boosted $" + total2 + ".");
+			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + total2 + "&f xu &7(&fBạn đang có &ex"+multiplier+"&f)"));
 		}
 	}
 

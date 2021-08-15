@@ -32,7 +32,7 @@ public class MineCommand extends Command {
 		if (args.length == 0) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
-				p.showFormWindow(FormStorage.MinerMenu());
+				p.showFormWindow(FormStorage.MinerMenu(p));
 			}
 		}
 		if (sender.hasPermission("paradox.admin")) {

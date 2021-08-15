@@ -13,42 +13,40 @@ import cn.nukkit.Server;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
+import cn.nukkit.utils.TextFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ScoreObj implements Listener{
 
-	/*static final Map<Player, Scoreboard> scoreboards = new HashMap<>();*/
-
-    // @EventHandler
-    // private void onQuit(PlayerQuitEvent event) {
-    //     scoreboards.remove(event.getPlayer());
-    // }
-
+	@Override
     public static void show(Player p) {
-    	String tile = "Prison";
+    	String tile = TextFormat.colorize("&l&eＬＯＣＭ&b ＰＲＩＳＯＮ");
 		Scoreboard scoreboard = ScoreboardAPI.createScoreboard();
 		ScoreboardDisplay scoreboardDisplay = scoreboard.addDisplay(DisplaySlot.SIDEBAR, "dumy", tile);
-		scoreboardDisplay.addLine("Name "+p.getName(), 0);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&b" +p.getName()), 0);
+
 		Integer orbs = OrbEconomyUtils.getPlayersTokenBalance(p);
-		scoreboardDisplay.addLine("Orb ("+orbs+")", 1);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&b"+ money +"&f Orb"), 1);
+
 		Double money = EconomyAPI.getInstance().myMoney(p);
-		scoreboardDisplay.addLine("Money ("+money+")", 2);
+		scoreboardDisplay.addLine(TextFormat.colorize("&b&l "+ money+"&f Xu"), 2);
+
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
-		scoreboardDisplay.addLine("Prestige ("+prestige+")", 3);
+		scoreboardDisplay.addLine(TextFormat.colorize("&b"+prestige+" &f Prestige&b"), 3);
 		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
 
-		scoreboardDisplay.addLine("Onlines" + onlines, 4);
-		scoreboardDisplay.addLine("Prison rank", 5);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&b"+ onlines +"&f Trực tuyến", 4));
 		String rank = RankUtils.getRankByPlayer(p).getName();
-		scoreboardDisplay.addLine("Current " + rank, 6);
+
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&fKhu mỏ:&b " + rank), 6);
 		Rank nextrank = RankUtils.getNextRankByPlayer(p);
 		
 		if (nextrank.isLastRank()) {
-			scoreboardDisplay.addLine("Mày là trùm", 6);
+			scoreboardDisplay.addLine(TextFormat.colorize("&l&eMày là trùm"), 7);
 		} else {
-			scoreboardDisplay.addLine("Next " + nextrank.getName() + "("+ nextrank.getCost() +")", 5);
+			scoreboardDisplay.addLine(TextFormat.colorize("&l&fKhu kế&b "+ nextrank.getCost() +" &fxu"), 7);
 		}
 		ScoreboardAPI.setScoreboard(p, scoreboard);
 		//scoreboards.put(p, scoreboard);

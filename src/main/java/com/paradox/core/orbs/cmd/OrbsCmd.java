@@ -4,7 +4,6 @@ import com.paradox.core.Loader;
 import com.paradox.core.utils.ItemStorage;
 import com.paradox.core.utils.OrbEconomyUtils;
 import com.paradox.core.utils.StringUtils;
-
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
@@ -33,7 +32,7 @@ public class OrbsCmd extends Command {
 						try {
 							int amount = Integer.parseInt(args[2]);
 							OrbEconomyUtils.addPlayerBalance(target, amount);
-							target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được " + amount + " orbs!");
+							target.sendMessage(StringUtils.color("&l&eBạn vừa nhận được&f " + amount + "&e orbs!"));
 							sender.sendMessage(
 									StringUtils.getPrefix() + "Gave " + target.getName() + " " + amount + " orbs!");
 						} catch (NumberFormatException e) {
@@ -48,8 +47,8 @@ public class OrbsCmd extends Command {
 						try {
 							int amount = Integer.parseInt(args[2]);
 							OrbEconomyUtils.removePlayerBalance(target, amount);
-							target.sendMessage(StringUtils.getPrefix() + "Bạn vừa bị trừ " + amount
-									+ " orb! (Người xóa: "+ sender.getName() +")");
+							target.sendMessage(StringUtils.color("&l&fBạn vừa bị trừ&e " + amount
+									+ " &forb!&7 (&fNgười xóa:&a "+ sender.getName() +"&7)"));
 							sender.sendMessage(StringUtils.getPrefix() + "Removed " + amount + " orbs from"
 									+ target.getName() + "'s balance. ");
 						} catch (NumberFormatException e) {
@@ -85,7 +84,7 @@ public class OrbsCmd extends Command {
 								Item i = ItemStorage.orbPouchTierOne();
 								i.setCount(amount);
 								target.getInventory().addItem(i);
-								target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được túi quà (OrbPouch) cấp 1!");
+								target.sendMessage(StringUtils.color("&l&fBạn vừa nhận được túi quà (&aOrbPouch&f) cấp &e1!"));
 								sender.sendMessage(StringUtils.getPrefix() + "Gave " + target.getName()
 										+ " a tier one orb pouch!");
 								break;
@@ -93,7 +92,7 @@ public class OrbsCmd extends Command {
 								Item i1 = ItemStorage.orbPouchTierTwo();
 								i1.setCount(amount);
 								target.getInventory().addItem(i1);
-								target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được túi quà (OrbPouch) cấp 2!");
+								target.sendMessage(StringUtils.color("&l&fBạn vừa nhận được túi quà (&aOrbPouch&f) cấp &e2!"));
 								sender.sendMessage(StringUtils.getPrefix() + "Gave " + target.getName()
 										+ " a tier two orb pouch!");
 								break;
@@ -101,7 +100,7 @@ public class OrbsCmd extends Command {
 								Item i11 = ItemStorage.orbPouchTierThree();
 								i11.setCount(amount);
 								target.getInventory().addItem(i11);
-								target.sendMessage(StringUtils.getPrefix() + "Bạn vừa nhận được túi quà (OrbPouch) cấp 3!");
+								target.sendMessage(StringUtils.color("&l&fBạn vừa nhận được túi quà (&aOrbPouch&f) cấp &e3!"));
 								sender.sendMessage(StringUtils.getPrefix() + "Gave " + target.getName()
 										+ " a tier three orb pouch!");
 								break;

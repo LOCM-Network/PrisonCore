@@ -6,21 +6,22 @@ import com.paradox.core.utils.StringUtils;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.utils.TextFormat;
 
 public class EnchanterCmd extends Command {
 
 	public EnchanterCmd() {
-		super("enchanter","Open pickaxe enchant menu","/enchanter",new String[]{"ce"});
+		super("enchanter","Open enchant menu","/enchanter",new String[]{"ce"});
 	}
 
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
-			if (p.getInventory().getItemInHand().isPickaxe()) {
+			if (p.getInventory().getItemInHand().isPickaxe() || p.getInventory().getItemInHand().isAxe()) {
 				p.showFormWindow(FormStorage.enchanterMenu());
 			} else {
-				p.sendMessage(StringUtils.getPrefix()+"Bạn cần cầm cúp để mở menu enchant.");
+				p.sendMessage(TextFormat.colorize("&cChỉ có thể phù phép cho cúp hoặc rìu."));
 			}
 		}
 		return false;

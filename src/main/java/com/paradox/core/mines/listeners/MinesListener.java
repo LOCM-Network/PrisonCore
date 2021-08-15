@@ -36,15 +36,15 @@ public class MinesListener implements Listener {
 						String responseName = gui.getResponse().getClickedButton().getText();
 						if (responseName != null) {
 							for (Mine m : MineUtils.getAllMinesFromConfig()) {
-								if (responseName.equals(StringUtils.translateColors("&a" + m.getMineName()))) {
+								if (responseName.contains(m.getMineName())) {
 									if (RankUtils.getRankByName(m.getMineName()) != null) {
 										if (RankUtils.getRankByName(m.getMineName()).getOrder() <= RankUtils
 												.getRankByPlayer(p).getOrder()) {
 											p.teleport(m.getTpLocation());
 											p.sendActionBar(StringUtils
-													.translateColors("&bTeleported to mine " + m.getMineName() + "."));
+													.translateColors("&l&fDịch chuyển tới khu mỏ&f " + m.getMineName() + ""));
 										} else {
-											p.sendMessage(StringUtils.getPrefix()+"No perms for this mine! /rankup!");
+											p.sendMessage(StringUtils.color("&l&cBạn chưa có quyền dịch chuyển tới khu này!&f /rankup!"));
 										}
 									} else {
 										p.sendMessage(StringUtils.translateColors("&cERROR! Please alert an admin! ERROR CODE: 0x000001 Null."));

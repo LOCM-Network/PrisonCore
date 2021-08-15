@@ -9,7 +9,7 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.inventory.Inventory;
-
+import cn.nukkit.utils.TextFormat;
 public class InvseeCommand extends Command {
 	public InvseeCommand() {
 		super("invsee");

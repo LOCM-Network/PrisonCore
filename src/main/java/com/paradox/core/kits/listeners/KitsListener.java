@@ -64,7 +64,7 @@ public class KitsListener implements Listener {
 							if (gui.getResponse().getClickedButton().getText() != null) {
 								String responseName = gui.getResponse().getClickedButton().getText();
 								if (responseName != null) {
-									if (responseName.equals(StringUtils.translateColors("&aAccept!"))) {
+									if (responseName.equals(StringUtils.translateColors("&aĐồng ý!"))) {
 										kit.giveKitToPlayer(p);
 										p.removeAllWindows();
 										p.sendMessage(StringUtils.getPrefix() + "Redeemed kit " + kit.getName() + ".");
