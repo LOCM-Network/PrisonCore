@@ -125,8 +125,11 @@ public class Loader extends PluginBase {
 			@Override
 			public void run() {
 				Map<UUID, Player> players = Server.getInstance().getOnlinePlayers();
-				for (Player p : players.values()) {
-					ScoreObj.show(p);
+				if(!players.isEmpty()) {
+					for (Player p : players.values()) {
+
+						ScoreObj.show(p);
+					}					
 				}
 			}
 		}.runTaskTimer(this, 0, 20);
