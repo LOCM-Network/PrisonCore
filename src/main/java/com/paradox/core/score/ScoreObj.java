@@ -1,9 +1,9 @@
 package com.paradox.core.score;
 
-import de.lucgameshd.scoreboard.api.ScoreboardAPI;
-import de.lucgameshd.scoreboard.network.Scoreboard;
-import de.lucgameshd.scoreboard.network.DisplaySlot;
-import de.lucgameshd.scoreboard.network.ScoreboardDisplay;
+import de.theamychan.scoreboard.api.ScoreboardAPI;
+import de.theamychan.scoreboard.network.DisplaySlot;
+import de.theamychan.scoreboard.network.Scoreboard;
+import de.theamychan.scoreboard.network.ScoreboardDisplay;
 import me.onebone.economyapi.EconomyAPI;
 import com.paradox.core.utils.RankUtils;
 import com.paradox.core.utils.OrbEconomyUtils;
@@ -21,10 +21,10 @@ public class ScoreObj implements Listener{
 
 	static final Map<Player, Scoreboard> scoreboards = new HashMap<>();
 
-    @EventHandler
-    private void onQuit(PlayerQuitEvent event) {
-        scoreboards.removeScorebaord(event.getPlayer());
-    }
+    // @EventHandler
+    // private void onQuit(PlayerQuitEvent event) {
+    //     scoreboards.remove(event.getPlayer());
+    // }
 
     public static void show(Player p) {
     	String tile = "Prison";
@@ -33,7 +33,7 @@ public class ScoreObj implements Listener{
 		scoreboardDisplay.addLine("Name "+p.getName(), 0);
 		Integer orbs = OrbEconomyUtils.getPlayersTokenBalance(p);
 		scoreboardDisplay.addLine("Orb ("+orbs+")", 1);
-		Integer money = EconomyAPI.getInstance().myMoney(p);
+		Double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine("Money ("+money+")", 2);
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
 		scoreboardDisplay.addLine("Prestige ("+prestige+")", 3);
@@ -48,9 +48,9 @@ public class ScoreObj implements Listener{
 		if (nextrank.isLastRank()) {
 			scoreboardDisplay.addLine("Mày là trùm", 6);
 		} else {
-			scoreboardDisplay.addLine("Next " + nextrank.getName() + "("+ rank.getCost() +")", 5);
+			scoreboardDisplay.addLine("Next " + nextrank.getName() + "("+ nextrank.getCost() +")", 5);
 		}
-		scoreboard.setScoreboard(p, scoreboard);
-		Scoreboard.scoreboards.put(p, scoreboard);
+		scoreboard.showFor(p);
+		//scoreboards.put(p, scoreboard);
     } 
 }

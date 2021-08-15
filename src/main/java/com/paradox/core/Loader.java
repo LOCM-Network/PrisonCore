@@ -171,7 +171,7 @@ public class Loader extends PluginBase {
 		getServer().getPluginManager().registerEvents(new MinesListener(), this);
 		getServer().getPluginManager().registerEvents(new AuctionListener(), this);
 		getServer().getPluginManager().registerEvents(new KitsListener(), this);
-		getServer().getPluginManager().registerEvents(new Scoreboard(), this);
+		getServer().getPluginManager().registerEvents(new ScoreObj(), this);
 	}
 
 	public static Loader getLoader() {

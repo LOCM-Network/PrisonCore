@@ -26,6 +26,7 @@ com\paradox\core\kits\cmd\DeleteKitCommand.class
 com\paradox\core\mines\LuckyRewardStorage.class
 com\paradox\core\ces\obj\EnchantType.class
 com\paradox\core\utils\NumberUtils.class
+com\paradox\core\score\ScoreObj.class
 com\paradox\core\ces\obj\CustomEnchant.class
 com\paradox\core\orbs\cmd\OrbsCmd.class
 com\paradox\core\general\listeners\EventsListener.class
@@ -50,6 +51,7 @@ com\paradox\core\general\listeners\EventsListener$1.class
 com\paradox\core\general\cmd\RTagCmd.class
 com\paradox\core\utils\Cooldown.class
 com\paradox\core\ces\enchants\Explosive.class
+com\paradox\core\Loader$3.class
 com\paradox\core\Loader.class
 com\paradox\core\ranks\obj\Rank.class
 com\paradox\core\general\cmd\BoosterCmd.class
