@@ -33,13 +33,13 @@ public class ScoreObj implements Listener{
 		scoreboards.remove(event.getPlayer());
 	}
 
-    public static void show(Player p) {
-    	try {
-	    	Scoreboard old = scoreboards.get(p);
-	    	ScoreboardAPI.removeScorebaord(p, old);    		
-    	}catch(Exception ignored) {}
+	public static void show(Player p) {
+		try {
+			Scoreboard old = scoreboards.get(p);
+			ScoreboardAPI.removeScorebaord(p, old);	
+		}catch(Exception ignored) {}
 
-    	String tile = TextFormat.colorize("&l&eＬＯＣＭ&b ＰＲＩＳＯＮ");
+		String tile = TextFormat.colorize("&l&eＬＯＣＭ&b ＰＲＩＳＯＮ");
 		Scoreboard scoreboard = ScoreboardAPI.createScoreboard();
 		ScoreboardDisplay scoreboardDisplay = scoreboard.addDisplay(DisplaySlot.SIDEBAR, "dumy", tile);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &b " +p.getName()), 0);
@@ -67,5 +67,5 @@ public class ScoreObj implements Listener{
 		}
 		ScoreboardAPI.setScoreboard(p, scoreboard);
 		scoreboards.put(p, scoreboard);
-    }
+	}
 }
