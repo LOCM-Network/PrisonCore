@@ -42,12 +42,9 @@
             <scope>provided</scope>
         </dependency>
     <dependency>
-      <groupId>de.lucgameshd</groupId>
-      <artifactId>ScoreboardAPI</artifactId>
-      <version>1.4</version>
-      <optional>false</optional>
-      <scope>system</scope>
-      <systemPath>${basedir}/lib/ScoreboardAPI-1.4.jar</systemPath>
+    <groupId>de.lucgameshd</groupId>
+       <artifactId>ScoreboardAPI</artifactId>
+       <version>1.4</version>
     </dependency>
   </dependencies>
 
