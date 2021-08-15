@@ -12,7 +12,7 @@ import cn.nukkit.form.window.FormWindowSimple;
 public class FormStorage {
 
 	public static FormWindowSimple MinerMenu(Player p) {
-		String prank = RankUtils.getRankByPlayer().getName(); 
+		String prank = RankUtils.getRankByPlayer(p).getName(); 
 		String minestring = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lLOCM &d&lPrisons"),
 				StringUtils.translateColors("&b&l&nChoose a Mine to teleport to!"));

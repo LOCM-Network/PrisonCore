@@ -20,7 +20,6 @@ import java.util.Map;
 
 public class ScoreObj implements Listener{
 
-	@Override
     public static void show(Player p) {
     	String tile = TextFormat.colorize("&l&eＬＯＣＭ&b ＰＲＩＳＯＮ");
 		Scoreboard scoreboard = ScoreboardAPI.createScoreboard();
@@ -28,7 +27,7 @@ public class ScoreObj implements Listener{
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&b" +p.getName()), 0);
 
 		Integer orbs = OrbEconomyUtils.getPlayersTokenBalance(p);
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&b"+ money +"&f Orb"), 1);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&b"+ orbs +"&f Orb"), 1);
 
 		Double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&b&l "+ money+"&f Xu"), 2);
