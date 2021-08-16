@@ -49,12 +49,13 @@ public class ScoreObj implements Listener{
 
 		Double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fXu &b"+ money), 2);
-
+		Double lcoin = me.locm.economyapi.EconomyAPI.myCoin(p);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLCoin &b"+ lcoin), 3);
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 3);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 4);
 		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
 
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 4);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 5);
 		String rank = RankUtils.getRankByPlayer(p).getName();
 
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu mỏ&b " + rank), 6);

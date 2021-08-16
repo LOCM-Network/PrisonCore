@@ -55,6 +55,14 @@
       <scope>system</scope>
       <systemPath>${basedir}/lib/ScoreboardAPI.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>me.locm</groupId>
+      <artifactId>lcoin</artifactId>
+      <version>1.0.1</version>
+      <optional>false</optional>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/LCoin.jar</systemPath>
+    </dependency>
     </dependencies>
 
   <repositories>
