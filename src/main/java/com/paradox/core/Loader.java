@@ -62,6 +62,8 @@ public class Loader extends PluginBase {
 
 	@Override
 	public void onEnable() {
+		Server.getInstance().getNetWork().setName(TextFormat.colorize("&l&eＬＯＣＭ"));
+		Server.getInstance().getNetWork().setSubName(TextFormat.colorize("&l&bＰＲＩＳＯＮ"));
 		getDataFolder().mkdirs();
 		registerfiles();
 		GeneralUtils.setupWorthFile();
