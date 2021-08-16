@@ -22,7 +22,7 @@ import java.util.Map;
 public class ScoreObj implements Listener{
 
 	static final Map<Player, Scoreboard> scoreboards = new HashMap<>();
-	private me.locm.economyapi.EconomyAPI lcoin;
+	private static me.locm.economyapi.EconomyAPI lcoin;
 
 	@EventHandler
 	public void onJoin(PlayerLocallyInitializedEvent event) {
@@ -50,8 +50,8 @@ public class ScoreObj implements Listener{
 
 		Double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fXu &b"+ money), 2);
-		Double lcoin = this.lcoin.getInstance().myCoin(p);
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLCoin &b"+ lcoin), 3);
+		Double coin = lcoin.getInstance().myCoin(p);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLCoin &b"+ coin), 3);
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 4);
 		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
