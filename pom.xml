@@ -57,7 +57,7 @@
     </dependency>
     <dependency>
       <groupId>me.locm</groupId>
-      <artifactId>lcoin</artifactId>
+      <artifactId>economyapi</artifactId>
       <version>1.0.1</version>
       <optional>false</optional>
       <scope>system</scope>

@@ -49,7 +49,7 @@ public class ScoreObj implements Listener{
 
 		Double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fXu &b"+ money), 2);
-		Double lcoin = me.locm.economyapi.EconomyAPI.myCoin(p);
+		Double lcoin = me.locm.economyapi.EconomyAPI.getInstance().myCoin(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLCoin &b"+ lcoin), 3);
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 4);

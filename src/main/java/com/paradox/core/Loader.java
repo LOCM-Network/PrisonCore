@@ -155,7 +155,7 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("repairhand", new RepairCommand());
 		getServer().getCommandMap().register("createkit", new CreateKitCommand());
 		getServer().getCommandMap().register("deletekit", new DeleteKitCommand());
-		getServer().getCommandMap().register("kit", new KitCommand());
+		//getServer().getCommandMap().register("kit", new KitCommand());
 		getServer().getCommandMap().register("enchanter", new EnchanterCmd());
 		getServer().getCommandMap().register("booster", new BoosterCmd());
 		getServer().getCommandMap().register("ptop", new PrestigeTopCmd());
@@ -171,7 +171,7 @@ public class Loader extends PluginBase {
 		getServer().getPluginManager().registerEvents(new EnchantListener(), this);
 		getServer().getPluginManager().registerEvents(new MinesListener(), this);
 		getServer().getPluginManager().registerEvents(new AuctionListener(), this);
-		getServer().getPluginManager().registerEvents(new KitsListener(), this);
+		//getServer().getPluginManager().registerEvents(new KitsListener(), this);
 		getServer().getPluginManager().registerEvents(new ScoreObj(), this);
 	}
 
