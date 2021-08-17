@@ -2,4 +2,4 @@ name: PLOCMCore
 api: ["1.0.0"]
 author: phuongaz
 main: com.locm.core.Loader
-version: "0.1"
+version: "1.0"
