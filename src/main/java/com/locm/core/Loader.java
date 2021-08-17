@@ -24,6 +24,7 @@ import com.locm.core.general.cmd.RepairCommand;
 import com.locm.core.general.cmd.SellCommand;
 import com.locm.core.general.cmd.TPSCommand;
 import com.locm.core.general.cmd.HubCommand;
+import com.locm.core.general.cmd.KickAllCommand;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.cmd.CreateKitCommand;
 import com.locm.core.kits.cmd.DeleteKitCommand;
@@ -187,6 +188,7 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("invsee", new InvseeCommand());
 		getServer().getCommandMap().register("echest", new EchestCommand());
 		getServer().getCommandMap().register("hub", new HubCommand());
+		getServer().getCommandMap().register("kickall", new KickAllCommand());
 		//getServer().getCommandMap().register("rtag", new RTagCmd());
 	}
 
