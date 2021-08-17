@@ -12,4 +12,6 @@ Prison core for LOCM server
 + Teleport
 + Kick
 
++ Shop
++ LCoin shop
 
