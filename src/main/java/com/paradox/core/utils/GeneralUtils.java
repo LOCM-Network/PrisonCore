@@ -5,10 +5,13 @@ import java.util.Random;
 
 import com.paradox.core.Loader;
 
-//import Sergey_Dertan.SRegionProtector.Main.SRegionProtectorMain;
+import cn.nukkit.Server;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
+import cn.nukkit.level.Level;
+import cn.nukkit.entity.Entity;
+import cn.nukkit.entity.EntityHuman;
 
 public class GeneralUtils {
 
@@ -61,6 +64,19 @@ public class GeneralUtils {
 			return true;
 		}*/
 		return true;
+	}
+
+	public static Integer clearlag() {
+		Integer i = 0;
+		for (Level level : Server.getInstance().getLevels().values()) {
+			for (Entity entity : level.getEntities()) {
+				if (!(entity instanceof EntityHuman) && (entity.namedTag == null || (!entity.namedTag.contains("npc") && !entity.namedTag.contains("hologramId")))) {
+					entity.close();
+					i++;
+				}
+			}
+		}
+		return i;
 	}
 
 }

@@ -3,6 +3,8 @@ package com.paradox.core;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
@@ -41,6 +43,7 @@ import com.paradox.core.utils.RankUtils;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
+import cn.nukkit.utils.TextFormat;
 import cn.nukkit.Server;
 import cn.nukkit.Player;
 
@@ -72,6 +75,7 @@ public class Loader extends PluginBase {
 		registerCommands();
 		registerEvents();
 		//runCooldowns();
+		startClearLagTask();
 		startScoreTask();
 	}
 
@@ -120,6 +124,25 @@ public class Loader extends PluginBase {
 		}
 	}
 
+	public void startClearLagTask() {
+		new NukkitRunnable() {
+			int time = 20*60*5;
+			@Override
+			public void run() {
+				if(time <= 0) {
+					int count = GeneralUtils.clearlag();
+					Server.getInstance().broadcastMessage(TextFormat.colorize("&l&fĐã xóa&e " + count + " &fvật phẩm trên mặt đất"));
+					time = 20*60*5;
+				}
+				List<Integer> intList = new ArrayList<>(Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 30, 60}));
+				if(intList.contains(time)) {
+					Server.getInstance().broadcastMessage(TextFormat.colorize("&l&fDọn rác sau &e" + time + "&f giây nữa"));
+				}
+				time--;
+			}
+		}.runTaskTimer(this, 0, 20);
+	}
+
 	public void startScoreTask() {
 		new NukkitRunnable() {
 
@@ -133,7 +156,7 @@ public class Loader extends PluginBase {
 					}					
 				}
 			}
-		}.runTaskTimer(this, 0, 20);
+		}.runTaskTimer(this, 0, 60);
 	}
 
 	@Override

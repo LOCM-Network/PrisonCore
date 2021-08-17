@@ -44,6 +44,7 @@ com\paradox\core\kits\KitHandler.class
 com\paradox\core\kits\listeners\KitsListener.class
 com\paradox\core\mines\obj\Mine.class
 com\paradox\core\ces\enchants\Fortune.class
+com\paradox\core\Loader$4.class
 com\paradox\core\ah\cmd\AuctionHouseComamnd.class
 com\paradox\core\ces\enchants\Donator.class
 com\paradox\core\ces\forms\FormStorage.class
