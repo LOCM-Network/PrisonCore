@@ -73,7 +73,7 @@ public class Loader extends PluginBase {
 		startMineResetTask();
 		registerCommands();
 		registerEvents();
-		runCooldowns();
+		//runCooldowns();
 		startScoreTask();
 	}
 
