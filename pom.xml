@@ -76,6 +76,10 @@
       <id>nukkit-repo</id>
       <url>https://repo.nukkitx.com/snapshot</url>
     </repository>
+    <repository>
+      <id>lib</id>
+      <url>file://${basedir}/lib/</url>
+    </repository>
   </repositories>
 
     <build>
