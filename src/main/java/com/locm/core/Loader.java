@@ -61,7 +61,7 @@ public class Loader extends PluginBase {
 	private File dataFile;
 	private Config kitsCfg;
 	private File kitsFile;
-	PlaceholderAPI api = PlaceholderAPI.getInstance();
+	static PlaceholderAPI api = PlaceholderAPI.getInstance();
 	public static HashMap<Mine, Integer> mineReset = new HashMap<>();
 
 	@Override
@@ -101,6 +101,8 @@ public class Loader extends PluginBase {
 		dataCfg = new Config(dataFile);
 		kitsFile = new File(getDataFolder(), "kits.yml");
 		kitsCfg = new Config(kitsFile);
+		formatFile = new File(getDataFolder(), "chatformat.yml");
+		chatCfg = new Config(formatFile);
 	}
 
 	public void startMineResetTask() {
@@ -208,6 +210,10 @@ public class Loader extends PluginBase {
 
 	public Config getPlayerCfg() {
 		return playerCfg;
+	}
+
+	public Config getChatCfg() {
+		return chatCfg;
 	}
 
 	public File getPlayersFile() {
