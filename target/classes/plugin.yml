@@ -1,5 +1,5 @@
 name: PLOCMCore
 api: ["1.0.0"]
-author: YaUhYeah
-main: com.paradox.core.Loader
+author: phuongaz
+main: com.locm.core.Loader
 version: "0.1"
