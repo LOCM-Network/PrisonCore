@@ -31,6 +31,8 @@ import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.event.server.DataPacketReceiveEvent;
+import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
@@ -89,6 +91,13 @@ public class EventsListener implements Listener {
 			getRandomTagPerm(p);
 		}
 		return perm;
+	}
+
+	@EventHandler(ignoreCancelled = true)
+	public void DataPacketReceiveEvent(DataPacketReceiveEvent e) {
+		if (e.getPacket() instanceof LoginPacket) {
+			((LoginPacket) e.getPacket()).username = ((LoginPacket) e.getPacket()).username.replace(" ", "_");
+		}
 	}
 
 	@EventHandler
