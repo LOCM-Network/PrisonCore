@@ -6,23 +6,13 @@ import com.paradox.core.utils.RandomCollection;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.level.Location;
-import lombok.Getter;
-import lombok.Setter;
 
 public class Mine {
 
-	@Getter
-	@Setter
-	private final MineRegion region;
-	@Getter
-	@Setter
-	private final String mineName;
-	@Getter
-	@Setter
-	private final MineComposition mineComposition;
-	@Getter
-	@Setter
-	private final Location tpLocation;
+	private MineRegion region;
+	private String mineName;
+	private MineComposition mineComposition;
+	private Location tpLocation;
 
 	public Mine(MineRegion region, String mineName, MineComposition mineComposition, Location tpLocation) {
 		this.region = region;
@@ -64,4 +54,37 @@ public class Mine {
 		}
 		return random.next();
 	}
+
+	public MineRegion getRegion() {
+		return region;
+	}
+
+	public void setRegion(MineRegion region) {
+		this.region = region;
+	}
+
+	public String getMineName() {
+		return mineName;
+	}
+
+	public void setMineName(String mineName) {
+		this.mineName = mineName;
+	}
+
+	public MineComposition getMineComposition() {
+		return mineComposition;
+	}
+
+	public void setMineComposition(MineComposition mineComposition) {
+		this.mineComposition = mineComposition;
+	}
+
+	public Location getTpLocation() {
+		return tpLocation;
+	}
+
+	public void setTpLocation(Location tpLocation) {
+		this.tpLocation = tpLocation;
+	}
+
 }
