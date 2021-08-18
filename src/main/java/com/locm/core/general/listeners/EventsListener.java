@@ -21,6 +21,7 @@ import com.locm.core.utils.RandomCollection;
 import com.locm.core.utils.StringUtils;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockAir;
 import cn.nukkit.command.ConsoleCommandSender;
@@ -114,6 +115,7 @@ public class EventsListener implements Listener {
 			players.set("Players." + e.getPlayer().getName() + ".prestigeLevel", 1);
 			players.save(playersFile);
 		}
+		e.getPlayer().teleport(Server.getInstance().getDefaultLevel().getSafeSpawn());
 		e.setJoinMessage("§l§a•§f " + e.getPlayer().getName());
 	}
 

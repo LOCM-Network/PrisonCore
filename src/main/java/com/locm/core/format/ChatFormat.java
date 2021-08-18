@@ -16,21 +16,25 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.model.group.Group;
 
-public class ChatFormat{
+public class ChatFormat implements Listener{
 
 	private static LuckPerms api;
 	private static Config config;
 
 	public ChatFormat() {
 		config = Loader.getInstance().getChatCfg();
+		api = LuckPermsProvider.get();
+		fecthGroup();
 	}
 
 	public static void fecthGroup() {
 		for (Group g : api.getGroupManager().getLoadedGroups()) {
 			String group = g.getName();
-			config.set("Chat." + group, "[%name%] >> %msg%");
-			config.set("NameTag." + group, "%name%");
-			Server.getInstance().getLogger().info(TextFormat.LIGHT_PURPLE + " Fetching group: " + group);
+			if(config.getString("Chat." + group) == null) {
+				config.set("Chat." + group, "[%name%] >> %msg%");
+				config.set("NameTag." + group, "%name%");
+				Server.getInstance().getLogger().info(TextFormat.LIGHT_PURPLE + " Fetching group: " + group);					
+			}
 		}
 		config.save();
 	}

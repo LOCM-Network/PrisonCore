@@ -58,6 +58,7 @@ public class ScoreObj implements Listener{
 
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 5);
 		String rank = RankUtils.getRankByPlayer(p).getName();
+		if(rank == null) rank = "A";
 
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu mỏ&b " + rank), 6);
 		Rank nextrank = RankUtils.getNextRankByPlayer(p);

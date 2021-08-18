@@ -38,6 +38,7 @@ import com.locm.core.orbs.cmd.OrbsCmd;
 import com.locm.core.orbs.listeners.OrbsListener;
 import com.locm.core.ranks.cmd.PrestigeTopCmd;
 import com.locm.core.ranks.cmd.RankupCommand;
+import com.locm.core.format.ChatFormat;
 import com.locm.core.utils.GeneralUtils;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.OrbEconomyUtils;
@@ -70,6 +71,7 @@ public class Loader extends PluginBase {
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();
+		saveResource("chatformat.yml");
 		getDataFolder().mkdirs();
 		registerfiles();
 		GeneralUtils.setupWorthFile();
@@ -207,6 +209,7 @@ public class Loader extends PluginBase {
 		getServer().getPluginManager().registerEvents(new AuctionListener(), this);
 		//getServer().getPluginManager().registerEvents(new KitsListener(), this);
 		getServer().getPluginManager().registerEvents(new ScoreObj(), this);
+		getServer().getPluginManager().registerEvents(new ChatFormat(), this);
 	}
 
 	public static Loader getLoader() {

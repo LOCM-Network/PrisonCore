@@ -23,5 +23,4 @@ public class AdminCommand extends Command {
 		}
 		return false;
 	}
-
 }
