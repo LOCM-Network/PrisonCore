@@ -25,6 +25,7 @@ import com.locm.core.general.cmd.SellCommand;
 import com.locm.core.general.cmd.TPSCommand;
 import com.locm.core.general.cmd.HubCommand;
 import com.locm.core.general.cmd.KickAllCommand;
+import com.locm.core.general.cmd.AdminCommand;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.cmd.CreateKitCommand;
 import com.locm.core.kits.cmd.DeleteKitCommand;
@@ -61,11 +62,14 @@ public class Loader extends PluginBase {
 	private File dataFile;
 	private Config kitsCfg;
 	private File kitsFile;
-	static PlaceholderAPI api = PlaceholderAPI.getInstance();
+	private Config chatCfg;
+	private File formatFile;
+	public static PlaceholderAPI api = PlaceholderAPI.getInstance();
 	public static HashMap<Mine, Integer> mineReset = new HashMap<>();
 
 	@Override
 	public void onEnable() {
+		saveDefaultConfig();
 		getDataFolder().mkdirs();
 		registerfiles();
 		GeneralUtils.setupWorthFile();
@@ -191,6 +195,7 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("echest", new EchestCommand());
 		getServer().getCommandMap().register("hub", new HubCommand());
 		getServer().getCommandMap().register("kickall", new KickAllCommand());
+		getServer().getCommandMap().register("admin", new AdminCommand());
 		//getServer().getCommandMap().register("rtag", new RTagCmd());
 	}
 
@@ -205,6 +210,10 @@ public class Loader extends PluginBase {
 	}
 
 	public static Loader getLoader() {
+		return loader;
+	}
+
+	public static Loader getInstance() {
 		return loader;
 	}
 

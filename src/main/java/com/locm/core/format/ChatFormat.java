@@ -18,7 +18,7 @@ import net.luckperms.api.model.group.Group;
 
 public class ChatFormat{
 
-	private LuckPerms api;
+	private static LuckPerms api;
 	private static Config config;
 
 	public ChatFormat() {
@@ -30,7 +30,7 @@ public class ChatFormat{
 			String group = g.getName();
 			config.set("Chat." + group, "[%name%] >> %msg%");
 			config.set("NameTag." + group, "%name%");
-			Server.getInstance().getLogger().info(pf + TextFormat.LIGHT_PURPLE + " Fetching group: " + group);
+			Server.getInstance().getLogger().info(TextFormat.LIGHT_PURPLE + " Fetching group: " + group);
 		}
 		config.save();
 	}
@@ -49,7 +49,7 @@ public class ChatFormat{
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm)
 				.replace("%msg%", message));
-		format = Loader.api.translateString(msg, player);
+		format = Loader.api.translateString(format, player);
 		event.setFormat(TextFormat.colorize('&', format));
 	}
 
@@ -64,13 +64,12 @@ public class ChatFormat{
 				.replace("%name%", player.getName())
 				.replace("%rank%", getPrisonRank(player))
 				.replace("%disname%", player.getDisplayName())
-				.replace("%group%", perm)
-				.replace("%msg%", message));
-		format = Loader.api.translateString(msg, player);
+				.replace("%group%", perm));
+		format = Loader.api.translateString(format, player);
 		player.setNameTag(TextFormat.colorize('&', format));
 	}
 
-	public String getNameTag(Player player, String group) {
+/*	public String getNameTag(Player player, String group) {
 		String format = (config.getString("NameTag."+perm)
 				.replace("%%n", "\n")
 				.replace("%%r", "\r")
@@ -80,13 +79,13 @@ public class ChatFormat{
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm));
 		return format;
-	}
+	}*/
 
 	public static String getGroup(Player player) {
-		return  api.getUserManager().getUser(player.getUniqueId()).getPrimaryGroup();
+		return api.getUserManager().getUser(player.getUniqueId()).getPrimaryGroup();
 	}
 
-	public String getPrisonRank(Player player) {
+	public static String getPrisonRank(Player player) {
 		return RankUtils.getRankByPlayer(player).getName();
 	}
 }

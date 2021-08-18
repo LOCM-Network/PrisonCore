@@ -3,11 +3,12 @@ package com.locm.core.general.cmd;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.utils.TextFormat;
-
-public class KickAllCommand {
+import cn.nukkit.command.CommandSender;
+import cn.nukkit.command.Command;
+public class KickAllCommand extends Command{
 
 	public KickAllCommand() {
-		super("kickall", "Kick all player from server");
+		super("kickall", "Kick all player");
 	}
 
 	public boolean execute(CommandSender sender, String label, String[] args) {
@@ -21,5 +22,6 @@ public class KickAllCommand {
 				player.kick(TextFormat.colorize(reason));
 			}
 		}
+		return true;
 	}
 }

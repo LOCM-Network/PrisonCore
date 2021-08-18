@@ -25,6 +25,7 @@ C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ces\obj\TempCE.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ranks\cmd\RankupCommand.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\utils\RandomCollection.java
+C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\general\cmd\AdminCommand.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ah\FormStorage.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ah\cmd\AuctionHouseComamnd.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\general\cmd\BoosterCmd.java
@@ -36,7 +37,9 @@ C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ranks\cmd\PrestigeTopCmd.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\general\cmd\RepairCommand.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\utils\CEUtils.java
+C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\general\cmd\KickAllCommand.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\mines\obj\MineComposition.java
+C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\shop\RankForm.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\kits\listeners\KitsListener.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\mines\listeners\MinesListener.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\mines\obj\MineBlock.java
@@ -60,6 +63,7 @@ C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ces\enchants\Unbreaking.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ah\listeners\AuctionListener.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\general\cmd\TPSCommand.java
+C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\format\ChatFormat.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\orbs\listeners\OrbsListener.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ranks\storage\RankStorage.java
 C:\Users\nguye\OneDrive\Ta?i liê?u\GitHub\PrisonCore\src\main\java\com\locm\core\ces\enchants\Efficiency.java
