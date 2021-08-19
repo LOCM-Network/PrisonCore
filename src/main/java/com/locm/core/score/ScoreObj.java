@@ -63,7 +63,7 @@ public class ScoreObj implements Listener{
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu mỏ&b " + rank), 6);
 		Rank nextrank = RankUtils.getNextRankByPlayer(p);
 		
-		if (nextrank.isLastRank()) {
+		if (nextrank.getName() == "Z") {
 			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &eMày là trùm rồi nâng là cày lại"), 7);
 		} else {
 			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu kế&b "+ nextrank.getCost() +" &fxu"), 7);
