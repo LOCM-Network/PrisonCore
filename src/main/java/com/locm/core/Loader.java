@@ -83,6 +83,7 @@ public class Loader extends PluginBase {
 		registerCommands();
 		registerEvents();
 		//runCooldowns();
+		loadWorlds();
 		startClearLagTask();
 		startScoreTask();
 	}
@@ -212,6 +213,21 @@ public class Loader extends PluginBase {
 		getServer().getPluginManager().registerEvents(new ScoreObj(), this);
 		getServer().getPluginManager().registerEvents(new ChatFormat(), this);
 		getServer().getPluginManager().registerEvents(new NPCRotation(), this);
+	}
+
+	public void loadWorlds() {
+		int count = 0;
+		try {
+			for (File fs : new File(new File("").getCanonicalPath() + "/worlds/").listFiles()) {
+				if ((fs.isDirectory() && !getServer().isLevelLoaded(fs.getName()))) {
+					getServer().loadLevel(fs.getName());
+					count++;
+				}
+			}
+			getLogger().info("Loaded " + count + " worlds");
+		} catch (Exception e) {
+			getLogger().error("Unable to load worlds", e);
+		}
 	}
 
 	public static Loader getLoader() {
