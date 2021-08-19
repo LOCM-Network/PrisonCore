@@ -26,6 +26,7 @@ com\locm\core\general\cmd\BombCommand.class
 com\locm\core\general\cmd\EnchanterCmd.class
 com\locm\core\general\listeners\EventsListener$2.class
 com\locm\core\ces\obj\RealCE.class
+com\locm\core\general\feautures\Announ$1.class
 com\locm\core\general\listeners\EventsListener$4.class
 com\locm\core\general\listeners\NPCRotation.class
 com\locm\core\kits\cmd\DeleteKitCommand.class
@@ -44,6 +45,7 @@ com\locm\core\general\listeners\EventsListener.class
 com\locm\core\ces\forms\FormStorage.class
 com\locm\core\ces\enchants\Donator.class
 com\locm\core\general\cmd\RepairCommand.class
+com\locm\core\general\feautures\Announ.class
 com\locm\core\mines\cmd\MineCommand.class
 com\locm\core\general\listeners\EventsListener$1.class
 com\locm\core\orbs\cmd\OrbsCmd.class
