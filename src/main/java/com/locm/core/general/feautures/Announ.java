@@ -14,17 +14,17 @@ public class Announ {
 	private List<String> mess;
 
 	public Announ() {
-		mess = new LinkedList<>(Loader.getInstance().getList("broadcast"));
+		mess = new LinkedList<>(Loader.getInstance().getConfig().getList("broadcast"));
 	}
 
 	public void runAnnoun() {
 		new NukkitRunnable(){
 			@Override
-			public void onRun() {
+			public void run() {
 				Random rand = new Random();
 				String announ = mess.get(rand.nextInt(mess.size()));
 			}
-		}.runTaskTimer(this, 0, 2000);
+		}.runTaskTimer(Loader.getInstance(), 0, 2000);
 	}
 
 }
