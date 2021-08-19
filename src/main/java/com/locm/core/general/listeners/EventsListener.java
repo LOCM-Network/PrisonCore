@@ -35,6 +35,7 @@ import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.block.BlockBreakEvent;
+import cn.nukkit.event.block.LeavesDecayEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
@@ -109,6 +110,11 @@ public class EventsListener implements Listener {
 	@EventHandler
 	public void onBreak(BlockBreakEvent event) {
 		event.setDropExp(0);
+	}
+
+	@EventHandler
+	public void leaveDecay(LeavesDecayEvent event) {
+		event.setCancelled(true);
 	}
 
 	@EventHandler
