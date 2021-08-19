@@ -61,5 +61,5 @@ public class RankUtils {
 		players.set("Players." + p.getName() + ".rank", rank.getName());
 		players.save(playersFile);
 	}
-
+	
 }

@@ -73,7 +73,8 @@ public class ChatFormat implements Listener{
 		player.setNameTag(TextFormat.colorize('&', format));
 	}
 
-/*	public String getNameTag(Player player, String group) {
+	public String getNameTag(Player player) {
+		String perm = getGroup(player);
 		String format = (config.getString("NameTag."+perm)
 				.replace("%%n", "\n")
 				.replace("%%r", "\r")
@@ -82,8 +83,9 @@ public class ChatFormat implements Listener{
 				.replace("%rank%", getPrisonRank(player))
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm));
+		format = Loader.api.translateString(format, player);
 		return format;
-	}*/
+	}
 
 	public static String getGroup(Player player) {
 		return api.getUserManager().getUser(player.getUniqueId()).getPrimaryGroup();

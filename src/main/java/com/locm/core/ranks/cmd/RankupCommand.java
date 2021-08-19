@@ -2,6 +2,7 @@ package com.locm.core.ranks.cmd;
 
 import com.locm.core.Loader;
 import com.locm.core.ranks.obj.Rank;
+import com.locm.core.format.ChatFormat;
 import com.locm.core.ranks.storage.RankStorage;
 import com.locm.core.utils.RankUtils;
 import com.locm.core.utils.StringUtils;
@@ -47,6 +48,8 @@ public class RankupCommand extends Command {
 									+ RankUtils.getPrestigeLevelForPlayer(p) + " &fPrestige"));
 					}
 				}
+				String nametag = ChatFormat.getNameTag(p);
+				p.setNameTag(nametag);
 			}
 		}
 		return false;
