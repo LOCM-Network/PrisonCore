@@ -34,6 +34,7 @@ import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
@@ -103,6 +104,11 @@ public class EventsListener implements Listener {
 		if (e.getPacket() instanceof LoginPacket) {
 			((LoginPacket) e.getPacket()).username = ((LoginPacket) e.getPacket()).username.replace(" ", "_");
 		}
+	}
+
+	@EventHandler
+	public void onBreak(BlockBreakEvent event) {
+		event.setDropExp(0);
 	}
 
 	@EventHandler
