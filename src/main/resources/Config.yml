@@ -1,5 +1,5 @@
 ---
-VIP1: 25
-VIP2: 40
-VIP3:
+broadcast:
+  - "abc"
+  - "abc"
 ...

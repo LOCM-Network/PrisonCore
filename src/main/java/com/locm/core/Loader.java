@@ -44,6 +44,7 @@ import com.locm.core.utils.GeneralUtils;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.OrbEconomyUtils;
 import com.locm.core.utils.RankUtils;
+import com.locm.core.feautures.Announ;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
@@ -79,13 +80,17 @@ public class Loader extends PluginBase {
 		api.visitorSensitivePlaceholder("playerorbs", (p, T) -> OrbEconomyUtils.getPlayersTokenBalance(p));
 		api.visitorSensitivePlaceholder("prisonrank", (p, T) -> RankUtils.getRankByPlayer(p).getName());
 		api.visitorSensitivePlaceholder("prestige", (p, T) -> RankUtils.getPrestigeLevelForPlayer(p));
+		startFeautures();
+	}
+
+	public void startFeautures() {
 		startMineResetTask();
 		registerCommands();
 		registerEvents();
-		//runCooldowns();
 		loadWorlds();
 		startClearLagTask();
 		startScoreTask();
+		new Announ().runAnnoun();
 	}
 
 	public static void runCooldowns() {
