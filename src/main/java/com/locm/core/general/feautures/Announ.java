@@ -22,7 +22,7 @@ public class Announ {
 			@Override
 			public void onRun() {
 				Random rand = new Random();
-				String announ = mess.get(rand.nextInt(mess.size()))
+				String announ = mess.get(rand.nextInt(mess.size()));
 			}
 		}.runTaskTimer(this, 0, 2000);
 	}
