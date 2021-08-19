@@ -29,6 +29,7 @@ import cn.nukkit.entity.item.EntityItem;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
+import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
@@ -36,6 +37,7 @@ import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
+import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -102,6 +104,14 @@ public class EventsListener implements Listener {
 	}
 
 	@EventHandler
+	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
+		if(!event.isCancelled()) {
+		    String player = event.getPlayer().getName();
+		    Loader.getInstance().getLogger().info(player + ": " + event.getMessage());
+		}
+	}
+
+	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		if (!e.getPlayer().hasPlayedBefore()) {
 			for (Kit kit : KitHandler.getAllKitsFromConfig()) {
@@ -115,7 +125,22 @@ public class EventsListener implements Listener {
 			players.set("Players." + e.getPlayer().getName() + ".prestigeLevel", 1);
 			players.save(playersFile);
 		}
-		e.getPlayer().teleport(Server.getInstance().getDefaultLevel().getSafeSpawn());
+		Position pos = Server.getInstance().getDefaultLevel().getSafeSpawn();
+		Random randpos = new Random();
+		Integer facing = randpos.nextInt(4);
+		if(facing == 0) {
+			pos.add(2.0D, 0.0D, 0.0D);
+		}
+		if(facing == 1) {
+			pos.add(-2.0D, 0.0D, 0.0D);
+		}
+		if(facing == 2) {
+			pos.add(0D, 0.0D, 2.0D);
+		}
+		if(facing == 3) {
+			pos.add(0D, 0.0D, -2.0D);
+		}
+		e.getPlayer().teleport(pos);
 		e.setJoinMessage("§l§a•§f " + e.getPlayer().getName());
 	}
 

@@ -13,6 +13,7 @@ import com.locm.core.ah.cmd.AuctionHouseComamnd;
 import com.locm.core.ah.listeners.AuctionListener;
 import com.locm.core.ces.listeners.EnchantListener;
 import com.locm.core.general.listeners.EventsListener;
+import com.locm.core.general.listeners.NPCRotation;
 import com.locm.core.score.ScoreObj;
 import com.locm.core.general.cmd.BombCommand;
 import com.locm.core.general.cmd.BoosterCmd;
@@ -210,6 +211,7 @@ public class Loader extends PluginBase {
 		//getServer().getPluginManager().registerEvents(new KitsListener(), this);
 		getServer().getPluginManager().registerEvents(new ScoreObj(), this);
 		getServer().getPluginManager().registerEvents(new ChatFormat(), this);
+		getServer().getPluginManager().registerEvents(new NPCRotation(), this);
 	}
 
 	public static Loader getLoader() {

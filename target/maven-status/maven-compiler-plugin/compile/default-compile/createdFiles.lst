@@ -27,6 +27,7 @@ com\locm\core\general\cmd\EnchanterCmd.class
 com\locm\core\general\listeners\EventsListener$2.class
 com\locm\core\ces\obj\RealCE.class
 com\locm\core\general\listeners\EventsListener$4.class
+com\locm\core\general\listeners\NPCRotation.class
 com\locm\core\kits\cmd\DeleteKitCommand.class
 com\locm\core\ah\ListingHandler.class
 com\locm\core\mines\obj\LuckyReward.class
