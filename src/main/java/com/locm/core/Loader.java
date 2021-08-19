@@ -44,7 +44,7 @@ import com.locm.core.utils.GeneralUtils;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.OrbEconomyUtils;
 import com.locm.core.utils.RankUtils;
-import com.locm.core.feautures.Announ;
+import com.locm.core.general.feautures.Announ;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
