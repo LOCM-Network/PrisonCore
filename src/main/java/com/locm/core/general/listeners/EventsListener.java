@@ -23,6 +23,7 @@ import com.locm.core.utils.StringUtils;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.block.Block;
+import cn.nukkit.block.BlockID;
 import cn.nukkit.block.BlockAir;
 import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.entity.item.EntityItem;
@@ -38,6 +39,7 @@ import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
+import cn.nukkit.level.Level;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -106,8 +108,17 @@ public class EventsListener implements Listener {
 	@EventHandler
 	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
 		if(!event.isCancelled()) {
-		    String player = event.getPlayer().getName();
-		    Loader.getInstance().getLogger().info(player + ": " + event.getMessage());
+			String player = event.getPlayer().getName();
+			Loader.getInstance().getLogger().info(player + ": " + event.getMessage());
+		}
+	}
+
+	@EventHandler
+	public void onField(PlayerInteractEvent event) {
+		if (event.getAction() == PlayerInteractEvent.Action.PHYSICAL) {
+			if (event.getBlock().getId() == BlockID.FARMLAND) {
+				event.setCancelled();
+			}
 		}
 	}
 
