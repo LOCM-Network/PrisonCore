@@ -73,7 +73,7 @@ public class ChatFormat implements Listener{
 		player.setNameTag(TextFormat.colorize('&', format));
 	}
 
-	public String getNameTag(Player player) {
+	public static String getNameTag(Player player) {
 		String perm = getGroup(player);
 		String format = (config.getString("NameTag."+perm)
 				.replace("%%n", "\n")
