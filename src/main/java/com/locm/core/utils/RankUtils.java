@@ -31,6 +31,7 @@ public class RankUtils {
 		}
 		return null;
 	}
+
 	public static Rank getRankByName(String name) {
 		for (Rank r : RankStorage.getAllRanks()) {
 			if (r.getName().equals(name)) {
@@ -39,6 +40,7 @@ public class RankUtils {
 		}
 		return null;
 	}
+	
 	public static Rank getRankByOrder(int order) {
 		for (Rank r : RankStorage.getAllRanks()) {
 			if (r.getOrder() == order) {

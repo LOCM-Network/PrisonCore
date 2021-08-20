@@ -28,5 +28,4 @@ public class Announ {
 			}
 		}.runTaskTimer(Loader.getInstance(), 0, 2000);
 	}
-
 }
