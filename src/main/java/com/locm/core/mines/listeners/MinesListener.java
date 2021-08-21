@@ -32,7 +32,7 @@ public class MinesListener implements Listener {
 			if (e.getWindow() instanceof FormWindowSimple) {
 				FormWindowSimple gui = (FormWindowSimple) e.getWindow();
 				if (gui != null) {
-					if(gui.getResponse().getClickedButton() == null) return;
+					if(gui.getResponse() == null) return;
 					if (gui.getResponse().getClickedButton().getText() != null) {
 						String responseName = gui.getResponse().getClickedButton().getText();
 						if (responseName != null) {
