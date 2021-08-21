@@ -39,6 +39,7 @@ public class Mine {
 				for (int z = (int) minZ; z <= maxZ; z++) {
 					Block b = getWinningBlock();
 					Location loc = new Location(x, y, z);
+					if(region.getLvl() == null) return;
 					if (region.getLvl().getBlock(x, y, z).getId() == 0) {
 						region.getLvl().setBlock(loc, b);
 					}

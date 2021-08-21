@@ -248,105 +248,101 @@ public class EnchantListener implements Listener {
 		}
 	}
 
-	@EventHandler
 	public void onMine(BlockBreakEvent e) {
 		if (!e.isCancelled()) {
-			if (e.getPlayer().getLevel().equals(Loader.getLoader().getServer().getDefaultLevel())) {
-				if ((MineUtils.isLocInMine(e.getBlock().getLocation()))
-						|| e.getPlayer().hasPermission("locm.admin")) {
-					Item tool = e.getPlayer().getInventory().getItemInHand();
-					if (e.getBlock().getId() == 19) {
-						RandomCollection<LuckyReward> randomrewards = new RandomCollection<>();
-						for (LuckyReward lr : LuckyRewardStorage.rews()) {
-							randomrewards.add(lr.getChance(), lr);
+			if ((MineUtils.isLocInMine(e.getBlock().getLocation())) || e.getPlayer().hasPermission("locm.admin")) {
+				Item tool = e.getPlayer().getInventory().getItemInHand();
+				if (e.getBlock().getId() == 19) {
+					RandomCollection<LuckyReward> randomrewards = new RandomCollection<>();
+					for (LuckyReward lr : LuckyRewardStorage.rews()) {
+						randomrewards.add(lr.getChance(), lr);
+					}
+					e.setCancelled();
+					e.getPlayer().getLevel().setBlock(e.getBlock().getLocation(), new BlockAir());
+					LuckyReward realReward = randomrewards.next();
+					e.getPlayer().sendActionBar(StringUtils.getPrefix() + "Bạn vừa nhận được "
+							+ realReward.getName() + " từ luckyblock!");
+					Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
+						realReward.getCmds().replace("{name}", e.getPlayer().getName()));
+					e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
+						StringUtils.translateColors("&bVừa mới được khai thác!"));
+					return;
+				}
+				if (CEUtils.containsEnchantment(tool,
+						CEUtils.getCEByDisplayName(StringUtils.translateColors("&fMagnet")))) {
+					if (!CEUtils.containsEnchantment(tool,
+							CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
+						PlayerInventory inventoryAutoAdd = e.getPlayer().getInventory();
+						Item[] itemsToAdd = e.getDrops();
+						if (!e.isCancelled()) {
+							if (CEUtils.containsEnchantment(tool, Enchantment.get(18))) {
+								runFortuneMagnet(e.getPlayer(), e.getBlock(), e);
+								Item[] dropsNull = { new Item(0) };
+								e.setDrops(dropsNull);
+								return;
+							}
+							if (e.getBlock().getId() == 15) {
+								itemsToAdd = (new Item[] { new Item(265) });
+							} else if (e.getBlock().getId() == 14) {
+								itemsToAdd = (new Item[] { new Item(266) });
+							}
+							inventoryAutoAdd.addItem(itemsToAdd);
 						}
+						Item[] dropsNull = { new Item(0) };
+						e.setDrops(dropsNull);
+						return;
+					}
+				}
+				if (CEUtils.containsEnchantment(tool,
+						CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
+					if (SellCommand.canSell(e.getBlock().toItem())) {
 						e.setCancelled();
 						e.getPlayer().getLevel().setBlock(e.getBlock().getLocation(), new BlockAir());
-						LuckyReward realReward = randomrewards.next();
-						e.getPlayer().sendActionBar(StringUtils.getPrefix() + "Bạn vừa nhận được "
-								+ realReward.getName() + " từ luckyblock!");
-						Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
-								realReward.getCmds().replace("{name}", e.getPlayer().getName()));
-						e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
-								StringUtils.translateColors("&bVừa mới được khai thác!"));
+						SellCommand.sellItem(e.getPlayer(), e.getBlock().toItem());
 						return;
 					}
-					if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&fMagnet")))) {
-						if (!CEUtils.containsEnchantment(tool,
-								CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
-							PlayerInventory inventoryAutoAdd = e.getPlayer().getInventory();
-							Item[] itemsToAdd = e.getDrops();
-							if (!e.isCancelled()) {
-								if (CEUtils.containsEnchantment(tool, Enchantment.get(18))) {
-									runFortuneMagnet(e.getPlayer(), e.getBlock(), e);
-									Item[] dropsNull = { new Item(0) };
-									e.setDrops(dropsNull);
-									return;
-								}
-								if (e.getBlock().getId() == 15) {
-									itemsToAdd = (new Item[] { new Item(265) });
-								} else if (e.getBlock().getId() == 14) {
-									itemsToAdd = (new Item[] { new Item(266) });
-								}
-								inventoryAutoAdd.addItem(itemsToAdd);
-							}
-							Item[] dropsNull = { new Item(0) };
-							e.setDrops(dropsNull);
-							return;
-						}
-					}
-					if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
-						if (SellCommand.canSell(e.getBlock().toItem())) {
-							e.setCancelled();
-							e.getPlayer().getLevel().setBlock(e.getBlock().getLocation(), new BlockAir());
-							SellCommand.sellItem(e.getPlayer(), e.getBlock().toItem());
-							return;
-						}
-					}
-					if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&6Donator")))) {
-						int lvl = CEUtils.getLevelOfEnchantByDisplayName(StringUtils.translateColors("&6Donator"),
-								tool);
-						if (new Random().nextInt(101) <= 1) {
-							for (Player o : Loader.getLoader().getServer().getOnlinePlayers().values()) {
-								if (!EventsListener.playersOrbsBooster.containsKey(e.getPlayer())) {
-									OrbEconomyUtils.addPlayerBalance(o, lvl * 10);
-									o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " Vừa tặng cho toàn máy chủ "
-											+ lvl * 10 + " orbs (Phù phép Donator)!");
-								} else {
-									OrbEconomyUtils.addPlayerBalance(o,
-											(lvl * 10) * EventsListener.playersOrbsBooster.get(e.getPlayer()));
-									o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " Vừa tặng cho toàn máy chủ"
-											+ (lvl * 10) * EventsListener.playersOrbsBooster.get(e.getPlayer())
-											+ " orbs (Phù phép Donator)");
-								}
-							}
-						}
-					}
-					if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&cExplosive")))) {
-						runExplosive(e.getPlayer(), e.getBlock(), e);
-						return;
-					}
-					if (CEUtils.containsEnchantment(tool, Enchantment.get(18))) {
-						runFortune(e.getPlayer(), e.getBlock(), e);
-						return;
-					}
-					if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&eJackHammer")))) {
-						runJackHammer(e.getPlayer(), e.getBlock(), e);
-						return;
-					}
-					if (e.getBlock().getId() == 15) {
-						e.setDrops(new Item[] { new Item(265) });
-					} else if (e.getBlock().getId() == 14) {
-						e.setDrops(new Item[] { new Item(266) });
-					}
-				} else {
-					e.setCancelled();
 				}
+				if (CEUtils.containsEnchantment(tool,
+						CEUtils.getCEByDisplayName(StringUtils.translateColors("&6Donator")))) {
+					int lvl = CEUtils.getLevelOfEnchantByDisplayName(StringUtils.translateColors("&6Donator"),
+							tool);
+					if (new Random().nextInt(101) <= 1) {
+						for (Player o : Loader.getLoader().getServer().getOnlinePlayers().values()) {
+							if (!EventsListener.playersOrbsBooster.containsKey(e.getPlayer())) {
+								OrbEconomyUtils.addPlayerBalance(o, lvl * 10);
+								o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " Vừa tặng cho toàn máy chủ "
+										+ lvl * 10 + " orbs (Phù phép Donator)!");
+							} else {
+								OrbEconomyUtils.addPlayerBalance(o,
+										(lvl * 10) * EventsListener.playersOrbsBooster.get(e.getPlayer()));
+								o.sendPopup(StringUtils.getPrefix() + e.getPlayer().getName() + " Vừa tặng cho toàn máy chủ"
+										+ (lvl * 10) * EventsListener.playersOrbsBooster.get(e.getPlayer())
+										+ " orbs (Phù phép Donator)");
+							}
+						}
+					}
+				}
+				if (CEUtils.containsEnchantment(tool,
+						CEUtils.getCEByDisplayName(StringUtils.translateColors("&cExplosive")))) {
+					runExplosive(e.getPlayer(), e.getBlock(), e);
+					return;
+				}
+				if (CEUtils.containsEnchantment(tool, Enchantment.get(18))) {
+					runFortune(e.getPlayer(), e.getBlock(), e);
+					return;
+				}
+				if (CEUtils.containsEnchantment(tool,
+					CEUtils.getCEByDisplayName(StringUtils.translateColors("&eJackHammer")))) {
+					runJackHammer(e.getPlayer(), e.getBlock(), e);
+					return;
+				}
+				if (e.getBlock().getId() == 15) {
+					e.setDrops(new Item[] { new Item(265) });
+				} else if (e.getBlock().getId() == 14) {
+					e.setDrops(new Item[] { new Item(266) });
+				}
+			} else {
+				e.setCancelled();
 			}
 		}
 	}

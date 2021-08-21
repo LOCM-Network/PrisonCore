@@ -22,9 +22,11 @@ public class MineRegion {
 		double minX = Math.min(getLocMin().getX(), getLocMax().getX());
 		double minY = Math.min(getLocMin().getY(),  getLocMax().getY());
 		double minZ = Math.min(getLocMin().getZ(), getLocMax().getZ());
-		return pLoc.getLevel().equals(locMax.getLevel())
+		if(pLoc.getLevel() == null) return false;
+		if(locMax.getLevel() == null) return false;
+		return pLoc.getLevel().getName().equals(locMax.getLevel().getName())
 				&& (pLoc.getX() >= minX && pLoc.getX() <= maxX && pLoc.getY() >= minY)
-				&& pLoc.getY() <= maxY&& pLoc.getZ() >= minZ && pLoc.getZ() <= maxZ;
+				&& pLoc.getY() <= maxY && pLoc.getZ() >= minZ && pLoc.getZ() <= maxZ;
 	}
 
 	public Level getLvl() {
