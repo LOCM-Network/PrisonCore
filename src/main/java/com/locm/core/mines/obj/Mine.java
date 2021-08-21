@@ -39,8 +39,8 @@ public class Mine {
 				for (int z = (int) minZ; z <= maxZ; z++) {
 					Block b = getWinningBlock();
 					Location loc = new Location(x, y, z);
-					if (Loader.getLoader().getServer().getDefaultLevel().getBlock(x, y, z).getId() == 0) {
-						Loader.getLoader().getServer().getDefaultLevel().setBlock(loc, b);
+					if (region.getLvl().getBlock(x, y, z).getId() == 0) {
+						region.getLvl().setBlock(loc, b);
 					}
 				}
 			}
