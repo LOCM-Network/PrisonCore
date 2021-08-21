@@ -12,15 +12,15 @@ import cn.nukkit.form.window.FormWindowSimple;
 public class FormStorage {
 
 	public static FormWindowSimple MinerMenu(Player p) {
-		String prank = RankUtils.getRankByPlayer(p).getName(); 
-		String minestring = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lLOCM &d&lPrisons"),
 				StringUtils.translateColors("&b&l&nChoose a Mine to teleport to!"));
 		for (Mine mine : MineUtils.getAllMinesFromConfig()) {
-			if(minestring.indexOf(prank) >= minestring.indexOf(mine.getMineName())) {
-				fs.addButton(new ElementButton(StringUtils.color("&a" + mine.getMineName() + "\n &0ＯＰＥＮ")));
+			int order = RankUtils.getRankByName(mine.getMineName()).getOrder();
+			int porder = RankUtils.getRankByPlayer(p).getOrder();
+			if(porder >= order) {
+				fs.addButton(new ElementButton(StringUtils.color("&l&0" + mine.getMineName() + "\n &aＯＰＥＮ")));
 			} else {
-				fs.addButton(new ElementButton(StringUtils.color("&c" + mine.getMineName() + "\n &0ＬＯＣＫ")));
+				fs.addButton(new ElementButton(StringUtils.color("&l&0" + mine.getMineName() + "\n &cＬＯＣＫ")));
 			}
 		}
 		return fs;
