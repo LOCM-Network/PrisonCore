@@ -1,12 +1,10 @@
 package com.locm.core.general.listeners;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
+import cn.nukkit.event.player.*;
+import cn.nukkit.utils.TextFormat;
 import com.locm.core.Loader;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.obj.Kit;
@@ -30,10 +28,6 @@ import cn.nukkit.entity.item.EntityItem;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
-import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
-import cn.nukkit.event.player.PlayerInteractEvent;
-import cn.nukkit.event.player.PlayerJoinEvent;
-import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.LeavesDecayEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
@@ -105,6 +99,19 @@ public class EventsListener implements Listener {
 		if (e.getPacket() instanceof LoginPacket) {
 			((LoginPacket) e.getPacket()).username = ((LoginPacket) e.getPacket()).username.replace(" ", "_");
 		}
+	}
+
+	@EventHandler
+	public void onChat(PlayerChatEvent event) {
+		Player player = event.getPlayer();
+		String message = event.getMessage();
+		List<String> strings = Loader.getInstance().getConfig().getList("anti-chat");
+		strings.forEach(chat -> {
+			if(message.contains(chat)) {
+				player.setBanned(true);
+				event.setCancelled();
+			}
+		});
 	}
 
 	@EventHandler
