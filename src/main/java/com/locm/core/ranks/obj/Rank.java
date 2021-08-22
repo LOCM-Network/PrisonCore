@@ -1,10 +1,16 @@
 package com.locm.core.ranks.obj;
 
+import lombok.Getter;
+
 public class Rank {
 
+	@Getter
 	private final String name;
+	@Getter
 	private final int order;
+	@Getter
 	private final int cost;
+
 	private final boolean isFirstRank;
 	private final boolean isLastRank;
 
@@ -14,18 +20,6 @@ public class Rank {
 		this.cost = cost;
 		this.isFirstRank = isFirstRank;
 		this.isLastRank = isLastRank;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getOrder() {
-		return order;
-	}
-
-	public int getCost() {
-		return cost;
 	}
 
 	public boolean isFirstRank() {

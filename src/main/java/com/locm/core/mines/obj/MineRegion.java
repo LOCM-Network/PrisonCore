@@ -2,11 +2,15 @@ package com.locm.core.mines.obj;
 
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
+import lombok.Getter;
 
 public class MineRegion {
 
+	@Getter
 	private final Location locMin;
+	@Getter
 	private final Location locMax;
+	@Getter
 	private final Level lvl;
 
 	public MineRegion(Location locMax, Location locMin, Level lvl) {
@@ -28,17 +32,4 @@ public class MineRegion {
 				&& (pLoc.getX() >= minX && pLoc.getX() <= maxX && pLoc.getY() >= minY)
 				&& pLoc.getY() <= maxY && pLoc.getZ() >= minZ && pLoc.getZ() <= maxZ;
 	}
-
-	public Level getLvl() {
-		return lvl;
-	}
-
-	public Location getLocMin() {
-		return locMin;
-	}
-
-	public Location getLocMax() {
-		return locMax;
-	}
-
 }

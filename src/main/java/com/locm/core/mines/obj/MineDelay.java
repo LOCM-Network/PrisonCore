@@ -1,22 +1,17 @@
 package com.locm.core.mines.obj;
 
+import lombok.Getter;
+
 public class MineDelay {
 
+	@Getter
 	private final Mine mine;
+	@Getter
 	private final int delayCount;
 
 	public MineDelay(Mine mine, int delayCount) {
-		super();
 		this.mine = mine;
 		this.delayCount = delayCount;
-	}
-
-	public Mine getMine() {
-		return mine;
-	}
-
-	public int getDelayCount() {
-		return delayCount;
 	}
 
 }

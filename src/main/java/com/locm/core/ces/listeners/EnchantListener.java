@@ -249,7 +249,7 @@ public class EnchantListener implements Listener {
 	}
 
 	public void onMine(BlockBreakEvent e) {
-		if (!e.isCancelled()) {
+		if (true) {
 			if ((MineUtils.isLocInMine(e.getBlock().getLocation())) || e.getPlayer().hasPermission("locm.admin")) {
 				Item tool = e.getPlayer().getInventory().getItemInHand();
 				if (e.getBlock().getId() == 19) {
