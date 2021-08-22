@@ -5,9 +5,7 @@ import lombok.Getter;
 
 public class MineBlock {
 
-	@Getter
 	private final Block block;
-	@Getter
 	private final int chance;
 
 	public MineBlock(Block block, int chance) {
@@ -15,5 +13,11 @@ public class MineBlock {
 		this.block = block;
 		this.chance = chance;
 	}
+	public Block getBlock() {
+		return block;
+	}
 
+	public int getChance() {
+		return chance;
+	}
 }

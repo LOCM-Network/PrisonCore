@@ -1,5 +1,8 @@
 package com.locm.core.ces.obj;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class CustomEnchant {
 
 	private String nameOfEnchantment;
@@ -25,48 +28,47 @@ public class CustomEnchant {
 		return type;
 	}
 
-	public int getCostMultiplier() {
-		return costMultiplier;
-	}
-
-	public String getNameOfEnchantment() {
-		return nameOfEnchantment;
-	}
-
-	public void setNameOfEnchantment(String nameOfEnchantment) {
-		this.nameOfEnchantment = nameOfEnchantment;
-	}
-
 	public int getLevelOfEnchantment() {
 		return levelOfEnchantment;
 	}
 
-	public void setLevelOfEnchantment(int levelOfEnchantment) {
-		this.levelOfEnchantment = levelOfEnchantment;
+	public int getCostMultiplier() {
+		return costMultiplier;
 	}
 
 	public int getMaxLevelOfEnchantment() {
 		return maxLevelOfEnchantment;
 	}
 
-	public void setMaxLevelOfEnchantment(int maxLevelOfEnchantment) {
-		this.maxLevelOfEnchantment = maxLevelOfEnchantment;
+	public String getDescription() {
+		return description;
 	}
 
 	public String getDisplayNameOfEnchantment() {
 		return displayNameOfEnchantment;
 	}
 
-	public void setDisplayNameOfEnchantment(String displayNameOfEnchantment) {
-		this.displayNameOfEnchantment = displayNameOfEnchantment;
-	}
-
-	public String getDescription() {
-		return description;
+	public String getNameOfEnchantment() {
+		return nameOfEnchantment;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	public void setDisplayNameOfEnchantment(String displayNameOfEnchantment) {
+		this.displayNameOfEnchantment = displayNameOfEnchantment;
+	}
+
+	public void setLevelOfEnchantment(int levelOfEnchantment) {
+		this.levelOfEnchantment = levelOfEnchantment;
+	}
+
+	public void setMaxLevelOfEnchantment(int maxLevelOfEnchantment) {
+		this.maxLevelOfEnchantment = maxLevelOfEnchantment;
+	}
+
+	public void setNameOfEnchantment(String nameOfEnchantment) {
+		this.nameOfEnchantment = nameOfEnchantment;
+	}
 }
