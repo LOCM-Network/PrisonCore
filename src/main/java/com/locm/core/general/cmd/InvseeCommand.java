@@ -30,14 +30,14 @@ public class InvseeCommand extends Command {
 				sender.sendMessage(StringUtils.getPrefix() + "Player is offline");
 				return true;
 			}
-			if (target.equals((Object) sender)) {
+			if (target.equals(sender)) {
 				sender.sendMessage(StringUtils.getPrefix() + "Cannot use this command for own inventory.");
 				return true;
 			}
 			DoubleChestFakeInventory inv = new FakeInventories().createDoubleChestInventory();
 			inv.setContents(target.getInventory().getContents());
 			inv.setName(target.getName() + "'s inventory");
-			((Player) sender).addWindow((Inventory) inv);
+			((Player) sender).addWindow(inv);
 			return true;
 		} else {
 			sender.sendMessage("You can run this command only as a player");

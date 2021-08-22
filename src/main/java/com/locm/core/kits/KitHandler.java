@@ -72,7 +72,7 @@ public class KitHandler {
 				for (String enchId : kits1.getSection("Kits." + key + ".items." + key2 + ".enchants").getKeys(false)) {
 					int id = Integer.parseInt(enchId);
 					int lvl = kits1.getInt("Kits." + key + ".items." + key2 + ".enchants." + enchId);
-					i.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(id).setLevel(lvl, false) });
+					i.addEnchantment(Enchantment.getEnchantment(id).setLevel(lvl, false));
 				}
 				items.add(i);
 			}

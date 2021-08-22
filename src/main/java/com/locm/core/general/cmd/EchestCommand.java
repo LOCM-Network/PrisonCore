@@ -25,7 +25,7 @@ public class EchestCommand extends Command {
 				inv.addListener(this::onSlotChange);
 				inv.setContents(target.getEnderChestInventory().getContents());
 				inv.setName(target.getName() + "'s ender chest inventory");
-				((Player) sender).addWindow((Inventory) inv);
+				((Player) sender).addWindow(inv);
 				return false;
 			} else {
 				Player p = (Player) sender;

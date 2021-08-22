@@ -1,6 +1,5 @@
 package com.locm.core.ranks.cmd;
 
-import com.locm.core.Loader;
 import com.locm.core.ranks.obj.Rank;
 import com.locm.core.format.ChatFormat;
 import com.locm.core.ranks.storage.RankStorage;
@@ -25,7 +24,7 @@ public class RankupCommand extends Command {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 				Rank currentRank = RankUtils.getRankByPlayer(p);
-				if (!currentRank.isLastRank()) {
+				if (currentRank != null && !currentRank.isLastRank()) {
 					Rank nextRank = RankUtils.getNextRankByPlayer(p);
 					if (EconomyAPI.getInstance().myMoney(p) >= currentRank.getCost()) {
 						EconomyAPI.getInstance().reduceMoney(p, currentRank.getCost());
@@ -34,7 +33,7 @@ public class RankupCommand extends Command {
 						Server.getInstance().broadcastMessage(StringUtils.color("&l&fNgười chơi&e " + sender.getName() + "&f đã đạt cấp (&e"+ nextRank.getName() +"&f)"));
 						return false;
 					} else {
-						p.sendMessage("&l&cKhông đủ tiền để nâng cấp.");
+						p.sendMessage(StringUtils.color("&l&cKhông đủ tiền để nâng cấp."));
 						return false;
 					}
 				} else {

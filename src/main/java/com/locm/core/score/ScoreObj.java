@@ -16,7 +16,6 @@ import cn.nukkit.event.player.PlayerLocallyInitializedEvent;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.utils.TextFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ScoreObj implements Listener{
@@ -50,7 +49,7 @@ public class ScoreObj implements Listener{
 
 		Double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fXu &b"+ money), 2);
-		Double coin = lcoin.getInstance().myCoin(p);
+		Double coin = me.locm.economyapi.EconomyAPI.getInstance().myCoin(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLCoin &b"+ coin), 3);
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 4);

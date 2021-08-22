@@ -56,7 +56,7 @@ public class ListingHandler {
 			for (String enchId : dataCfg.getSection("Listings." + key + ".item.enchants").getKeys(false)) {
 				int id = Integer.parseInt(enchId);
 				int lvl = dataCfg.getInt("Listings." + key + ".item.enchants." + enchId);
-				item.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(id).setLevel(lvl, false) });
+				item.addEnchantment(Enchantment.getEnchantment(id).setLevel(lvl, false));
 			}
 			Listing listing = new Listing(item, price, uuid, desc, Integer.parseInt(key));
 			listings.add(listing);

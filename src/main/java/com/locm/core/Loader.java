@@ -20,7 +20,6 @@ import com.locm.core.general.cmd.BoosterCmd;
 import com.locm.core.general.cmd.EchestCommand;
 import com.locm.core.general.cmd.EnchanterCmd;
 import com.locm.core.general.cmd.InvseeCommand;
-import com.locm.core.general.cmd.RTagCmd;
 import com.locm.core.general.cmd.RepairCommand;
 import com.locm.core.general.cmd.SellCommand;
 import com.locm.core.general.cmd.TPSCommand;
@@ -131,7 +130,7 @@ public class Loader extends PluginBase {
 							i = 300;
 						}
 						for (Mine m : MineUtils.getAllMinesFromConfig()) {
-							api.staticPlaceholder(m.getMineName() + "_resetMineDelay", T -> i, new String[0]);
+							api.staticPlaceholder(m.getMineName() + "_resetMineDelay", T -> i);
 						}
 						i--;
 					}
