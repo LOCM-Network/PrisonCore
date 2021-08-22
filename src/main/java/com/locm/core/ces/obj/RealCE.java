@@ -2,8 +2,8 @@ package com.locm.core.ces.obj;
 
 public class RealCE {
 
-	private int levelOfCe;
-	private String displayNameOfCe;
+	private final int levelOfCe;
+	private final String displayNameOfCe;
 
 	public RealCE(int levelOfCe, String displayNameOfCe) {
 		this.levelOfCe = levelOfCe;

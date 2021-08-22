@@ -2,9 +2,9 @@ package com.locm.core.mines.obj;
 
 public class LuckyReward {
 
-	private int chance;
-	private String name;
-	private String cmds;
+	private final int chance;
+	private final String name;
+	private final String cmds;
 
 	public LuckyReward(int chance, String name, String cmds) {
 		this.chance = chance;

@@ -77,7 +77,7 @@ public class FormStorage {
 			for (Enchantment e : listing.getItem().getEnchantments()) {
 				str.append(e.getName() + " " + e.getLevel() + " ");
 			}
-			fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lVanillaEnchants: &r&7" + str.toString())));
+			fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lVanillaEnchants: &r&7" + str)));
 		}
 		List<String> lor = new ArrayList<>();
 		for (String s : listing.getItem().getLore()) {
@@ -86,7 +86,7 @@ public class FormStorage {
 		for (String s : lor) {
 			str2.append(s + " ");
 		}
-		fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lChi tiết: &r&7" + str2.toString())));
+		fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lChi tiết: &r&7" + str2)));
 		fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lGía: &r&7$" + listing.getPricing())));
 		fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lNgười bán: &r&7"
 				+ Loader.getLoader().getServer().getOfflinePlayer(listing.getSellerUUID()).getName())));

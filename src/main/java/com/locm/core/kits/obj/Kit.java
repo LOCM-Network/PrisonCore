@@ -7,9 +7,9 @@ import cn.nukkit.item.Item;
 
 public class Kit {
 
-	private String name;
-	private int coolDownInSeconds;
-	private List<Item> items;
+	private final String name;
+	private final int coolDownInSeconds;
+	private final List<Item> items;
 
 	public Kit(String name, int coolDownInSeconds, List<Item> items) {
 		super();

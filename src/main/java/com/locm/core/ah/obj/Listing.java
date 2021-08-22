@@ -6,11 +6,11 @@ import cn.nukkit.item.Item;
 
 public class Listing {
 
-	private Item item;
-	private int pricing;
-	private UUID sellerUUID;
-	private String description;
-	private int id;
+	private final Item item;
+	private final int pricing;
+	private final UUID sellerUUID;
+	private final String description;
+	private final int id;
 	
 	public Listing(Item item, int pricing, UUID sellerUUID, String desc, int id) {
 		super();

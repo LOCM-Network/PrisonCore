@@ -2,11 +2,11 @@ package com.locm.core.ranks.obj;
 
 public class Rank {
 
-	private String name;
-	private int order;
-	private int cost;
-	private boolean isFirstRank;
-	private boolean isLastRank;
+	private final String name;
+	private final int order;
+	private final int cost;
+	private final boolean isFirstRank;
+	private final boolean isLastRank;
 
 	public Rank(String name, int order, int cost, boolean isFirstRank, boolean isLastRank) {
 		this.name = name;

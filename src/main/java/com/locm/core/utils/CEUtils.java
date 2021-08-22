@@ -51,10 +51,7 @@ public class CEUtils {
 	}
 
 	public static boolean containsEnchantment(Item item, CustomEnchant ce) {
-		if (StringUtils.stringContainsItemFromList(StringUtils.translateColors(ce.getDisplayNameOfEnchantment()), item.getLore())) {
-			return true;
-		}
-		return false;
-	}
+        return StringUtils.stringContainsItemFromList(StringUtils.translateColors(ce.getDisplayNameOfEnchantment()), item.getLore());
+    }
 
 }

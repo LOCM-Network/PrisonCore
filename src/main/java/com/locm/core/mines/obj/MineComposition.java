@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MineComposition {
 
-	private List<MineBlock> mb;
+	private final List<MineBlock> mb;
 
 	public MineComposition(List<MineBlock> mb) {
 		this.mb = mb;

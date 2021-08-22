@@ -12,7 +12,7 @@ import com.locm.core.Loader;
 
 public class Announ {
 
-	private List<String> mess;
+	private final List<String> mess;
 
 	public Announ() {
 		mess = new LinkedList<>(Loader.getInstance().getConfig().getList("broadcast"));

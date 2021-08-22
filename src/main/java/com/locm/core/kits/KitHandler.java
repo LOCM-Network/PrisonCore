@@ -65,7 +65,7 @@ public class KitHandler {
 				for (String s : lore) {
 					newLore.add(s);
 				}
-				String[] itemLore = (String[]) newLore.toArray(new String[0]);
+				String[] itemLore = newLore.toArray(new String[0]);
 				if (!ListingHandler.isEmptyStringArray(itemLore)) {
 					i.setLore(itemLore);
 				}

@@ -2,8 +2,8 @@ package com.locm.core.mines.obj;
 
 public class MineDelay {
 
-	private Mine mine;
-	private int delayCount;
+	private final Mine mine;
+	private final int delayCount;
 
 	public MineDelay(Mine mine, int delayCount) {
 		super();

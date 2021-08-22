@@ -2,9 +2,9 @@ package com.locm.core.ces.obj;
 
 public class TempCE {
 
-	private CustomEnchant ce;
-	private int level;
-	private int cost;
+	private final CustomEnchant ce;
+	private final int level;
+	private final int cost;
 
 	public TempCE(CustomEnchant ce, int level, int cost) {
 		super();

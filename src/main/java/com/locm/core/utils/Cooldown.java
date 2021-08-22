@@ -13,7 +13,7 @@ public class Cooldown {
 
     private int seconds = 0;
 
-    private HashMap<String, Long> hashmap = new HashMap<>();
+    private final HashMap<String, Long> hashmap = new HashMap<>();
 
     public void putInCooldown(Player player) {
         hashmap.put(player.getUniqueId().toString(), System.currentTimeMillis() + (seconds * 1000L));

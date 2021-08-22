@@ -7,8 +7,8 @@ public class CustomEnchant {
 	private int maxLevelOfEnchantment;
 	private String displayNameOfEnchantment;
 	private String description;
-	private int costMultiplier;
-	private EnchantType type;
+	private final int costMultiplier;
+	private final EnchantType type;
 
 	public CustomEnchant(String nameOfEnchantment, int levelOfEnchantment, int maxLevelOfEnchantment,
 			String displayNameOfEnchantment, String description, int costMultiplier, EnchantType enchantType) {

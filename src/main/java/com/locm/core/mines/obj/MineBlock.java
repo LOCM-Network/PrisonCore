@@ -4,8 +4,8 @@ import cn.nukkit.block.Block;
 
 public class MineBlock {
 
-	private Block block;
-	private int chance;
+	private final Block block;
+	private final int chance;
 
 	public MineBlock(Block block, int chance) {
 		super();

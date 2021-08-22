@@ -5,9 +5,9 @@ import cn.nukkit.level.Location;
 
 public class MineRegion {
 
-	private Location locMin;
-	private Location locMax;
-	private Level lvl;
+	private final Location locMin;
+	private final Location locMax;
+	private final Level lvl;
 
 	public MineRegion(Location locMax, Location locMin, Level lvl) {
 		this.locMin = locMin;
