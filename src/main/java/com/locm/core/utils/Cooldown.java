@@ -1,4 +1,4 @@
-package com.paradox.core.utils;
+package com.locm.core.utils;
 
 import java.util.HashMap;
 import java.util.UUID;
