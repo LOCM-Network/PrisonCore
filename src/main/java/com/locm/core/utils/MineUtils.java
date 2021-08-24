@@ -39,7 +39,7 @@ public class MineUtils {
 							.getLevelByName(minescfg.getString("Mines." + key + ".tpLocLevelName")));
 			List<MineBlock> mbs = new ArrayList<>();
 			for (String comp : minescfg.getSection("Mines." + key + ".composition").getKeys(false)) {
-				String[] parts = com.split(":");
+				String[] parts = comp.split(":");
 				MineBlock mb = new MineBlock(Block.get(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])),
 						minescfg.getInt("Mines." + key + ".composition." + comp));
 				mbs.add(mb);
