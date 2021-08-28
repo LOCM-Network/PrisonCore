@@ -86,7 +86,12 @@ public class SellCommand extends Command {
 
 	public static boolean canSell(Item item) {
 		for (String key : worth.getSection("worth").getKeys(false)) {
-			if (item.getId() == Integer.parseInt(key)) {
+			String[] parts = key.split(":");
+			if (parts.length == 2) {
+				if (item.getId() == Integer.parseInt(parts[0]) && item.getDamage() == parts[1]) {
+					return true;
+				}
+			}else (item.getId() == Integer.parseInt(key)) {
 				return true;
 			}
 		}
