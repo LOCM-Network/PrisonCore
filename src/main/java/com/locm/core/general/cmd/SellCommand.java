@@ -91,7 +91,7 @@ public class SellCommand extends Command {
 				if (item.getId() == Integer.parseInt(parts[0]) && item.getDamage() == parts[1]) {
 					return true;
 				}
-			}else (item.getId() == Integer.parseInt(key)) {
+			}else if (item.getId() == Integer.parseInt(key)) {
 				return true;
 			}
 		}
