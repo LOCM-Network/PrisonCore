@@ -88,8 +88,10 @@ public class SellCommand extends Command {
 		for (String key : worth.getSection("worth").getKeys(false)) {
 			String[] parts = key.split(":");
 			if (parts.length == 2) {
-				if (item.getId() == Integer.parseInt(parts[0]) && item.getDamage() == parts[1]) {
-					return true;
+				int id = Integer.parseInt(parts[0]);
+				int meta =  Integer.parseInt(parts[1]);
+				if (item.getId() == id && item.getDamage() == meta) {
+				return true;
 				}
 			}else if (item.getId() == Integer.parseInt(key)) {
 				return true;
