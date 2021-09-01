@@ -56,8 +56,13 @@ public class ScoreObj implements Listener{
 		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
 
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 5);
-		String rank = RankUtils.getRankByPlayer(p).getName();
-		if(rank == null) rank = "A";
+
+		String rank = "";
+		try{
+			rank = RankUtils.getRankByPlayer(p).getName();
+		}catch(NullPointerException npt){
+			rank = "A";
+		}
 
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu mỏ&b " + rank), 6);
 		Rank nextrank = RankUtils.getNextRankByPlayer(p);
