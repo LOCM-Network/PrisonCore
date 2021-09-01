@@ -141,7 +141,15 @@ public class EventsListener implements Listener {
 		Player player = event.getPlayer();
 		Item item = event.getItem();
 		if(!player.getLevel().getName().contains("skyblock")){
-			if(item.isShovel() || item.isHoe() || item.getId() == ItemID.BUCKET) event.setCancelled();
+			if(item.isShovel() || item.isHoe()) event.setCancelled();
+		}
+	}
+
+	@EventHandler
+	public void onBucketEmpty(PlayerBucketEmptyEvent event){
+		Player player = event.getPlayer();
+		if(!player.getLevel().getName().contains("skyblock")){
+			event.setCancelled();
 		}
 	}
 
