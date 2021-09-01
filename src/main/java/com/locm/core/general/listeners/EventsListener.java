@@ -30,6 +30,9 @@ import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.LeavesDecayEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
+import cn.nukkit.event.block.BlockPlaceEvent;
+import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.entity.Entity;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
@@ -96,6 +99,36 @@ public class EventsListener implements Listener {
 	public void DataPacketReceiveEvent(DataPacketReceiveEvent e) {
 		if (e.getPacket() instanceof LoginPacket) {
 			((LoginPacket) e.getPacket()).username = ((LoginPacket) e.getPacket()).username.replace(" ", "_");
+		}
+	}
+
+	@EventHandler
+	public void onPlace(BlockPlaceEvent event){
+		Player player = event.getPlayer();
+		if(!player.getLevel().getName().contains("skyblock")){
+			if(player.isOp()) return;
+			event.setCancelled();
+		}
+	}
+
+	@EventHandler
+	public void onDamage(EntityDamageEvent event){
+		if(event instanceof EntityDamageByEntityEvent){
+			Entity entity = event.getEntity();
+			if(entity instanceof Player){
+				if(!entity.getLevel().getName().contains("skyblock")){
+					event.setCancelled();
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onBucket(PlayerBucketFillEvent event){
+		Player player = event.getPlayer();
+		if(!player.getLevel().getName().contains("skyblock")){
+			if(player.isOp()) return;
+			event.setCancelled();
 		}
 	}
 	
