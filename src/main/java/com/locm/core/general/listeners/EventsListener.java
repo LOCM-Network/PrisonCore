@@ -27,6 +27,7 @@ import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.entity.item.EntityItem;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.LeavesDecayEvent;
@@ -37,6 +38,7 @@ import cn.nukkit.event.entity.ItemSpawnEvent;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemID;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
@@ -131,6 +133,15 @@ public class EventsListener implements Listener {
 		if(!player.getLevel().getName().contains("skyblock")){
 			if(player.isOp()) return;
 			event.setCancelled();
+		}
+	}
+
+	@EventHandler
+	public void onClick(PlayerInteractEvent event){
+		Player player = event.getPlayer();
+		Item item = event.getItem();
+		if(!player.getLevel().getName().contains("skyblock")){
+			if(item.isShovel() || item.isHoe() || item.getId() == ItemID.BUCKET) event.setCancelled();
 		}
 	}
 

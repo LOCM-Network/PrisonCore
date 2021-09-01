@@ -28,7 +28,6 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.player.PlayerFormRespondedEvent;
-import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
@@ -246,15 +245,6 @@ public class EnchantListener implements Listener {
 			p.addEffect(Effect.getEffect(Effect.SPEED).setDuration(Integer.MAX_VALUE).setAmplifier(lvl));
 		} else {
 			p.removeEffect(Effect.SPEED);
-		}
-	}
-
-	@EventHandler
-	public void onInteract(PlayerInteractEvent event){
-		Player player = event.getPlayer();
-		Item item = event.getItem();
-		if(!player.getLevel().getName().contains("skyblock")){
-			if(item.isShovel() || item.isHoe()) event.setCancelled();
 		}
 	}
 
