@@ -100,19 +100,20 @@ public class EventsListener implements Listener {
 			((LoginPacket) e.getPacket()).username = ((LoginPacket) e.getPacket()).username.replace(" ", "_");
 		}
 	}
-
-	@EventHandler
-	public void onChat(PlayerChatEvent event) {
-		Player player = event.getPlayer();
-		String message = event.getMessage();
-		List<String> strings = Loader.getInstance().getConfig().getList("anti-chat");
-		strings.forEach(chat -> {
-			if(message.contains(chat)) {
-				player.setBanned(true);
-				event.setCancelled();
-			}
-		});
-	}
+	
+	//TODO: using regex
+	//@EventHandler
+	//public void onChat(PlayerChatEvent event) {
+	//	Player player = event.getPlayer();
+	//	String message = event.getMessage();
+	//	List<String> strings = Loader.getInstance().getConfig().getList("anti-chat");
+	//	strings.forEach(chat -> {
+	//		if(message.contains(chat)) {
+	//			player.setBanned(true);
+	//			event.setCancelled();
+	//		}
+	//	});
+	//}
 
 	@EventHandler
 	public void onBreak(BlockBreakEvent event) {
