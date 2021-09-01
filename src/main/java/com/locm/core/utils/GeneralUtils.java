@@ -75,6 +75,8 @@ public class GeneralUtils {
 					i++;
 				}
 			}
+			level.doChunkGarbageCollection();
+			level.unloadChunks(true);
 		}
 		return i;
 	}
