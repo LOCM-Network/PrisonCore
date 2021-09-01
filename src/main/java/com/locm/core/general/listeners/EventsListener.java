@@ -1,6 +1,7 @@
 package com.locm.core.general.listeners;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.*;
 
 import cn.nukkit.event.player.*;
@@ -32,6 +33,7 @@ import cn.nukkit.event.block.LeavesDecayEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.event.entity.ItemSpawnEvent;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
@@ -130,6 +132,17 @@ public class EventsListener implements Listener {
 			if(player.isOp()) return;
 			event.setCancelled();
 		}
+	}
+
+	@EventHandler
+	public void onItemSpawn(ItemSpawnEvent event) throws NoSuchFieldException, IllegalAccessException{
+        Entity i = e.getEntity();
+		int itemLifetime = 6000 + (20 * 2);
+        i.namedTag.putShort("Age", itemLifetime);
+        Class<?> c = i.getClass().getSuperclass();
+        Field f = c.getDeclaredField("age");
+        f.setAccessible(true);
+        f.set(i, itemLifetime);
 	}
 	
 	//TODO: using regex
