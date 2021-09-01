@@ -42,14 +42,12 @@ public class MineUtils {
 				String[] parts = comp.split(":");
 				MineBlock mb = null;
 				if(parts.length == 2){
-					Block block = Block.get(1);
 					mb = new MineBlock(Block.get(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])),
 						minescfg.getInt("Mines." + key + ".composition." + comp));
 				}else{
 					mb = new MineBlock(Block.get(Integer.parseInt(comp)),
 						minescfg.getInt("Mines." + key + ".composition." + comp));
 				}
-				
 				mbs.add(mb);
 			}
 			MineRegion mr = new MineRegion(maxLoc, minLoc, Loader.getLoader().getServer()

@@ -36,7 +36,6 @@ com\locm\core\ces\enchants\JackHammer.class
 com\locm\core\format\ChatFormat.class
 com\locm\core\ranks\cmd\RankupCommand.class
 com\locm\core\ces\obj\TempCE.class
-com\locm\core\general\form\JoinForm.class
 com\locm\core\general\cmd\HubCommand.class
 com\locm\core\Loader$2.class
 com\locm\core\ah\obj\Listing.class
@@ -61,7 +60,6 @@ com\locm\core\score\ScoreObj.class
 com\locm\core\utils\MineUtils.class
 com\locm\core\utils\StringUtils.class
 com\locm\core\ces\listeners\EnchantListener.class
-com\locm\core\shop\RankForm.class
 com\locm\core\mines\listeners\MinesListener.class
 com\locm\core\ces\enchants\Fortune.class
 com\locm\core\Loader$1.class
