@@ -343,7 +343,9 @@ public class EnchantListener implements Listener {
 					e.setDrops(new Item[] { new Item(266) });
 				}
 			} else {
-				e.setCancelled();
+				if(!e.getPlayer().getLevel().getName().contains("skyblock")){
+					e.setCancelled();
+				}
 			}
 		}
 	}

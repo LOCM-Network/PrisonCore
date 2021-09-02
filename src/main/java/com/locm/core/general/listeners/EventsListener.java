@@ -38,7 +38,6 @@ import cn.nukkit.event.entity.ItemSpawnEvent;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemID;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
@@ -49,7 +48,6 @@ import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
-import me.onebone.economyapi.EconomyAPI;
 
 public class EventsListener implements Listener {
 
@@ -58,46 +56,6 @@ public class EventsListener implements Listener {
 	public static HashMap<Player, Integer> playersOrbsBooster = new HashMap<>();
 	public static Config players = Loader.getLoader().getPlayerCfg();
 	public static File playersFile = Loader.getLoader().getPlayersFile();
-
-	public String tagByPerm(String perm) {
-		switch (perm) {
-		case "tags.locm":
-			return StringUtils.translateColors("&6&l+&eParadox&6+");
-		case "tags.noob":
-			return StringUtils.translateColors("&bNoob &3:(");
-		case "tags.hacker":
-			return StringUtils.translateColors("&c&lHacking&cScum");
-		case "tags.pvper":
-			return StringUtils.translateColors("&aPvper");
-		case "tags.god":
-			return StringUtils.translateColors("&f&lGod");
-		}
-		return perm;
-	}
-
-	public List<String> listOfPermsTags() {
-		List<String> list = new ArrayList<String>();
-		list.add("tags.locm");
-		list.add("tags.noob");
-		list.add("tags.hacker");
-		list.add("tags.pvper");
-		list.add("tags.god");
-		return list;
-	}
-
-	public boolean hasAllTags(Player p) {
-		return (p.hasPermission("tags.locm") && p.hasPermission("tags.noob") && p.hasPermission("tags.hacker")
-				&& p.hasPermission("tags.pvper") && p.hasPermission("tags.god"));
-	}
-
-	public String getRandomTagPerm(Player p) {
-		Random r = new Random();
-		String perm = listOfPermsTags().get(r.nextInt(listOfPermsTags().size()));
-		if (p.hasPermission(perm)) {
-			getRandomTagPerm(p);
-		}
-		return perm;
-	}
 
 	@EventHandler(ignoreCancelled = true)
 	public void DataPacketReceiveEvent(DataPacketReceiveEvent e) {
@@ -111,6 +69,9 @@ public class EventsListener implements Listener {
 		Player player = event.getPlayer();
 		if(!player.getLevel().getName().contains("skyblock")){
 			if(player.isOp()) return;
+			if(MineUtils.isLocInMine(event.getBlock().getLocation())){
+				if(event.getBlock().getId() == BlockID.CRAFTING_TABLE) return;
+			}
 			event.setCancelled();
 		}
 	}
@@ -445,20 +406,6 @@ public class EventsListener implements Listener {
 						i1--;
 					}
 				}.runTaskTimer(Loader.getLoader(), 0, 20);
-			}
-		}
-		if (i.getCustomName().equals(ItemStorage.randomTag().getCustomName())) {
-			if (hasAllTags(p)) {
-				GeneralUtils.pop(i, p, 1);
-				EconomyAPI.getInstance().addMoney(p, 250000D);
-				p.sendMessage(StringUtils.getPrefix() + StringUtils
-						.translateColors("You already have all /tags! Given $250,000. &f(Not including custom)"));
-				return;
-			} else {
-				String perm = getRandomTagPerm(p);
-				p.addAttachment(Loader.getLoader(), perm, true);
-				p.sendMessage(StringUtils.getPrefix() + "You have been granted to the tag " + tagByPerm(perm)
-						+ " use /tags now!");
 			}
 		}
 	}
