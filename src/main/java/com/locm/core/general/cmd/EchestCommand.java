@@ -8,7 +8,6 @@ import com.locm.core.Loader;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import cn.nukkit.inventory.Inventory;
 
 public class EchestCommand extends Command {
 

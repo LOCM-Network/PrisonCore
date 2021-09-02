@@ -21,7 +21,6 @@ import java.util.Map;
 public class ScoreObj implements Listener{
 
 	static final Map<Player, Scoreboard> scoreboards = new HashMap<>();
-	private static me.locm.economyapi.EconomyAPI lcoin;
 
 	@EventHandler
 	public void onJoin(PlayerLocallyInitializedEvent event) {

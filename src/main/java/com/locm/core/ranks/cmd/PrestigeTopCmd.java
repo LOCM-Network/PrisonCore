@@ -14,7 +14,7 @@ import cn.nukkit.form.window.FormWindowCustom;
 public class PrestigeTopCmd extends Command {
 
 	public PrestigeTopCmd() {
-		super("uttop");
+		super("topprestige");
 	}
 
 	HashMap<String, Integer> list = new HashMap<String, Integer>();
@@ -36,7 +36,8 @@ public class PrestigeTopCmd extends Command {
 					nextTopKills = list.get(playerName);
 				}
 			}
-			fc.addElement(new ElementLabel("&l&eＴｏｐ " + i + ". &a" + nextTop + " &fcấp&a " + nextTopKills));
+			String content = StringUtils.translateColors("&l&eＴｏｐ " + i + ". &a" + nextTop + " &fcấp&a " + nextTopKills);
+			fc.addElement(new ElementLabel(content));
 			list.remove(nextTop);
 			nextTop = "";
 			nextTopKills = 0;

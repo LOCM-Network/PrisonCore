@@ -26,8 +26,8 @@ public class RankupCommand extends Command {
 				Rank currentRank = RankUtils.getRankByPlayer(p);
 				if (currentRank != null && !currentRank.isLastRank()) {
 					Rank nextRank = RankUtils.getNextRankByPlayer(p);
-					if (EconomyAPI.getInstance().myMoney(p) >= currentRank.getCost()) {
-						EconomyAPI.getInstance().reduceMoney(p, currentRank.getCost());
+					if (EconomyAPI.getInstance().myMoney(p) >= nextRank.getCost()) {
+						EconomyAPI.getInstance().reduceMoney(p, nextRank.getCost());
 						RankUtils.setRankByPlayer(p, nextRank);
 						p.sendMessage(StringUtils.color("&l&fNâng cấp thành công (&e" + nextRank.getName() + "&f)"));
 						Server.getInstance().broadcastMessage(StringUtils.color("&l&fNgười chơi&e " + sender.getName() + "&f đã đạt cấp (&e"+ nextRank.getName() +"&f)"));
