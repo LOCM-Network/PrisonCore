@@ -116,13 +116,13 @@ public class EventsListener implements Listener {
 
 	@EventHandler
 	public void onItemSpawn(ItemSpawnEvent event) throws NoSuchFieldException, IllegalAccessException{
-        Entity i = event.getEntity();
+		Entity i = event.getEntity();
 		int itemLifetime = 6000 - 2 * 20 * 60;
-        i.namedTag.putShort("Age", itemLifetime);
-        Class<?> c = i.getClass().getSuperclass();
-        Field f = c.getDeclaredField("age");
-        f.setAccessible(true);
-        f.set(i, itemLifetime);
+		i.namedTag.putShort("Age", itemLifetime);
+		Class<?> c = i.getClass().getSuperclass();
+		Field f = c.getDeclaredField("age");
+		f.setAccessible(true);
+		f.set(i, itemLifetime);
 	}
 
 	@EventHandler
