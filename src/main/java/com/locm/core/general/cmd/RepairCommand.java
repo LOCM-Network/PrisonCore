@@ -13,9 +13,9 @@ public class RepairCommand extends Command {
 		super("repairhand", "Sửa chữa vật phẩm (theo dộ hỏng)", "/repairhand");
 	}
 
-	EconomyAPI api = EconomyAPI.getInstance();
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
+		EconomyAPI api = EconomyAPI.getInstance();
 		Player p = (Player) sender;
 		Item i = p.getInventory().getItemInHand();
 		Integer price = i.getDamage() * 100;
