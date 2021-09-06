@@ -72,6 +72,10 @@ public class EnchantListener implements Listener {
 						if (gui.getTitle().equals(StringUtils.translateColors(
 								ceByPlayer.get(p).getDisplayNameOfEnchantment() + " &r&b&nEnchantment&d&n Purchase"))) {
 							if (e.getResponse() != null) {
+								if(costOfEnchantByPlayer.containsKey(p)){
+									 costOfEnchantByPlayer.remove(p);
+								}
+								
 								if (!costOfEnchantByPlayer.containsKey(p)) {
 									if (gui.getResponse().getSliderResponse(1) != 0) {
 										float lvl = gui.getResponse().getSliderResponse(1);
@@ -96,7 +100,7 @@ public class EnchantListener implements Listener {
 	public void onResponse2(PlayerFormRespondedEvent e) {
 		Player p = e.getPlayer();
 		if (e.getWindow() != null) {
-			if (p.getInventory().getItemInHand().getId() == 278) {
+			if (p.getInventory().getItemInHand().isPickaxe() || p.getInventory().getItemInHand().isAxe() || p.getInventory().getItemInHand().isShovel()) {
 				if (e.getWindow() instanceof FormWindowSimple) {
 					if (costOfEnchantByPlayer.containsKey(p)) {
 						FormWindowSimple gui = (FormWindowSimple) e.getWindow();
@@ -107,7 +111,7 @@ public class EnchantListener implements Listener {
 								if (ce.getType().equals(EnchantType.CUSTOM)) {
 									if (OrbEconomyUtils.hasPlayerBalance(p, costOfEnchantByPlayer.get(p).getCost())) {
 										if (CEUtils.getLevelOfEnchantByDisplayName(ce.getDisplayNameOfEnchantment(),
-												p.getInventory().getItemInHand()) < costOfEnchantByPlayer.get(p)
+												p.getInventory().getItemInHand()) <= costOfEnchantByPlayer.get(p)
 														.getLevel()) {
 											OrbEconomyUtils.removePlayerBalance(p,
 													costOfEnchantByPlayer.get(p).getCost());

@@ -29,13 +29,13 @@ public class FormStorage {
 			FormWindowCustom fs = new FormWindowCustom(
 					StringUtils.translateColors(ce.getDisplayNameOfEnchantment() + " &r&b&nEnchantment&d&n Purchase"));
 			fs.addElement(new ElementLabel(StringUtils.translateColors("&7Mô tả: " + ce.getDescription())));
-			fs.addElement(new ElementSlider(StringUtils.translateColors("&bCấp độ"), level, ce.getMaxLevelOfEnchantment(), 1));
+			fs.addElement(new ElementSlider(StringUtils.translateColors("&bCấp độ:"), level, ce.getMaxLevelOfEnchantment(), 1));
 			return fs;
 		}
 		FormWindowCustom fs = new FormWindowCustom(
 				StringUtils.translateColors(ce.getDisplayNameOfEnchantment() + " &r&b&nEnchantment&d&n Purchase"));
 		fs.addElement(new ElementLabel(StringUtils.translateColors("&7Mô tả: " + ce.getDescription())));
-		fs.addElement(new ElementSlider(StringUtils.translateColors("&bCấp độl"), 0F, ce.getMaxLevelOfEnchantment(), 1));
+		fs.addElement(new ElementSlider(StringUtils.translateColors("&bCấp độ: "), 0F, ce.getMaxLevelOfEnchantment(), 1));
 		return fs;
 	}
 

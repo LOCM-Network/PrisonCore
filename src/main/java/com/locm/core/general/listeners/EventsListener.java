@@ -28,6 +28,7 @@ import cn.nukkit.entity.item.EntityItem;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerInteractEvent;
+import cn.nukkit.event.player.PlayerDeathEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.LeavesDecayEvent;
@@ -77,13 +78,16 @@ public class EventsListener implements Listener {
 	}
 
 	@EventHandler
+	public void onDeath(PlayerDeathEvent event){
+		event.setKeepInventory(true);
+	}
+
+	@EventHandler
 	public void onDamage(EntityDamageEvent event){
 		if(event instanceof EntityDamageByEntityEvent){
 			Entity entity = event.getEntity();
-			if(entity instanceof Player){
-				if(!entity.getLevel().getName().contains("skyblock")){
-					event.setCancelled();
-				}
+			if(!entity.getLevel().getName().contains("skyblock")){
+				event.setCancelled();
 			}
 		}
 	}
@@ -110,6 +114,7 @@ public class EventsListener implements Listener {
 	public void onBucketEmpty(PlayerBucketEmptyEvent event){
 		Player player = event.getPlayer();
 		if(!player.getLevel().getName().contains("skyblock")){
+			if(player.isOp()) return;
 			event.setCancelled();
 		}
 	}
