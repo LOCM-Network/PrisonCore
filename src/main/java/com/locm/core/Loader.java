@@ -80,7 +80,7 @@ public class Loader extends PluginBase {
 	}
 
 	public void startFeautures() {
-		startMineResetTask();
+		//startMineResetTask();
 		registerCommands();
 		registerEvents();
 		loadWorlds();

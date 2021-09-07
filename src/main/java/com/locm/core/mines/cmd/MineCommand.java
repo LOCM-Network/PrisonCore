@@ -1,20 +1,24 @@
 package com.locm.core.mines.cmd;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 
 import com.locm.core.Loader;
+import com.locm.core.general.entity.CustomModel;
 import com.locm.core.mines.FormStorage;
 import com.locm.core.mines.obj.Mine;
 import com.locm.core.utils.ItemStorage;
 import com.locm.core.utils.MineUtils;
+import com.locm.core.utils.ModelUtils;
 import com.locm.core.utils.StringUtils;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.entity.data.Skin;
 import cn.nukkit.utils.Config;
-import cn.nukkit.utils.TextFormat;
 
 public class MineCommand extends Command {
 	public static Config mines = Loader.getLoader().getMinesCfg();
@@ -89,20 +93,17 @@ public class MineCommand extends Command {
 							p.sendMessage(StringUtils.getPrefix() + "Mine non existant!");
 						}
 					}
+				}else if(args[0].equals("setnpc")){
+					String geometry = "button";
+					Path path = Loader.getInstance().getDataFolder().toPath();
+					Path skinPath = path.resolve("button.png");
+					Path geometryPath = path.resolve("geometry.json");
+					try{
+						Skin skin = ModelUtils.createSkin(geometry, skinPath, geometryPath);
+						CustomModel model = ModelUtils.createModel((Player) sender, skin);
+						model.spawnToAll();
+					}catch(IOException exception){}
 				}
-			}
-		}else if(args.length == 2 && args[0].equals("rs")){
-			Player p = (Player) sender;
-			if (MineUtils.getMineByName(args[1]) != null) {
-				Mine m = MineUtils.getMineByName(args[1]);
-				if(m.isSmaller(20)){
-					m.resetMine();
-					p.sendActionBar(TextFormat.colorize("&l&aĐã làm mới khu mỏ"));
-					return false;
-				}
-				p.sendActionBar(TextFormat.colorize("&c&lKhông thể làm mới khi khu mỏ còn nhiều hơn 20% tổng số khối"));
-			} else {
-				p.sendMessage("Mine non existant!");
 			}
 		}
 		return false;
