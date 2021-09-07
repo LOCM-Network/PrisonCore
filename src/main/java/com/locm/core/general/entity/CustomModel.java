@@ -26,6 +26,10 @@ public class CustomModel extends EntityHuman {
             EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) source;
             if(event.getDamager() instanceof Player){
                 Player player = (Player) event.getDamager();
+                if(player.isOp() && player.isSneaking()){
+                    this.close();
+                    return false;
+                }
                 try{
                     Rank rank =  RankUtils.getRankByPlayer(player);
                     Mine mine =  MineUtils.getMineByName(rank.getName());
