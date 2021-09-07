@@ -1,8 +1,11 @@
 package com.locm.core.mines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.locm.core.Loader;
 import com.locm.core.mines.obj.LuckyReward;
 
 public class LuckyRewardStorage {
@@ -15,7 +18,15 @@ public class LuckyRewardStorage {
 	public static LuckyReward prizeSix = new LuckyReward(35, "4x Small bombs", "bomb give {name} 4 small");
 
 	public static List<LuckyReward> rews() {
+		List<String> rewards = Loader.getInstance().getConfig().getStringList("luckyrewards");
 		List<LuckyReward> rews = new ArrayList<LuckyReward>();
+		if(rewards.size() > 0){
+			for(String reward : rewards){
+				String[] parts = reward.split(":");
+				LuckyReward luckreward = new LuckyReward(Integer.parseInt(parts[0]), parts[1], parts[2]);
+				rews.add(luckreward);
+			}
+		}
 		rews.add(prizeOne);
 		rews.add(prizeTwo);
 		rews.add(prizeThree);
