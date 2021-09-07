@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import com.locm.core.general.entity.CustomModel;
 
 public class ModelUtils{
 
@@ -21,7 +22,7 @@ public class ModelUtils{
         return skin;
     }
 
-    public static Model createModel(Position position, Skin skin) {
+    public static CustomModel createModel(Position position, Skin skin) {
         CompoundTag nbt = Entity.getDefaultNBT(position);
         CompoundTag skinTag = new CompoundTag()
                 .putByteArray("Data", skin.getSkinData().data)
@@ -32,6 +33,6 @@ public class ModelUtils{
                 .putByteArray("GeometryData", skin.getGeometryData().getBytes(StandardCharsets.UTF_8))
                 .putBoolean("IsTrustedSkin", true);
         nbt.putCompound("Skin", skinTag);
-        return new Model(position.getChunk(), nbt);
+        return new CustomModel(position.getChunk(), nbt);
     }
 }
