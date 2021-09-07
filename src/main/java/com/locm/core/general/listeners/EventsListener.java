@@ -39,6 +39,7 @@ import cn.nukkit.event.entity.ItemSpawnEvent;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemID;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
@@ -49,6 +50,7 @@ import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
+import cn.nukkit.utils.TextFormat;
 
 public class EventsListener implements Listener {
 
@@ -170,6 +172,13 @@ public class EventsListener implements Listener {
 			players.set("Players." + e.getPlayer().getName() + ".rank", RankStorage.A.getName());
 			players.set("Players." + e.getPlayer().getName() + ".prestigeLevel", 1);
 			players.save(playersFile);
+			Item axe = Item.get(ItemID.WOODEN_AXE);
+			axe.setCustomName(TextFormat.colorize("&l&eRìu khởi đầu"));
+			Item pickaxe = Item.get(ItemID.WOODEN_PICKAXE);
+			pickaxe.setCustomName(TextFormat.colorize("&l&eCúp khởi đầu"));
+			Player player = e.getPlayer();
+			player.getInventory().addItem(axe);
+			player.getInventory().addItem(pickaxe);
 		}
 		Position pos = Server.getInstance().getDefaultLevel().getSafeSpawn();
 		Random randpos = new Random();

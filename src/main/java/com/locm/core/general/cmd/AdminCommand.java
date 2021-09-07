@@ -2,6 +2,8 @@ package com.locm.core.general.cmd;
 
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+
+import com.locm.core.Loader;
 import com.locm.core.format.ChatFormat;
 
 public class AdminCommand extends Command {
@@ -16,6 +18,9 @@ public class AdminCommand extends Command {
 			if(args[0].equals("fecthgroup")) {
 				ChatFormat.fecthGroup();
 				sender.sendMessage("Fecth succesfully");
+			}else if(args[0].equals("reload")){
+				Loader.getInstance().reloadConfig();
+				sender.sendMessage("Reload all config..");
 			}
 		}
 		return false;
