@@ -19,6 +19,7 @@ import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.entity.data.Skin;
 import cn.nukkit.utils.Config;
+import cn.nukkit.utils.TextFormat;
 
 public class MineCommand extends Command {
 	public static Config mines = Loader.getLoader().getMinesCfg();
@@ -102,6 +103,8 @@ public class MineCommand extends Command {
 						Skin skin = ModelUtils.createSkin(geometry, skinPath, geometryPath);
 						CustomModel model = ModelUtils.createModel((Player) sender, skin);
 						model.spawnToAll();
+						model.setNameTag(TextFormat.colorize(args[1]));
+						model.setNameTagAlwaysVisible();
 					}catch(IOException exception){}
 				}
 			}

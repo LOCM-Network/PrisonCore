@@ -75,7 +75,7 @@ public class Mine {
 		int allblocks = this.getCountBlock(false);
 		int restblocks = this.getCountBlock(true);
 		int perblocks = percen * allblocks / 100;
-		return ((allblocks - restblocks) <= perblocks);
+		return restblocks <= perblocks;
 	}
 
 	public Block getWinningBlock() {
