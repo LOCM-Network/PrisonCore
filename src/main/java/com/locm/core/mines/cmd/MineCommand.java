@@ -14,6 +14,7 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.Config;
+import cn.nukkit.utils.TextFormat;
 
 public class MineCommand extends Command {
 	public static Config mines = Loader.getLoader().getMinesCfg();
@@ -35,6 +36,7 @@ public class MineCommand extends Command {
 				p.showFormWindow(FormStorage.MinerMenu(p));
 			}
 		}
+
 		if (sender.hasPermission("locm.admin")) {
 			if (args.length == 2) {
 				if (args[0].equals("setup")) {
@@ -88,6 +90,19 @@ public class MineCommand extends Command {
 						}
 					}
 				}
+			}
+		}else if(args.length == 2 && args[0].equals("rs")){
+			Player p = (Player) sender;
+			if (MineUtils.getMineByName(args[1]) != null) {
+				Mine m = MineUtils.getMineByName(args[1]);
+				if(m.isSmaller(20)){
+					m.resetMine();
+					p.sendActionBar(TextFormat.colorize("&l&aĐã làm mới khu mỏ"));
+					return false;
+				}
+				p.sendActionBar(TextFormat.colorize("&c&lKhông thể làm mới khi khu mỏ còn nhiều hơn 20% tổng số khối"));
+			} else {
+				p.sendMessage("Mine non existant!");
 			}
 		}
 		return false;

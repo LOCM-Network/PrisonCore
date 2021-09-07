@@ -45,6 +45,38 @@ public class Mine {
 		}
 	}
 
+	public Integer getCountBlock(boolean rest){
+		double maxX = Math.max(region.getLocMin().getX(), region.getLocMax().getX());
+		double maxY = Math.max(region.getLocMin().getY(), region.getLocMax().getY());
+		double maxZ = Math.max(region.getLocMin().getZ(), region.getLocMax().getZ());
+		double minX = Math.min(region.getLocMin().getX(), region.getLocMax().getX());
+		double minY = Math.min(region.getLocMin().getY(), region.getLocMax().getY());
+		double minZ = Math.min(region.getLocMin().getZ(), region.getLocMax().getZ());
+		int blocks = 0;
+		for (int x = (int) minX; x <= maxX; x++) {
+			for (int y = (int) minY; y <= maxY; y++) {
+				for (int z = (int) minZ; z <= maxZ; z++) {
+					if(rest){
+						Location loc = new Location(x, y, z);
+						if(region.getLvl().getBlock(loc).getId() != 0){
+							blocks += 1;
+						}
+					}else{
+						blocks += 1;
+					}
+				}
+			}
+		}
+		return blocks;
+	}
+	
+	public boolean isSmaller(int percen){
+		int allblocks = this.getCountBlock(false);
+		int restblocks = this.getCountBlock(true);
+		int perblocks = percen * allblocks / 100;
+		return ((allblocks - restblocks) <= perblocks);
+	}
+
 	public Block getWinningBlock() {
 		RandomCollection<Block> random = new RandomCollection<>();
 		for (MineBlock mb : getMineComposition().getMb()) {

@@ -116,23 +116,19 @@ public class Loader extends PluginBase {
 
 	public void startMineResetTask() {
 		if (!MineUtils.getAllMinesFromConfig().isEmpty()) {
-			for (Mine m : MineUtils.getAllMinesFromConfig()) {
-				new NukkitRunnable() {
-					int i = 300;
-
-					@Override
-					public void run() {
-						if (i <= 0) {
-							m.resetMine();
-							i = 300;
-						}
+			new NukkitRunnable() {
+				int i = 12000;
+				@Override
+				public void run() {
+					if (i <= 0) {
 						for (Mine m : MineUtils.getAllMinesFromConfig()) {
-							api.staticPlaceholder(m.getMineName() + "_resetMineDelay", T -> i);
-						}
-						i--;
+							m.resetMine();
+						}						
+						i = 12000;
 					}
-				}.runTaskTimer(this, 0, 20);
-			}
+					i--;
+				}
+			}.runTaskTimer(this, 0, 20);
 		}
 	}
 
