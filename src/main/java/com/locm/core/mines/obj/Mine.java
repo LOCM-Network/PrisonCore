@@ -69,7 +69,8 @@ public class Mine {
 		}
 		return blocks;
 	}
-	
+
+	//calculate if the sum of remaining blocks is less than the percentage
 	public boolean isSmaller(int percen){
 		int allblocks = this.getCountBlock(false);
 		int restblocks = this.getCountBlock(true);
