@@ -10,8 +10,6 @@ import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
 import cn.nukkit.level.Level;
-import cn.nukkit.entity.Entity;
-import cn.nukkit.entity.EntityHuman;
 
 public class GeneralUtils {
 
@@ -69,12 +67,6 @@ public class GeneralUtils {
 	public static Integer clearlag() {
 		Integer i = 0;
 		for (Level level : Server.getInstance().getLevels().values()) {
-			for (Entity entity : level.getEntities()) {
-				if (!(entity instanceof EntityHuman) && (entity.namedTag == null || (!entity.namedTag.contains("npc") && !entity.namedTag.contains("hologramId")))) {
-					entity.close();
-					i++;
-				}
-			}
 			level.doChunkGarbageCollection();
 			level.unloadChunks(true);
 		}

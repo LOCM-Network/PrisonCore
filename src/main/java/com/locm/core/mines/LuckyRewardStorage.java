@@ -1,9 +1,7 @@
 package com.locm.core.mines;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.locm.core.Loader;
 import com.locm.core.mines.obj.LuckyReward;

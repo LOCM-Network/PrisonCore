@@ -138,13 +138,13 @@ public class Loader extends PluginBase {
 			@Override
 			public void run() {
 				if(time <= 0) {
-					int count = GeneralUtils.clearlag();
-					Server.getInstance().broadcastMessage(TextFormat.colorize("&l&fĐã xóa&e " + count + " &fvật phẩm trên mặt đất"));
+					GeneralUtils.clearlag();
+					Server.getInstance().broadcastMessage(TextFormat.colorize("&l&aĐang tối ưu máy chủ!!!"));
 					time = 20*60*5;
 				}
 				List<Integer> intList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 30, 60));
 				if(intList.contains(time)) {
-					Server.getInstance().broadcastMessage(TextFormat.colorize("&l&fDọn rác sau &e" + time + "&f giây nữa"));
+					Server.getInstance().broadcastMessage(TextFormat.colorize("&l&fTối ưu máy chủ sau &e" + time + "&f giây nữa"));
 				}
 				time--;
 			}
