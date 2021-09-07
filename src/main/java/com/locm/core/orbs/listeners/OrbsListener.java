@@ -46,6 +46,7 @@ public class OrbsListener implements Listener {
 	public void onBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
 		Item i = p.getInventory().getItemInHand();
+		if(!MineUtils.isLocInMine(p)) return;
 		if (i.getId() == 278) {
 			if (CEUtils.containsEnchantment(i, CEUtils.getCEByDisplayName(StringUtils.translateColors("&aGreed")))) {
 				if (MineUtils.isLocInMine(e.getBlock().getLocation())) {

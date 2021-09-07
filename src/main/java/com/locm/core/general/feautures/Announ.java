@@ -14,9 +14,8 @@ public class Announ {
 
 	private final List<String> mess;
 
-	@SuppressWarnings("unchecked") 
 	public Announ() {
-		mess = new LinkedList<String>(Loader.getInstance().getConfig().getList("broadcast"));
+		mess = Loader.getInstance().getConfig().getStringList("broadcast");
 	}
 
 	public void runAnnoun() {
