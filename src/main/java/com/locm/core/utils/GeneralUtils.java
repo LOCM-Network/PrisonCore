@@ -10,6 +10,8 @@ import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.Sound;
+import cn.nukkit.network.protocol.PlaySoundPacket;
 
 public class GeneralUtils {
 
@@ -63,6 +65,17 @@ public class GeneralUtils {
 		}*/
 		return true;
 	}
+
+	public static void playSound(Player player, Sound sound) {
+        PlaySoundPacket packet = new PlaySoundPacket();
+        packet.name = sound.getSound();
+        packet.x = (int)player.getLocation().getX();
+        packet.y = (int)player.getLocation().getY();
+        packet.z = (int)player.getLocation().getZ();
+        packet.volume = 1.0F;
+        packet.pitch = 1.0F;
+        player.dataPacket(packet);
+    }
 
 	public static Integer clearlag() {
 		Integer i = 0;

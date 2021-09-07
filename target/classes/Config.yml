@@ -2,14 +2,27 @@
 broadcast:
   - "abc"
   - "abc"
-anti-chat:
-  - "minesuon"
-  - "minefore"
-  - "lóm"
-  - ",net"
-  - ",com"
-  - ",xyz"
-  - ".xyz"
-  - ".com"
-  - "19132"
+
+luckyrewards: []
+
+join:
+  - "&l&e=================="
+  - ""
+  - "&l&fＬＯＣＭ &bＰＲＩＳＯＮ"
+  - ""
+  - "&l&epri.locmvn.net"
+  - ""
+  - "&l&e==================="
+
+first-join:
+  - "&l&e=================="
+  - ""
+  - "&l&fＬＯＣＭ &bＰＲＩＳＯＮ"
+  - ""
+  - "&l&epri.locmvn.net"
+  - ""
+  - "&l&d/lcoin&f để xem cách thức donate"
+  - "&l&d/mine&f để vào khu mỏ"
+  - ""
+  - "&l&e==================="
 ...

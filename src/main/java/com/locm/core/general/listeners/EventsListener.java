@@ -42,6 +42,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
+import cn.nukkit.level.Sound;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -161,24 +162,33 @@ public class EventsListener implements Listener {
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
-		if (!e.getPlayer().hasPlayedBefore()) {
+		Player player = e.getPlayer();
+		if (!player.hasPlayedBefore()) {
 			for (Kit kit : KitHandler.getAllKitsFromConfig()) {
 				if (kit.getName().equals("Daily")) {
 					kit.giveKitToPlayer(e.getPlayer());
 				}
 			}
 		}
-		if (!players.exists("Players." + e.getPlayer().getName() + ".rank")) {
-			players.set("Players." + e.getPlayer().getName() + ".rank", RankStorage.A.getName());
-			players.set("Players." + e.getPlayer().getName() + ".prestigeLevel", 1);
+		if (!players.exists("Players." + player.getName() + ".rank")) {
+			players.set("Players." + player.getName() + ".rank", RankStorage.A.getName());
+			players.set("Players." + player.getName() + ".prestigeLevel", 1);
 			players.save(playersFile);
 			Item axe = Item.get(ItemID.WOODEN_AXE);
 			axe.setCustomName(TextFormat.colorize("&l&eRìu khởi đầu"));
 			Item pickaxe = Item.get(ItemID.WOODEN_PICKAXE);
 			pickaxe.setCustomName(TextFormat.colorize("&l&eCúp khởi đầu"));
-			Player player = e.getPlayer();
 			player.getInventory().addItem(axe);
 			player.getInventory().addItem(pickaxe);
+			GeneralUtils.playSound(player, Sound.NOTE_HARP);
+			for(String mess : Loader.getInstance().getConfig().getStringList("first-join")){
+				player.sendMessage(TextFormat.colorize(mess));
+			}
+		}else{
+			for(String mess : Loader.getInstance().getConfig().getStringList("join")){
+				player.sendMessage(TextFormat.colorize(mess));
+			}
+			GeneralUtils.playSound(player, Sound.NOTE_BASS);	
 		}
 		Position pos = Server.getInstance().getDefaultLevel().getSafeSpawn();
 		Random randpos = new Random();
@@ -195,8 +205,12 @@ public class EventsListener implements Listener {
 		if(facing == 3) {
 			pos.add(0D, 0.0D, -2.0D);
 		}
-		e.getPlayer().teleport(pos);
-		e.setJoinMessage("§l§a•§f " + e.getPlayer().getName());
+		player.teleport(pos);
+		if(!player.hasPlayedBefore()){
+			e.setJoinMessage("§l§eNEW§f " + player.getName());
+		}else{
+			e.setJoinMessage("§l§a•§f " + player.getName());
+		}
 	}
 
 	@EventHandler

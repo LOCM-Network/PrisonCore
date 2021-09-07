@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.locm.core.mines.cmd.MineCommand;
 import com.locm.core.mines.obj.Mine;
+import com.locm.core.utils.GeneralUtils;
 import com.locm.core.utils.ItemStorage;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.RankUtils;
@@ -18,6 +19,7 @@ import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.player.PlayerFormRespondedEvent;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.level.Location;
+import cn.nukkit.level.Sound;
 import cn.nukkit.utils.Config;
 
 public class MinesListener implements Listener {
@@ -44,6 +46,7 @@ public class MinesListener implements Listener {
 											p.teleport(m.getTpLocation());
 											p.sendActionBar(StringUtils
 													.translateColors("&l&fDịch chuyển tới khu mỏ&f " + m.getMineName() + ""));
+											GeneralUtils.playSound(p, Sound.NOTE_BASS);
 										} else {
 											p.sendMessage(StringUtils.color("&l&cBạn chưa có quyền dịch chuyển tới khu này!&f /rankup!"));
 										}

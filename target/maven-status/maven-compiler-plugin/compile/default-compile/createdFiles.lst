@@ -5,6 +5,7 @@ com\locm\core\kits\listeners\KitsListener.class
 com\locm\core\ces\enchants\Gears.class
 com\locm\core\kits\cmd\CreateKitCommand.class
 com\locm\core\ces\obj\EnchantType.class
+com\locm\core\general\entity\CustomModel.class
 com\locm\core\ranks\storage\RankStorage.class
 com\locm\core\mines\obj\MineBlock.class
 com\locm\core\ces\obj\CustomEnchant.class
@@ -40,6 +41,7 @@ com\locm\core\general\cmd\HubCommand.class
 com\locm\core\Loader$2.class
 com\locm\core\ah\obj\Listing.class
 com\locm\core\ces\enchants\Unbreaking.class
+com\locm\core\utils\ModelUtils.class
 com\locm\core\general\listeners\EventsListener.class
 com\locm\core\ces\forms\FormStorage.class
 com\locm\core\ces\enchants\Donator.class
