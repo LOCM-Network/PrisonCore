@@ -1,9 +1,13 @@
 package com.locm.core.general.cmd;
 
+import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.item.Item;
+import cn.nukkit.utils.TextFormat;
 import ru.contentforge.formconstructor.form.CustomForm;
 import ru.contentforge.formconstructor.form.SimpleForm;
+import ru.contentforge.formconstructor.form.element.Input;
 
 import com.locm.core.Loader;
 import com.locm.core.format.ChatFormat;
@@ -25,7 +29,21 @@ public class AdminCommand extends Command {
 				sender.sendMessage("Reload all config..");
 			}else if(args[0].equals("citem")){
 				CustomForm form = new CustomForm("Custom item");
-				//TODO
+				form.addElement("name", new Input("Ten"));
+				form.addElement("lore", new Input("lore # de xuong hang"));
+				form.setHandler((p, response) -> {
+					Item item = ((Player) sender).getInventory().getItemInHand();
+					String name = response.getInput("name").getValue();
+					String lore = response.getInput("lore").getValue();
+					if(!name.equals("")){
+						item.setCustomName(TextFormat.colorize(name));
+					}
+					if(!lore.equals("")){
+						item.setLore(lore.replace("#", "\n"));
+					}
+					((Player) sender).getInventory().setItemInHand(item);
+				});
+				form.send((Player) sender);
 			}
 		}
 		return false;
