@@ -2,6 +2,8 @@ package com.locm.core.general.cmd;
 
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import ru.contentforge.formconstructor.form.CustomForm;
+import ru.contentforge.formconstructor.form.SimpleForm;
 
 import com.locm.core.Loader;
 import com.locm.core.format.ChatFormat;
@@ -21,6 +23,9 @@ public class AdminCommand extends Command {
 			}else if(args[0].equals("reload")){
 				Loader.getInstance().reloadConfig();
 				sender.sendMessage("Reload all config..");
+			}else if(args[0].equals("citem")){
+				CustomForm form = new CustomForm("Custom item");
+				//TODO
 			}
 		}
 		return false;

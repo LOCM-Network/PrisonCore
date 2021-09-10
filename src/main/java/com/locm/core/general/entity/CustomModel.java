@@ -1,11 +1,13 @@
 package com.locm.core.general.entity;
 
+import com.locm.core.event.player.PlayerPushButtonEvent;
 import com.locm.core.mines.obj.Mine;
 import com.locm.core.ranks.obj.Rank;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.RankUtils;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.EntityHuman;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
@@ -34,8 +36,8 @@ public class CustomModel extends EntityHuman {
                     Rank rank =  RankUtils.getRankByPlayer(player);
                     Mine mine =  MineUtils.getMineByName(rank.getName());
                     if(mine.isSmaller(20)){
-                        mine.resetMine();
-                        player.sendActionBar(TextFormat.colorize("&l&aĐã làm mới khu mỏ"));
+                        Server.getInstance().getPluginManager().callEvent(new PlayerPushButtonEvent(player));
+                        player.sendActionBar(TextFormat.colorize("&l&aĐang làm mới khu mỏ"));
                         return false;
                     }
                     player.sendActionBar(TextFormat.colorize("&l&cKhông thể làm mới khi khu mỏ còn nhiều hơn &e20%"));

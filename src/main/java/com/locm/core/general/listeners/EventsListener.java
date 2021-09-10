@@ -6,16 +6,20 @@ import java.util.*;
 
 import cn.nukkit.event.player.*;
 import com.locm.core.Loader;
+import com.locm.core.event.player.PlayerPushButtonEvent;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.obj.Kit;
 import com.locm.core.mines.LuckyRewardStorage;
 import com.locm.core.mines.obj.LuckyReward;
+import com.locm.core.mines.obj.Mine;
+import com.locm.core.ranks.obj.Rank;
 import com.locm.core.ranks.storage.RankStorage;
 import com.locm.core.utils.GeneralUtils;
 import com.locm.core.utils.ItemStorage;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.OrbEconomyUtils;
 import com.locm.core.utils.RandomCollection;
+import com.locm.core.utils.RankUtils;
 import com.locm.core.utils.StringUtils;
 
 import cn.nukkit.Player;
@@ -93,6 +97,32 @@ public class EventsListener implements Listener {
 				event.setCancelled();
 			}
 		}
+	}
+
+	@EventHandler
+	public void onClickEnchantTable(PlayerInteractEvent event){
+		Block block = event.getBlock();
+		if(block.getId() == BlockID.ENCHANTING_TABLE || block.getId() == BlockID.ENCHANTMENT_TABLE || block.getId() == BlockID.ENCHANT_TABLE){
+			event.setCancelled();
+			event.getPlayer().sendActionBar(TextFormat.colorize("&l&cKhông thể dùng"));
+		}
+	}
+
+	@EventHandler
+	public void onPush(PlayerPushButtonEvent event){
+		Player player = event.getPlayer();
+		Rank rank = RankUtils.getRankByPlayer(player);
+		Mine mine = MineUtils.getMineByName(rank.getName());
+		for(Player mine_player : Server.getInstance().getOnlinePlayers().values()){
+			Rank mine_rank = RankUtils.getRankByPlayer(mine_player);
+			if(rank.getName().equals(mine_rank.getName())){
+				if(mine_player.getLevel().getName().contains("ps")){
+					Server.getInstance().dispatchCommand(mine_player, "hub");
+					mine_player.sendMessage(TextFormat.colorize("&e[&fTHÔNG BÁO&e] &fKhu mỏ của bạn đang được làm mới, vui lòng quay lại sau vài giây"));
+				}
+			}
+		}
+		mine.resetMine();
 	}
 
 	@EventHandler
