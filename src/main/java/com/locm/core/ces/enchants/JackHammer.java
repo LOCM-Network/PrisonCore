@@ -9,13 +9,13 @@ public class JackHammer extends CustomEnchant{
 
 	public JackHammer(int level) {
 		super("JackHammer", level, 10, StringUtils.translateColors("&eJackHammer"),
-				"Đào diện rộng (Ngẫu nhiên)!", 10000, EnchantType.CUSTOM);
+				"Đào diện rộng (Ngẫu nhiên)!", 100, EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public JackHammer() {
 		super("JackHammer", 1, 10, StringUtils.translateColors("&eJackHammer"),
-				"Đào diện rộng (Ngẫu nhiên)!", 10000, EnchantType.CUSTOM);
+				"Đào diện rộng (Ngẫu nhiên)!", 100, EnchantType.CUSTOM);
 	}
 
 	public int getLevel() {

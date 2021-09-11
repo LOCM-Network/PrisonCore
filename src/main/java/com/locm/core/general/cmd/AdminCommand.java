@@ -6,8 +6,7 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.TextFormat;
 import ru.contentforge.formconstructor.form.CustomForm;
-import ru.contentforge.formconstructor.form.SimpleForm;
-import ru.contentforge.formconstructor.form.element.Input;
+import ru.contentforge.formconstructor.form.element.*;
 
 import com.locm.core.Loader;
 import com.locm.core.format.ChatFormat;
@@ -46,6 +45,6 @@ public class AdminCommand extends Command {
 				form.send((Player) sender);
 			}
 		}
-		return false;
+		return true;
 	}
 }

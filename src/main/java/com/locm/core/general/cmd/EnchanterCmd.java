@@ -18,7 +18,8 @@ public class EnchanterCmd extends Command {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
 			if (p.getInventory().getItemInHand().isPickaxe() || p.getInventory().getItemInHand().isAxe()) {
-				p.showFormWindow(FormStorage.enchanterMenu());
+				FormStorage form = new FormStorage();
+				form.sendEnchantForm(p);
 			} else {
 				p.sendMessage(TextFormat.colorize("&cChỉ có thể phù phép cho cúp hoặc rìu."));
 			}

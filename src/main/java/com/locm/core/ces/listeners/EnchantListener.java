@@ -44,7 +44,6 @@ public class EnchantListener implements Listener {
 	public static HashMap<Player, TempCE> costOfEnchantByPlayer = new HashMap<>();
 	public static HashMap<Player, CustomEnchant> ceByPlayer = new HashMap<>();
 
-	@EventHandler
 	public void onResponse1(PlayerFormRespondedEvent e) {
 		Player p = e.getPlayer();
 		if (e.getWindow() != null) {
@@ -96,7 +95,6 @@ public class EnchantListener implements Listener {
 		}
 	}
 
-	@EventHandler
 	public void onResponse2(PlayerFormRespondedEvent e) {
 		Player p = e.getPlayer();
 		if (e.getWindow() != null) {

@@ -9,13 +9,13 @@ public class Greed extends CustomEnchant {
 	private int level;
 
 	public Greed(int level) {
-		super("Greed", level, 100, StringUtils.translateColors("&aGreed"), "Nhận thêm orbs khi đào!", 5000,
+		super("Greed", level, 100, StringUtils.translateColors("&aGreed"), "Nhận thêm orbs khi đào!", 60,
 				EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public Greed() {
-		super("Greed", 1, 100, StringUtils.translateColors("&aGreed"), "Nhận thêm orbs khi đào!", 5000,
+		super("Greed", 1, 100, StringUtils.translateColors("&aGreed"), "Nhận thêm orbs khi đào!", 60,
 				EnchantType.CUSTOM);
 	}
 

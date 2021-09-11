@@ -9,13 +9,13 @@ public class Unbreaking extends CustomEnchant {
 	private int level;
 
 	public Unbreaking(int level) {
-		super("Unbreaking", level, 100, StringUtils.translateColors("&7Unbreaking"), "Make your pickaxe more durable",
-				1750, EnchantType.VANILLA);
+		super("Unbreaking", level, 100, StringUtils.translateColors("&7Unbreaking"), "Tăng độ bền cho công cụ",
+				2000, EnchantType.VANILLA);
 		this.level = level;
 	}
 
 	public Unbreaking() {
-		super("Unbreaking", 1, 100, StringUtils.translateColors("&7Unbreaking"), "Make your pickaxe more durable", 1750,
+		super("Unbreaking", 1, 100, StringUtils.translateColors("&7Unbreaking"), "Tăng độ bền cho công cụ", 2000,
 				EnchantType.VANILLA);
 	}
 

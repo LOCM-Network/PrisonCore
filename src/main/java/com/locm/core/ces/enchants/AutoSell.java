@@ -9,13 +9,13 @@ public class AutoSell extends CustomEnchant {
 
 	public AutoSell(int level) {
 		super("AutoSell", level, 1, StringUtils.translateColors("&dAutoSell"),
-				"Tự động bán!", 100000, EnchantType.CUSTOM);
+				"Tự động bán! (Không phù phép chung với Magnet)", 30, EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public AutoSell() {
-		super("AutoSell", 1, 1, StringUtils.translateColors("&dAutoSell"), "Tự động bán!",
-				100000, EnchantType.CUSTOM);
+		super("AutoSell", 1, 1, StringUtils.translateColors("&dAutoSell"), "Tự động bán! (Không phù phép chung với Magnet)",
+				30, EnchantType.CUSTOM);
 	}
 
 	public int getLevel() {

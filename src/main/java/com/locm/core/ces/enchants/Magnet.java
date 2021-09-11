@@ -10,13 +10,13 @@ public class Magnet extends CustomEnchant {
 
 	public Magnet(int level) {
 		super("Magnet", level, 1, StringUtils.translateColors("&fMagnet"),
-				"Automatically places broken blocks into inventory!", 20000, EnchantType.CUSTOM);
+				"Đào tự động vào túi!", 20000, EnchantType.CUSTOM);
 		this.level = level;
 	}
 
 	public Magnet() {
 		super("Magnet", 1, 1, StringUtils.translateColors("&fMagnet"),
-				"Automatically places broken blocks into inventory!", 20000, EnchantType.CUSTOM);
+				"Đào tự động vào túi!", 20000, EnchantType.CUSTOM);
 	}
 
 	public int getLevel() {
