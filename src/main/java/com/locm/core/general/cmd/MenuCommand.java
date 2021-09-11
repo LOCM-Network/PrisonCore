@@ -2,6 +2,7 @@ package com.locm.core.general.cmd;
 
 import com.locm.core.Loader;
 
+import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
@@ -23,6 +24,7 @@ public class MenuCommand extends Command{
                 Server.getInstance().dispatchCommand(p, cmd.replace("{player}", p.getName()));
             });
         });
+        form.send((Player) sender);
         return true;
     }
 }
