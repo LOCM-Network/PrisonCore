@@ -25,4 +25,23 @@ first-join:
   - "&l&d/mine&f để vào khu mỏ"
   - ""
   - "&l&e==================="
+menu:
+  1:
+    cmd: "skyplot"
+    name: "&l&eSkyPlot"
+  2:
+    cmd: "mine"
+    name: "&l&eKhu mỏ"
+  3:
+    cmd: "shop"
+    name: "&l&eCửa hàng vật phẩm"
+  4:
+    cmd: "lcoinshop"
+    name: "&l&eCửa hàng LCoin"
+  5:
+    cmd: "napthe"
+    name: "&l&eNạp Thẻ"
+  6:
+    cmd: "lcoin"
+    name: "&l&eLCoin"
 ...

@@ -24,6 +24,7 @@ import com.locm.core.general.cmd.SellCommand;
 import com.locm.core.general.cmd.TPSCommand;
 import com.locm.core.general.cmd.HubCommand;
 import com.locm.core.general.cmd.KickAllCommand;
+import com.locm.core.general.cmd.MenuCommand;
 import com.locm.core.general.cmd.AdminCommand;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.cmd.CreateKitCommand;
@@ -197,6 +198,7 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("hub", new HubCommand());
 		getServer().getCommandMap().register("kickall", new KickAllCommand());
 		getServer().getCommandMap().register("admin", new AdminCommand());
+		getServer().getCommandMap().register("menu", new MenuCommand());
 		//getServer().getCommandMap().register("rtag", new RTagCmd());
 	}
 
