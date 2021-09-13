@@ -244,18 +244,22 @@ public class EventsListener implements Listener {
 	}
 
 	@EventHandler
-	public void onQuit(PlayerQuitEvent e) {
-		e.setQuitMessage("§l§c•§f " + e.getPlayer().getName());
+	public void onChat(PlayerChatEvent event){
+		Player player = event.getPlayer();
+		if(cooldown.containsKey(player.getUniqueId())){
+			long left = ((cooldown.get(player.getUniqueId()) / 1000) + 2) - (System.currentTimeMillis() / 1000);
+			if(left > 0){
+				player.sendMessage(TextFormat.colorize("&cVui lòng chat sau &e" + left + " &cgiây nữa!"));
+				event.setCancelled();
+				return;
+			}
+		}
+		cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 	}
 
 	@EventHandler
-	public void onEntityDamage(EntityDamageByEntityEvent e) {
-		if (e.getDamager() instanceof Player && e.getEntity() instanceof Player) {
-			Player p = (Player) e.getDamager();
-			if (p.getLevel().getName().equals("plotsworld")) {
-				e.setCancelled();
-			}
-		}
+	public void onQuit(PlayerQuitEvent e) {
+		e.setQuitMessage("§l§c•§f " + e.getPlayer().getName());
 	}
 
 	@EventHandler
