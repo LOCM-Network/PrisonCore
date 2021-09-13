@@ -10,6 +10,7 @@ import com.locm.core.utils.CEUtils;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
+import cn.nukkit.utils.TextFormat;
 
 public class EnchantHandler {
 
@@ -37,7 +38,7 @@ public class EnchantHandler {
 	}
 
 	public static void applyEnchant(Player p, Item item, Enchantment e, int lvl) {
-		if (item.getId() == 278) {
+		if (item.isTool()) {
 			p.getInventory().removeItem(item);
 			item.addEnchantment(e.setLevel(lvl, false));
 			p.getInventory().addItem(item);
@@ -45,22 +46,22 @@ public class EnchantHandler {
 	}
 
 	public static void applyEnchantment(Player p, Item item, CustomEnchant ce, int lvl) {
-		if (item.getId() == 278) {
+		if (item.isTool()) {
 			if (!CEUtils.containsEnchantment(item, ce)) {
 				p.getInventory().remove(item);
 				String[] lore = item.getLore();
-				String[] lore2 = new String[] { ce.getDisplayNameOfEnchantment() + " " + lvl };
+				String[] lore2 = new String[] { TextFormat.colorize("&l&f⛏&l " + ce.getDisplayNameOfEnchantment() + " &f(&e" + lvl +"&f)") };
 				item.setLore(ObjectArrays.concat(lore, lore2, String.class));
-				p.getInventory().addItem(item);
+				p.getInventory().setItemInHand(item);
 			} else {
 				for (int i = 0; i < item.getLore().length; i++) {
 					if (item.getLore()[i].contains(ce.getDisplayNameOfEnchantment())) {
 						p.getInventory().remove(item);
-						String lore2 = ce.getDisplayNameOfEnchantment() + " " + lvl;
+						String lore2 = TextFormat.colorize("&l&f⛏&l " + ce.getDisplayNameOfEnchantment() + " &f(&e" + lvl +"&f)");
 						String[] lore = item.getLore();
 						lore[i] = lore2;
 						item.setLore(lore);
-						p.getInventory().addItem(item);
+						p.getInventory().setItemInHand(item);
 					}
 				}
 			}

@@ -18,6 +18,7 @@ import cn.nukkit.form.element.ElementSlider;
 import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
 import me.locm.economyapi.EconomyAPI;
 import ru.contentforge.formconstructor.form.CustomForm;
 import ru.contentforge.formconstructor.form.ModalForm;
@@ -29,21 +30,21 @@ public class FormStorage {
 
 	public void sendEnchantForm(Player player){
 		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eENCHANT SHOP"));
-		form.addButton(StringUtils.translateColors("&l&bXu"), (p, button) -> {
+		form.addButton(StringUtils.translateColors("&l&f●&0 Orbs &l&f●&0"), (p, button) -> {
 			this.sendEnchantXu(player);
 		});
 
-		form.addButton(StringUtils.translateColors("&l&bLCoin"), (p, button) -> {
+		form.addButton(StringUtils.translateColors("&l&f●&0 LCoin &l&f●&0"), (p, button) -> {
 			this.sendEnchantLCoin(player);
 		});
 		form.send(player);
 	}
 
 	public void sendEnchantXu(Player player){
-		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eEnchant Xu"));
+		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eEnchant Orbs"));
 		for(CustomEnchant enchant : EnchantHandler.getAllEnchants()){
 			if(enchant.getType() == EnchantType.VANILLA){
-				form.addButton(StringUtils.color("&l&0"+enchant.getNameOfEnchantment()), (p, button) -> {
+				form.addButton(StringUtils.color("&l&f●&0 "+enchant.getNameOfEnchantment() + " &l&f●&0"), (p, button) -> {
 					this.enchantForm(player, enchant);
 				});
 			}
@@ -52,10 +53,10 @@ public class FormStorage {
 	}
 
 	public void sendEnchantLCoin(Player player){
-		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eEnchant Xu"));
+		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eEnchant LCoin"));
 		for(CustomEnchant enchant : EnchantHandler.getAllEnchants()){
 			if(enchant.getType() == EnchantType.CUSTOM){
-				form.addButton(StringUtils.color("&l&0"+enchant.getNameOfEnchantment()), (p, button) -> {
+				form.addButton(StringUtils.color("&l&f●&0 "+enchant.getNameOfEnchantment() +" &l&f●&0"), (p, button) -> {
 					this.enchantForm(player, enchant);
 				});
 			}
@@ -67,7 +68,7 @@ public class FormStorage {
 		CustomForm form = new CustomForm(StringUtils.color("&l&ENCHANT " + enchant.getDisplayNameOfEnchantment()));
 		//String payment = (enchant.getType() == EnchantType.CUSTOM) ? "LCoin" : "Xu";
 		//form.addElement(StringUtils.color("&l&e;Gi: " + enchant.getCostMultiplier() + " "+ payment));
-		form.addElement(StringUtils.color("&l&eMô tả:&f " + enchant.getDescription()));
+		form.addElement(StringUtils.color("&l&c⇾ &l&eMô tả:&f " + enchant.getDescription()));
 		List<SelectableElement> elements = Arrays.asList(
 			new SelectableElement("0", 0),
 			new SelectableElement("1", 1),
@@ -76,7 +77,7 @@ public class FormStorage {
 			new SelectableElement("4", 4),
 			new SelectableElement("5", 5)
 		);
-		form.addElement("slider", new StepSlider(StringUtils.color("&l&eCấp độ: "), elements));
+		form.addElement("slider", new StepSlider(StringUtils.color("&l&c⇾ &l&eCấp độ:&f "), elements));
 		form.setHandler((p, response) -> {
 			int level = Integer.parseInt(response.getStepSlider("slider").getValue().getText());
 			if(level == 0){
@@ -92,9 +93,9 @@ public class FormStorage {
 		int price = NumberUtils.getCostOfEnchantmentByLevel(level, enchant.getCostMultiplier());
 		ModalForm form = new ModalForm(StringUtils.color("&l&eENCHANT "+ enchant.getDisplayNameOfEnchantment()));
 		String payment = (enchant.getType() == EnchantType.CUSTOM) ? "LCoin" : "Xu";
-		form.setContent(StringUtils.color("&l&f"+payment+":&e " + price));
-		form.setPositiveButton(StringUtils.color("&l&ePhù phép"));
-		form.setPositiveButton(StringUtils.color("&l&eKhông"));
+		form.setContent(StringUtils.color("&l&c⇾ &f"+payment+":&e " + price));
+		form.setPositiveButton(StringUtils.color("&l&f●&0 Phù phép &l&f●&0"));
+		form.setNegativeButton(StringUtils.color("&l&f●&0 Không &l&f●&0"));
 		form.setHandler((p, response) -> {
 			if(response){
 				if(enchant.getType() == EnchantType.CUSTOM){
@@ -102,16 +103,18 @@ public class FormStorage {
 						EconomyAPI.getInstance().reduceCoin(player, price);
 						EnchantHandler.applyEnchantment(p, p.getInventory().getItemInHand(), enchant,
 													level);
-						p.sendMessage(StringUtils.color("&l&aPhù phép thành công &f(&e" + enchant.getDisplayNameOfEnchantment() + "&f)"));
+						p.sendMessage(StringUtils.color("&l&f● &l&aPhù phép thành công &f(&e" + enchant.getDisplayNameOfEnchantment() + "&f)"));
 					}else{
 						p.sendMessage(StringUtils.color("&l&cKhông đủ LCoin để phù phép"));
 					}
 				}else{
 					if(OrbEconomyUtils.hasPlayerBalance(p, price)){
 						OrbEconomyUtils.removePlayerBalance(p, price);
-						EnchantHandler.applyEnchantment(p, p.getInventory().getItemInHand(), enchant,
+						Enchantment ec = Enchantment.getEnchantment(enchant.getId());
+						ec.setLevel(level);
+						EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), ec,
 													level);
-						p.sendMessage(StringUtils.color("&l&aPhù phép thành công &f(&e" + enchant.getDisplayNameOfEnchantment() + "&f)"));
+						p.sendMessage(StringUtils.color("&l&f● &l&aPhù phép thành công &f(&e" + enchant.getDisplayNameOfEnchantment() + "&f)"));
 					}else{
 						p.sendMessage(StringUtils.color("&l&cKhông đủ orb để phù phép"));
 					}

@@ -278,19 +278,27 @@ public class EventsListener implements Listener {
 			Vector3 v3 = p.getDirectionVector();
 			CompoundTag itemTag = NBTIO.putItemHelper(bomb);
 			EntityItem itemEntity = createItemEntity(loc, itemTag, v3, p);
+			itemEntity.setNameTag("&l&cBOOMMMM!!!!");
+			itemEntity.isNameTagAlwaysVisible();
 			itemEntity.spawnToAll();
 			cooldown.put(p.getUniqueId(), System.currentTimeMillis());
 			int lvl = 2;
 			new NukkitRunnable() {
+				private int min = 5;
 
 				@Override
 				public void run() {
-					detonatebomb(itemEntity.getLocation(), lvl, e, p);
-					itemEntity.despawnFromAll();
-					itemEntity.close();
-					itemEntity.kill();
+					if(this.min == 0){
+						detonatebomb(itemEntity.getLocation(), lvl, e, p);
+						itemEntity.despawnFromAll();
+						itemEntity.close();
+						itemEntity.kill();						
+					}else{
+						itemEntity.setNameTag("&l&cBOOMMMM!!!!\n&l&fPhát nổ sau&e " + this.min + " &fgiây");
+						this.min -= 1;
+					}
 				}
-			}.runTaskLater(Loader.getLoader(), 5 * 20);
+			}.runTaskLater(Loader.getLoader(), 20);
 
 		} else if (i.getCustomName().equals(ItemStorage.mediumBomb().getCustomName())) {
 			e.setCancelled();
@@ -423,12 +431,12 @@ public class EventsListener implements Listener {
 		for (int it = 0; it <= 20; it++) {
 			if (i.getCustomName().equals(ItemStorage.sellBoosterTenMinutes(it).getCustomName())) {
 				if (playersSellBooster.containsKey(p)) {
-					p.sendActionBar(StringUtils.getPrefix() + "Booster already active.");
+					p.sendActionBar(StringUtils.color("&l&eSử dụng:&f SELL BOOSTER"));
 					return;
 				}
 				GeneralUtils.pop(i, p, 1);
-				p.sendMessage(StringUtils.getPrefix() + "Booster activated! Now getting x" + it
-						+ " money! /sell or autosell now!");
+				p.sendMessage(TextFormat.colorize("&l&fBạn đang được &fx" + it
+						+ " &fxu khi bán! &e/sell&f để bán!"));
 				playersSellBooster.put(p, it);
 				new NukkitRunnable() {
 					int i1 = 600;
@@ -437,7 +445,7 @@ public class EventsListener implements Listener {
 					public void run() {
 						if (i1 <= 0) {
 							playersSellBooster.remove(p);
-							p.sendMessage(StringUtils.getPrefix() + "Booster completed!");
+							p.sendMessage(StringUtils.color("&l&eSELL BOOSTER&f của bạn đã hết hạn!"));
 							cancel();
 						}
 						i1--;
@@ -445,11 +453,11 @@ public class EventsListener implements Listener {
 				}.runTaskTimer(Loader.getLoader(), 0, 20);
 			} else if (i.getCustomName().equals(ItemStorage.orbsBoosterTenMinutes(it).getCustomName())) {
 				if (playersOrbsBooster.containsKey(p)) {
-					p.sendActionBar(StringUtils.getPrefix() + "Booster already active.");
+					p.sendActionBar(StringUtils.color("&l&eSử dụng:&f ORBS BOOSTER"));
 					return;
 				}
 				GeneralUtils.pop(i, p, 1);
-				p.sendMessage(StringUtils.getPrefix() + "Booster activated! Now getting x" + it + " orbs! mine now!");
+				p.sendMessage(StringUtils.color("&l&fBạn đang được &ex" + it + "&f orbs!"));
 				playersOrbsBooster.put(p, it);
 				new NukkitRunnable() {
 					int i1 = 600;
@@ -458,7 +466,7 @@ public class EventsListener implements Listener {
 					public void run() {
 						if (i1 <= 0) {
 							playersOrbsBooster.remove(p);
-							p.sendMessage(StringUtils.getPrefix() + "Booster completed!");
+							p.sendMessage(StringUtils.color("&l&eORB BOOSTER&f của bạn đã hết hạn!"));
 							cancel();
 						}
 						i1--;

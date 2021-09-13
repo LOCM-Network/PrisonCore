@@ -43,6 +43,7 @@ public class CustomModel extends EntityHuman {
                     player.sendActionBar(TextFormat.colorize("&l&cKhông thể làm mới khi khu mỏ còn nhiều hơn &e20%"));
                 }catch(NullPointerException exception){
                     player.sendActionBar(TextFormat.colorize("&l&cLỗi: không tìm thấy khu mỏ!"));
+                    player.sendMessage(TextFormat.colorize("&l&fLỗi:&e " + exception.getMessage() + " &f(Vui lòng báo lỗi này cho admin)"));
                 }
             }
         }

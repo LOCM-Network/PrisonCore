@@ -34,7 +34,7 @@ public class ItemStorage {
 	public static Item sellBoosterTenMinutes(int multiplier) {
 		Item it = new Item(347);
 		it.setCustomName(StringUtils.translateColors("&b&l" + multiplier
-				+ "x Sell Booster &r&7\nNhận gấp "+ multiplier +" lần số tiền trong 10 phút"));
+				+ "x Sell Booster &r&7\n&fNhận gấp&e "+ multiplier +"&f lần số tiền trong 10 phút"));
 		return it;
 	}
 	
@@ -69,7 +69,7 @@ public class ItemStorage {
 	public static Item orbsBoosterTenMinutes(int multiplier) {
 		Item it = new Item(409);
 		it.setCustomName(StringUtils.translateColors("&b&l" + multiplier
-				+ "x Orbs Booster &r&7(Right Click)\nMultiplies the amount of orbs for \nmining for 10 minutes."));
+				+ "x &fOrbs Booster\n&fNhân&e " + multiplier+ " &fsố orb đào được trong 10 phút."));
 		return it;
 	}
 

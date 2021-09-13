@@ -9,6 +9,7 @@ public class CustomEnchant {
 	private String description;
 	private final int costMultiplier;
 	private final EnchantType type;
+	private int id;
 
 	public CustomEnchant(String nameOfEnchantment, int levelOfEnchantment, int maxLevelOfEnchantment,
 			String displayNameOfEnchantment, String description, int costMultiplier, EnchantType enchantType) {
@@ -19,6 +20,10 @@ public class CustomEnchant {
 		this.description = description;
 		this.costMultiplier = costMultiplier;
 		this.type = enchantType;
+	}
+
+	public int getId(){
+		return this.id;
 	}
 
 	public EnchantType getType() {

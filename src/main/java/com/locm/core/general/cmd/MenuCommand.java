@@ -18,8 +18,8 @@ public class MenuCommand extends Command{
     public boolean execute(CommandSender sender, String label, String[] args){
         SimpleForm form = new SimpleForm(TextFormat.colorize("&l&ePRISON MENU"));
         Loader.getInstance().getConfig().getSection("menu").getAll().getKeys(false).forEach(key -> {
-            String button = Loader.getInstance().getConfig().getString(key + ".name");
-            String cmd = Loader.getInstance().getConfig().getString(key + ".cmd");
+            String button = Loader.getInstance().getConfig().getString("menu." + key + ".name");
+            String cmd = Loader.getInstance().getConfig().getString("menu." + key + ".cmd");
             form.addButton(TextFormat.colorize(button), (p, btn) -> {
                 Server.getInstance().dispatchCommand(p, cmd.replace("{player}", p.getName()));
             });

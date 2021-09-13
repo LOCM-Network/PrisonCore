@@ -50,7 +50,11 @@ public class SellCommand extends Command {
 			int multiplier = EventsListener.playersSellBooster.get(p);
 			for (Item i : p.getInventory().getContents().values()) {
 				if (canSell(i)) {
-					total += (worth.getDouble("worth." + i.getId()) * getNumberOfItemInv(i, p));
+					String id = String.valueOf(i.getId());
+					if(i.getDamage() != 0){
+						id += ":" + i.getDamage();
+					}
+					total += (worth.getDouble("worth." + id) * getNumberOfItemInv(i, p));
 					p.getInventory().remove(i);
 				}
 			}

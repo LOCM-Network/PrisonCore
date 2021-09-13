@@ -4,6 +4,8 @@ import com.locm.core.ces.obj.CustomEnchant;
 import com.locm.core.ces.obj.EnchantType;
 import com.locm.core.utils.StringUtils;
 
+import cn.nukkit.item.enchantment.Enchantment;
+
 public class Fortune extends CustomEnchant {
 	private int level;
 
@@ -19,5 +21,9 @@ public class Fortune extends CustomEnchant {
 
 	public int getLevel() {
 		return level;
+	}
+
+	public int getId(){
+		return Enchantment.ID_FORTUNE_DIGGING;
 	}
 }

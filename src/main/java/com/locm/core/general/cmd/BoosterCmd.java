@@ -8,6 +8,7 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
+import cn.nukkit.utils.TextFormat;
 
 public class BoosterCmd extends Command {
 
@@ -29,9 +30,13 @@ public class BoosterCmd extends Command {
 					if (args[4].equals("sell")) {
 						try {
 							Item booster = ItemStorage.sellBoosterTenMinutes(Integer.parseInt(args[3]));
+							if(!t.getInventory().canAddItem(booster)){
+								t.sendMessage(TextFormat.colorize("&l&cTúi của bạn đã đầy"));
+								return false;
+							}
 							sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " a x" + args[3]
 									+ " sell booster.");
-							t.sendMessage(StringUtils.getPrefix() + "Given a sell booster.");
+							t.sendMessage(StringUtils.color("&aBạn đã nhận được vật phẩm: &fSELL BOOSTER"));
 							booster.setCount(Integer.parseInt(args[2]));
 							t.getInventory().addItem(booster);
 						} catch (NumberFormatException e) {
@@ -41,9 +46,13 @@ public class BoosterCmd extends Command {
 					} else if (args[4].equals("orbs")) {
 						try {
 							Item booster = ItemStorage.orbsBoosterTenMinutes(Integer.parseInt(args[3]));
+							if(!t.getInventory().canAddItem(booster)){
+								t.sendMessage(TextFormat.colorize("&l&cTúi của bạn đã đầy"));
+								return false;
+							}
 							sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " a x" + args[3]
 									+ " orbs booster.");
-							t.sendMessage(StringUtils.getPrefix() + "Given an orbs booster.");
+									t.sendMessage(StringUtils.color("&aBạn đã nhận được vật phẩm: &fORB BOOSTER"));
 							booster.setCount(Integer.parseInt(args[2]));
 							t.getInventory().addItem(booster);
 						} catch (NumberFormatException e) {
