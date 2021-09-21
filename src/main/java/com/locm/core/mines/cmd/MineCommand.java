@@ -12,6 +12,7 @@ import com.locm.core.mines.obj.Mine;
 import com.locm.core.utils.ItemStorage;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.ModelUtils;
+import com.locm.core.utils.RankUtils;
 import com.locm.core.utils.StringUtils;
 
 import cn.nukkit.Player;
@@ -38,7 +39,7 @@ public class MineCommand extends Command {
 		if (args.length == 0) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
-				p.showFormWindow(FormStorage.MinerMenu(p));
+				FormStorage.sendForm(p, "&l&fKhu mỏ hiện tại:&e " + RankUtils.getRankByPlayer(p).getName());
 			}
 		}
 

@@ -18,7 +18,7 @@ public class RepairCommand extends Command {
 		EconomyAPI api = EconomyAPI.getInstance();
 		Player p = (Player) sender;
 		Item i = p.getInventory().getItemInHand();
-		Integer price = i.getDamage() * 100;
+		Integer price = i.getDamage() * 45;
 		if (i.isArmor() || i.isPickaxe() || i.isSword() || i.isAxe() || i.isShears() || i.isPickaxe() || i.isShovel()) {
 			if (api.myMoney(p) >= price){
 				api.reduceMoney(p, price);
@@ -27,7 +27,7 @@ public class RepairCommand extends Command {
 				i.setDamage(0);
 				p.getInventory().addItem(i);
 			} else {
-				p.sendMessage(TextFormat.colorize("&l&cKhông đủ tiền để sửa vật phẩm"));	
+				p.sendMessage(TextFormat.colorize("&l&cKhông đủ tiền để sửa vật phẩm cần &e" + price + " &c xu"));	
 			}
 		} else {
 			p.sendMessage(TextFormat.colorize("&cVật phẩm không hợp lệ &l&f(&eHợp lệ:&f Kiếm, giáp, công cụ)"));

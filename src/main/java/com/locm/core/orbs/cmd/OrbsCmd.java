@@ -13,8 +13,7 @@ public class OrbsCmd extends Command {
 
 	public OrbsCmd() {
 		super("orbs");
-	}// orbs givepouch {name} 1 1
-
+	}
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		if (args.length == 0) {

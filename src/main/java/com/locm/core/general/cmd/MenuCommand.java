@@ -15,6 +15,7 @@ public class MenuCommand extends Command{
         super("menu", "Menu prison");
     }
 
+    @Override
     public boolean execute(CommandSender sender, String label, String[] args){
         SimpleForm form = new SimpleForm(TextFormat.colorize("&l&ePRISON MENU"));
         Loader.getInstance().getConfig().getSection("menu").getAll().getKeys(false).forEach(key -> {

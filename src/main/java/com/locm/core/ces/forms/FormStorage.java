@@ -3,6 +3,7 @@ package com.locm.core.ces.forms;
 import java.util.Arrays;
 import java.util.List;
 
+import com.locm.core.Loader;
 import com.locm.core.ces.enchants.EnchantHandler;
 import com.locm.core.ces.obj.CustomEnchant;
 import com.locm.core.ces.obj.EnchantType;
@@ -19,6 +20,7 @@ import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
+import cn.nukkit.utils.TextFormat;
 import me.locm.economyapi.EconomyAPI;
 import ru.contentforge.formconstructor.form.CustomForm;
 import ru.contentforge.formconstructor.form.ModalForm;
@@ -37,6 +39,17 @@ public class FormStorage {
 		form.addButton(StringUtils.translateColors("&l&f●&0 LCoin &l&f●&0"), (p, button) -> {
 			this.sendEnchantLCoin(player);
 		});
+		form.addButton(StringUtils.color("&l&f●&c Lưu ý Trước khi phù phép &l&f●&0"), (p, button) -> noticeForm(p));
+		form.send(player);
+	}
+
+	public void noticeForm(Player player){
+		CustomForm form = new CustomForm(TextFormat.colorize("&l&4Lưu ý"));
+		List<String> notice = Loader.getInstance().getConfig().getStringList("notice-enchantment");
+		for(String note : notice){
+			form.addElement(StringUtils.color(note));
+		}
+		form.setHandler((p, respones) -> this.sendEnchantForm(player));
 		form.send(player);
 	}
 
@@ -92,7 +105,7 @@ public class FormStorage {
 	public void confirmForm(Player player, CustomEnchant enchant, int level){
 		int price = NumberUtils.getCostOfEnchantmentByLevel(level, enchant.getCostMultiplier());
 		ModalForm form = new ModalForm(StringUtils.color("&l&eENCHANT "+ enchant.getDisplayNameOfEnchantment()));
-		String payment = (enchant.getType() == EnchantType.CUSTOM) ? "LCoin" : "Xu";
+		String payment = (enchant.getType() == EnchantType.CUSTOM) ? "LCoin" : "Orbs";
 		form.setContent(StringUtils.color("&l&c⇾ &f"+payment+":&e " + price));
 		form.setPositiveButton(StringUtils.color("&l&f●&0 Phù phép &l&f●&0"));
 		form.setNegativeButton(StringUtils.color("&l&f●&0 Không &l&f●&0"));

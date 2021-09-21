@@ -1,7 +1,7 @@
 package com.locm.core.ranks.cmd;
 
 import com.locm.core.ranks.obj.Rank;
-import com.locm.core.format.ChatFormat;
+import com.locm.core.event.player.PlayerRankUpEvent;
 import com.locm.core.ranks.storage.RankStorage;
 import com.locm.core.utils.GeneralUtils;
 import com.locm.core.utils.RankUtils;
@@ -34,6 +34,7 @@ public class RankupCommand extends Command {
 						p.sendMessage(StringUtils.color("&l&fNâng cấp thành công (&e" + nextRank.getName() + "&f)"));
 						Server.getInstance().broadcastMessage(StringUtils.color("&l&fNgười chơi&e " + sender.getName() + "&f đã đạt cấp (&e"+ nextRank.getName() +"&f)"));
 						GeneralUtils.playSound(p, Sound.FIREWORK_LAUNCH);
+						Server.getInstance().getPluginManager().callEvent(new PlayerRankUpEvent(p, nextRank));
 						return false;
 					} else {
 						p.sendMessage(StringUtils.color("&l&cKhông đủ tiền để nâng cấp."));
@@ -50,8 +51,19 @@ public class RankupCommand extends Command {
 									+ RankUtils.getPrestigeLevelForPlayer(p) + " &fPrestige"));
 					}
 				}
-				String nametag = ChatFormat.getNameTag(p);
-				p.setNameTag(nametag);
+			}
+		}
+		if(args.length == 3){
+			if(!sender.hasPermission("locm.owner")) return false;
+			if(args[0].equals("set")){
+				Player player = Server.getInstance().getPlayerExact(args[1]);
+				if(player == null){
+					sender.sendMessage("sai ten");
+					return false;
+				}
+				Rank rank = RankUtils.getRankByName(args[2]);
+				RankUtils.setRankByPlayer(player, rank);
+				sender.sendMessage("Da set rank cua player thanh: " + rank.getName());
 			}
 		}
 		return false;

@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
-import com.locm.core.ah.cmd.AuctionHouseComamnd;
 import com.locm.core.ah.listeners.AuctionListener;
 import com.locm.core.ces.listeners.EnchantListener;
 import com.locm.core.general.listeners.EventsListener;
@@ -184,7 +183,7 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("rankup", new RankupCommand());
 		getServer().getCommandMap().register("sell", new SellCommand());
 		getServer().getCommandMap().register("tps", new TPSCommand());
-		getServer().getCommandMap().register("ah", new AuctionHouseComamnd());
+		//getServer().getCommandMap().register("ah", new AuctionHouseComamnd());
 		getServer().getCommandMap().register("repairhand", new RepairCommand());
 		getServer().getCommandMap().register("createkit", new CreateKitCommand());
 		getServer().getCommandMap().register("deletekit", new DeleteKitCommand());

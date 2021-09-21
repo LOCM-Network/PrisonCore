@@ -1,15 +1,41 @@
 package com.locm.core.mines;
 
+import com.locm.core.event.player.PlayerPushButtonEvent;
 import com.locm.core.mines.obj.Mine;
 import com.locm.core.utils.MineUtils;
 import com.locm.core.utils.RankUtils;
 import com.locm.core.utils.StringUtils;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.window.FormWindowSimple;
+import ru.contentforge.formconstructor.form.SimpleForm;
 
 public class FormStorage {
+
+	public static void sendForm(Player player, String content){
+		SimpleForm form = new SimpleForm(StringUtils.color("&l&eLOCM PRISON"));	
+		form.setContent(StringUtils.color(content));
+		form.addButton(StringUtils.color("&l&2Làm mới khu mỏ của bạn"), (p, button) -> {
+			Mine mine = MineUtils.getMineByName(RankUtils.getRankByPlayer(p).getName());
+			if(mine.isSmaller(25)){
+				Server.getInstance().getPluginManager().callEvent(new PlayerPushButtonEvent(player));
+				sendForm(player, "&l&fĐã làm mới khu mỏ!");
+			}else{
+				sendForm(player, "&l&fKhu mỏ phải còn dưới &e25%%");
+			}
+		});
+		form.addButton(StringUtils.color("&l&2Tất cả khu mỏ"), (p, button) -> {
+			p.showFormWindow(MinerMenu(p));
+		});
+		form.addButton(StringUtils.color("&l&2Dịch chuyển tới khu mỏ"), (p, button) -> {
+			Mine mine = MineUtils.getMineByName(RankUtils.getRankByPlayer(p).getName());
+			p.teleport(mine.getTpLocation());
+			p.sendActionBar(StringUtils.color("&l&eĐang dịch chuyển !!!"));
+		});
+		form.send(player);
+	}
 
 	public static FormWindowSimple MinerMenu(Player p) {
 		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lLOCM &d&lPrisons"),

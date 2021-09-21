@@ -15,6 +15,7 @@ import cn.nukkit.utils.TextFormat;
 import me.onebone.economyapi.EconomyAPI;
 
 public class SellCommand extends Command {
+
 	public static Config worth = Loader.getLoader().getWorthCfg();
 	public static File worthFile = Loader.getLoader().getWorthFile();
 
@@ -40,12 +41,17 @@ public class SellCommand extends Command {
 		if (!EventsListener.playersSellBooster.containsKey(p)) {
 			for (Item i : p.getInventory().getContents().values()) {
 				if (canSell(i)) {
-					total += (worth.getDouble("worth." + i.getId()) * getNumberOfItemInv(i, p));
+					String id = String.valueOf(i.getId());
+					if(i.getDamage() != 0){
+						id += ":" + i.getDamage();
+					}
+					total += (worth.getDouble("worth." + id) * getNumberOfItemInv(i, p));
 					p.getInventory().remove(i);
 				}
 			}
-			EconomyAPI.getInstance().addMoney(p, total);
-			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + total + "&f xu."));
+			Double sell = Loader.getInstance().getConfig().getDouble("sell") * total;
+			EconomyAPI.getInstance().addMoney(p, sell);
+			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + sell + "&f xu."));
 		} else {
 			int multiplier = EventsListener.playersSellBooster.get(p);
 			for (Item i : p.getInventory().getContents().values()) {
@@ -58,9 +64,10 @@ public class SellCommand extends Command {
 					p.getInventory().remove(i);
 				}
 			}
-			EconomyAPI.getInstance().addMoney(p, total*multiplier);
+			Double sell = (int)Loader.getInstance().getConfig().getDouble("sell")  * multiplier * total;
+			EconomyAPI.getInstance().addMoney(p, sell);
 			double total2 = (multiplier*total);
-			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + total2 + "&f xu &7(&fBạn đang có &ex"+multiplier+"&f)"));
+			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + sell + "&f xu &7(&fBạn đang có &ex"+multiplier+"&f)"));
 		}
 	}
 

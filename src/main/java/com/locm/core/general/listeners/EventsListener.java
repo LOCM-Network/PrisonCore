@@ -7,6 +7,8 @@ import java.util.*;
 import cn.nukkit.event.player.*;
 import com.locm.core.Loader;
 import com.locm.core.event.player.PlayerPushButtonEvent;
+import com.locm.core.event.player.PlayerRankUpEvent;
+import com.locm.core.format.ChatFormat;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.obj.Kit;
 import com.locm.core.mines.LuckyRewardStorage;
@@ -135,15 +137,6 @@ public class EventsListener implements Listener {
 	}
 
 	@EventHandler
-	public void onClick(PlayerInteractEvent event){
-		Player player = event.getPlayer();
-		Item item = event.getItem();
-		if(!player.getLevel().getName().contains("skyblock")){
-			if(item.isShovel() || item.isHoe()) event.setCancelled();
-		}
-	}
-
-	@EventHandler
 	public void onBucketEmpty(PlayerBucketEmptyEvent event){
 		Player player = event.getPlayer();
 		if(!player.getLevel().getName().contains("skyblock")){
@@ -178,6 +171,7 @@ public class EventsListener implements Listener {
 		if(!event.isCancelled()) {
 			String player = event.getPlayer().getName();
 			Loader.getInstance().getLogger().info(player + ": " + event.getMessage());
+			if(event.getMessage().contains("/me")) event.setCancelled();
 		}
 	}
 
@@ -260,6 +254,13 @@ public class EventsListener implements Listener {
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
 		e.setQuitMessage("§l§c•§f " + e.getPlayer().getName());
+	}
+
+	@EventHandler
+	public void onRankUp(PlayerRankUpEvent event){
+		Player player = event.getPlayer();
+		String nametag = ChatFormat.getNameTag(player);
+		player.setNameTag(nametag);
 	}
 
 	@EventHandler
