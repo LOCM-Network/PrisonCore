@@ -227,16 +227,19 @@ public class EnchantListener implements Listener {
 		Position pos = block.getLocation();
 		Item tool = player.getInventory().getItemInHand();
 		int lvl = CEUtils.getLevelOfEnchantByDisplayName(StringUtils.translateColors("&eJackHammer"), tool);
-		int chance = new Random().nextInt(5 - lvl);
+		int chance = new Random().nextInt(6 - lvl);
 		if(chance != 0) return;
 		int xFrom = (int) (pos.getX() - lvl);
 		int yFrom = (int) (pos.getY() - new Random().nextInt(lvl - 1));
 		int zFrom = (int) (pos.getZ() - new Random().nextInt(lvl));
 		if(lvl >= 4){
-			zFrom = (int) (pos.getZ() + 1);
+			yFrom = (int) (pos.getY() - new Random().nextInt(lvl - 1));
 		}
 		int xTo = (int) (pos.getX() + lvl - new Random().nextInt(2));
-		int yTo = (int) (pos.getY() + new Random().nextInt(lvl - 1));
+		int yTo = (int) (pos.getY());
+		if(lvl >= 3){
+			yTo = (int) (pos.getY() + new Random().nextInt(lvl - 1));
+		}
 		int zTo = (int) (pos.getZ() + lvl - 1);
 		Block temp;
 		for (int y = yFrom; y <= yTo; y++) {
