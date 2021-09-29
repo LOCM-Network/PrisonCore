@@ -1,14 +1,10 @@
 package com.locm.core.ces.listeners;
 
-import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 
+import cn.nukkit.utils.TextFormat;
 import com.locm.core.Loader;
-import com.locm.core.ces.enchants.EnchantHandler;
-import com.locm.core.ces.forms.FormStorage;
-import com.locm.core.ces.obj.CustomEnchant;
-import com.locm.core.ces.obj.EnchantType;
-import com.locm.core.ces.obj.TempCE;
 import com.locm.core.general.cmd.SellCommand;
 import com.locm.core.general.listeners.EventsListener;
 import com.locm.core.mines.LuckyRewardStorage;
@@ -27,10 +23,7 @@ import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
-import cn.nukkit.event.player.PlayerFormRespondedEvent;
 import cn.nukkit.event.player.PlayerMoveEvent;
-import cn.nukkit.form.window.FormWindowCustom;
-import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
@@ -40,203 +33,6 @@ import cn.nukkit.level.Position;
 import cn.nukkit.potion.Effect;
 
 public class EnchantListener implements Listener {
-
-	public static HashMap<Player, TempCE> costOfEnchantByPlayer = new HashMap<>();
-	public static HashMap<Player, CustomEnchant> ceByPlayer = new HashMap<>();
-
-	public void onResponse1(PlayerFormRespondedEvent e) {
-		Player p = e.getPlayer();
-		if (e.getWindow() != null) {
-			if (e.getWindow() instanceof FormWindowSimple) {
-				FormWindowSimple gui = (FormWindowSimple) e.getWindow();
-				if (gui != null && gui.getResponse() != null) {
-					if (gui.getResponse().getClickedButton().getText() != null) {
-						String responseName = gui.getResponse().getClickedButton().getText();
-						if (responseName != null) {
-							if (CEUtils.getCEByDisplayName(responseName) != null) {
-								CustomEnchant ce = CEUtils.getCEByDisplayName(responseName);
-								if (ce != null) {
-									p.removeAllWindows();
-									p.showFormWindow(FormStorage.ceMenu(p.getInventory().getItemInHand(), ce));
-									ceByPlayer.put(p, ce);
-								}
-							}
-						}
-					}
-				}
-			} else if (e.getWindow() instanceof FormWindowCustom) {
-				FormWindowCustom gui = (FormWindowCustom) e.getWindow();
-				if (gui != null) {
-					if (ceByPlayer.containsKey(p)) {
-						if (gui.getTitle().equals(StringUtils.translateColors(
-								ceByPlayer.get(p).getDisplayNameOfEnchantment() + " &r&b&nEnchantment&d&n Purchase"))) {
-							if (e.getResponse() != null) {
-								if(costOfEnchantByPlayer.containsKey(p)){
-									 costOfEnchantByPlayer.remove(p);
-								}
-								
-								if (!costOfEnchantByPlayer.containsKey(p)) {
-									if (gui.getResponse().getSliderResponse(1) != 0) {
-										float lvl = gui.getResponse().getSliderResponse(1);
-										p.removeAllWindows();
-										p.showFormWindow(FormStorage.confirmMenu((int) lvl, ceByPlayer.get(p)));
-										costOfEnchantByPlayer.put(p,
-												new TempCE(ceByPlayer.get(p), (int) lvl,
-														NumberUtils.getCostOfEnchantmentByLevel((int) lvl,
-																ceByPlayer.get(p).getCostMultiplier())));
-										ceByPlayer.remove(p);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	public void onResponse2(PlayerFormRespondedEvent e) {
-		Player p = e.getPlayer();
-		if (e.getWindow() != null) {
-			if (p.getInventory().getItemInHand().isPickaxe() || p.getInventory().getItemInHand().isAxe() || p.getInventory().getItemInHand().isShovel()) {
-				if (e.getWindow() instanceof FormWindowSimple) {
-					if (costOfEnchantByPlayer.containsKey(p)) {
-						FormWindowSimple gui = (FormWindowSimple) e.getWindow();
-						CustomEnchant ce = costOfEnchantByPlayer.get(p).getCe();
-						if (gui != null) {
-							String responseName = gui.getResponse().getClickedButton().getText();
-							if (responseName.contains("Phù phép")) {
-								if (ce.getType().equals(EnchantType.CUSTOM)) {
-									if (OrbEconomyUtils.hasPlayerBalance(p, costOfEnchantByPlayer.get(p).getCost())) {
-										if (CEUtils.getLevelOfEnchantByDisplayName(ce.getDisplayNameOfEnchantment(),
-												p.getInventory().getItemInHand()) <= costOfEnchantByPlayer.get(p)
-														.getLevel()) {
-											OrbEconomyUtils.removePlayerBalance(p,
-													costOfEnchantByPlayer.get(p).getCost());
-											p.sendMessage(StringUtils.translateColors(StringUtils.getPrefix()
-													+ "Phù phép thành công!"));
-											EnchantHandler.applyEnchantment(p, p.getInventory().getItemInHand(), ce,
-													costOfEnchantByPlayer.get(p).getLevel());
-											costOfEnchantByPlayer.remove(p);
-											if(costOfEnchantByPlayer.get(p) != null){
-												OrbEconomyUtils.removePlayerBalance(p,
-														costOfEnchantByPlayer.get(p).getCost());												
-											}
-										} else {
-											p.sendMessage(StringUtils.getPrefix()
-													+ "Cúp của bạn đã có phù phép xịn hơn!.");
-											costOfEnchantByPlayer.remove(p);
-										}
-									} else {
-										p.sendMessage(StringUtils.getPrefix()
-												+ "Không đủ orbs để phù phép.");
-										costOfEnchantByPlayer.remove(p);
-									}
-								} else {
-									if (ce.getDisplayNameOfEnchantment().contains("Unbreaking")) {
-										if (OrbEconomyUtils.hasPlayerBalance(p,
-												costOfEnchantByPlayer.get(p).getCost())) {
-											Enchantment e1 = Enchantment.getEnchantment(Enchantment.ID_DURABILITY);
-											e1.setLevel(costOfEnchantByPlayer.get(p).getLevel(), false);
-											if (CEUtils.containsEnchantment(p.getInventory().getItemInHand(), e1)) {
-												if (CEUtils.isHigherEnchantLevel(p.getInventory().getItemInHand(),
-														e1)) {
-													EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), e1,
-															costOfEnchantByPlayer.get(p).getLevel());
-													OrbEconomyUtils.removePlayerBalance(p,
-															costOfEnchantByPlayer.get(p).getCost());
-													costOfEnchantByPlayer.remove(p);
-												} else {
-													p.sendMessage(StringUtils.getPrefix()
-															+ "Cúp của bạn đã có phù phép xịn hơn.");
-													costOfEnchantByPlayer.remove(p);
-												}
-											} else {
-												EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), e1,
-														costOfEnchantByPlayer.get(p).getLevel());
-												OrbEconomyUtils.removePlayerBalance(p,
-														costOfEnchantByPlayer.get(p).getCost());
-												costOfEnchantByPlayer.remove(p);
-											}
-										} else {
-											p.sendMessage(StringUtils.getPrefix()
-													+ "Bạn không đủ orbs để phù phép.");
-											costOfEnchantByPlayer.remove(p);
-										}
-									} else if (ce.getDisplayNameOfEnchantment().contains("Efficiency")) {
-										if (OrbEconomyUtils.hasPlayerBalance(p,
-												costOfEnchantByPlayer.get(p).getCost())) {
-											Enchantment e1 = Enchantment.getEnchantment(Enchantment.ID_EFFICIENCY);
-											e1.setLevel(costOfEnchantByPlayer.get(p).getLevel(), false);
-											if (CEUtils.containsEnchantment(p.getInventory().getItemInHand(), e1)) {
-												if (CEUtils.isHigherEnchantLevel(p.getInventory().getItemInHand(),
-														e1)) {
-													EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), e1,
-															costOfEnchantByPlayer.get(p).getLevel());
-													OrbEconomyUtils.removePlayerBalance(p,
-															costOfEnchantByPlayer.get(p).getCost());
-													costOfEnchantByPlayer.remove(p);
-												} else {
-													p.sendMessage(StringUtils.getPrefix()
-															+ "Cúp của bạn đã có phù phép xịn hơn.");
-													costOfEnchantByPlayer.remove(p);
-												}
-											} else {
-												EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), e1,
-														costOfEnchantByPlayer.get(p).getLevel());
-												OrbEconomyUtils.removePlayerBalance(p,
-														costOfEnchantByPlayer.get(p).getCost());
-												costOfEnchantByPlayer.remove(p);
-											}
-										} else {
-											p.sendMessage(StringUtils.getPrefix()
-													+ "Bạn không đủ orbs để phù phép.");
-											costOfEnchantByPlayer.remove(p);
-										}
-									} else if (ce.getDisplayNameOfEnchantment().contains("Fortune")) {
-										if (OrbEconomyUtils.hasPlayerBalance(p,
-												costOfEnchantByPlayer.get(p).getCost())) {
-											Enchantment e1 = Enchantment.getEnchantment(Enchantment.ID_FORTUNE_DIGGING);
-											e1.setLevel(costOfEnchantByPlayer.get(p).getLevel(), false);
-											if (CEUtils.containsEnchantment(p.getInventory().getItemInHand(), e1)) {
-												if (CEUtils.isHigherEnchantLevel(p.getInventory().getItemInHand(),
-														e1)) {
-													EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), e1,
-															costOfEnchantByPlayer.get(p).getLevel());
-													OrbEconomyUtils.removePlayerBalance(p,
-															costOfEnchantByPlayer.get(p).getCost());
-													costOfEnchantByPlayer.remove(p);
-												} else {
-													p.sendMessage(StringUtils.getPrefix()
-															+ "Cúp của bạn đã có phù phép xịn hơn.");
-													costOfEnchantByPlayer.remove(p);
-												}
-											} else {
-												EnchantHandler.applyEnchant(p, p.getInventory().getItemInHand(), e1,
-														costOfEnchantByPlayer.get(p).getLevel());
-												OrbEconomyUtils.removePlayerBalance(p,
-														costOfEnchantByPlayer.get(p).getCost());
-												costOfEnchantByPlayer.remove(p);
-											}
-										} else {
-											p.sendMessage(StringUtils.getPrefix()
-													+ "Bạn không đủ orbs để phù phép.");
-											costOfEnchantByPlayer.remove(p);
-										}
-									}
-								}
-							} else if (responseName.contains("Từ chối")) {
-/*								p.sendMessage(StringUtils.translateColors(StringUtils.getPrefix()
-										+ "Denied purchase of " + " " + ce.getDisplayNameOfEnchantment() + "&7!"));*/
-								costOfEnchantByPlayer.remove(p);
-							}
-						}
-						costOfEnchantByPlayer.remove(p);
-					}
-				}
-			}
-		}
-	}
 
 	@EventHandler
 	public void onSwitchItem(PlayerMoveEvent e) {
@@ -252,8 +48,12 @@ public class EnchantListener implements Listener {
 
 	@EventHandler
 	public void onMine(BlockBreakEvent e) {
-		if (true) {
 			if ((MineUtils.isLocInMine(e.getBlock().getLocation())) || e.getPlayer().isOp()) {
+				if(MineUtils.testMine(e.getPlayer(), e.getBlock().getLocation())){
+					if(e.getPlayer().isOp()) return;
+					e.setCancelled();
+					return;
+				}
 				Item tool = e.getPlayer().getInventory().getItemInHand();
 				if (e.getBlock().getId() == 19) {
 					RandomCollection<LuckyReward> randomrewards = new RandomCollection<>();
@@ -349,7 +149,6 @@ public class EnchantListener implements Listener {
 					e.setCancelled();
 				}
 			}
-		}
 	}
 
 	public void runFortuneMagnet(Player player, Block b, BlockBreakEvent e) {
@@ -424,104 +223,56 @@ public class EnchantListener implements Listener {
 		}
 	}
 
-	public void runJackHammer(Player player, Block block, BlockBreakEvent e) {
-		Location location = block.getLocation();
+	public void runJackHammer(Player player, Block block, BlockBreakEvent event){
+		Position pos = block.getLocation();
 		Item tool = player.getInventory().getItemInHand();
 		int lvl = CEUtils.getLevelOfEnchantByDisplayName(StringUtils.translateColors("&eJackHammer"), tool);
-		int rand = NumberUtils.random(1, 100);
-		if (rand > lvl) {
-			return;
+		int chance = new Random().nextInt(5 - lvl);
+		if(chance != 0) return;
+		int xFrom = (int) (pos.getX() - lvl);
+		int yFrom = (int) (pos.getY() - new Random().nextInt(lvl - 1));
+		int zFrom = (int) (pos.getZ() - new Random().nextInt(lvl));
+		if(lvl >= 4){
+			zFrom = (int) (pos.getZ() + 1);
 		}
-		Position v1 = MineUtils.getCorners(block.getLocation()).get(0);
-		Position v2 = MineUtils.getCorners(block.getLocation()).get(1);
-		int x1 = 0;
-		int x2 = 0;
-
-		int z1 = 0;
-		int z2 = 0;
-
-		int y = location.getFloorY();
-		if (v1.getFloorX() > v2.getFloorX()) {
-			x1 = v2.getFloorX();
-			x2 = v1.getFloorX();
-		} else {
-			x1 = v1.getFloorX();
-			x2 = v2.getFloorX();
-		}
-		if (v1.getFloorZ() > v2.getFloorZ()) {
-			z1 = v2.getFloorZ();
-			z2 = v1.getFloorZ();
-		} else {
-			z1 = v1.getFloorZ();
-			z2 = v2.getFloorZ();
-		}
-		for (int x = x1; x <= x2; x++) {
-			for (int z = z1; z <= z2; z++) {
-				Location loc = new Location(x, y, z, e.getPlayer().getLevel());
-				Block b = loc.getLevel().getBlock(loc);
-				if (MineUtils.isLocInMine(loc)) {
-					if (b.getId() == 19) {
-						RandomCollection<LuckyReward> randomrewards = new RandomCollection<>();
-						for (LuckyReward lr : LuckyRewardStorage.rews()) {
-							randomrewards.add(lr.getChance(), lr);
-						}
-						e.setCancelled();
-						LuckyReward realReward = randomrewards.next();
-						e.getPlayer().sendTitle(StringUtils.translateColors("&b&lLucky Block"),
-								StringUtils.translateColors("&bVừa mới được khai thác!"));
-						e.getPlayer().sendActionBar(StringUtils.getPrefix() + "Bạn vừa nhận được "
-								+ realReward.getName() + " từ Lucky Block!");
-						Loader.getLoader().getServer().dispatchCommand(new ConsoleCommandSender(),
-								realReward.getCmds().replace("{name}", e.getPlayer().getName()));
+		int xTo = (int) (pos.getX() + lvl - new Random().nextInt(2));
+		int yTo = (int) (pos.getY() + new Random().nextInt(lvl - 1));
+		int zTo = (int) (pos.getZ() + lvl - 1);
+		Block temp;
+		for (int y = yFrom; y <= yTo; y++) {
+			for (int x = xFrom; x <= xTo; x++) {
+				for (int z = zFrom; z <= zTo; z++) {
+					if (x == block.getX() && y == block.getY() && z == block.getZ()) {
+						continue; // ignore this block so the durability code executes
 					}
-					if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&fMagnet")))) {
-						if (!CEUtils.containsEnchantment(tool,
-								CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
-							if (b.getId() != 19) {
-								PlayerInventory inventoryAutoAdd = e.getPlayer().getInventory();
-								Item[] itemToAdd = e.getDrops();
-								if (e.getBlock().getId() == 15) {
-									itemToAdd = (new Item[] { new Item(265) });
-								} else if (e.getBlock().getId() == 14) {
-									itemToAdd = (new Item[] { new Item(266) });
-								}
-								inventoryAutoAdd.addItem(itemToAdd);
-							}
+					Location loc = new Location(x, y, z, block.getLevel());
+					temp = block.getLevel().getBlock(loc);
+					if(MineUtils.isLocInMine(loc)){
+						if(temp.getId() == Block.AIR) continue;
+						if (CEUtils.containsEnchantment(tool,
+								Objects.requireNonNull(CEUtils.getCEByDisplayName(StringUtils.translateColors("&fMagnet"))))) {
+							player.getInventory().addItem(temp.toItem());
+						}else{
+							loc.getLevel().dropItem(loc, temp.toItem());
 						}
-					} else if (CEUtils.containsEnchantment(tool,
-							CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
-						if (SellCommand.canSell(e.getBlock().toItem())) {
-							e.setCancelled();
-							SellCommand.sellItem(e.getPlayer(), b.toItem());
-						}
-					}
-					Item[] itemToAdd = e.getDrops();
-					if (e.getBlock().getId() == 15) {
-						itemToAdd = (new Item[] { new Item(265) });
-					} else if (e.getBlock().getId() == 14) {
-						itemToAdd = (new Item[] { new Item(266) });
-					}
-					e.getPlayer().getLevel().dropItem(loc, itemToAdd[0]);
-					e.getPlayer().getLevel().setBlock(b.getLocation(), new BlockAir());
-					if (!EventsListener.playersOrbsBooster.containsKey(e.getPlayer())) {
-						OrbEconomyUtils.addPlayerBalance(e.getPlayer(), 1);
-					} else {
-						OrbEconomyUtils.addPlayerBalance(e.getPlayer(),
-								1 * EventsListener.playersOrbsBooster.get(e.getPlayer()));
+						loc.getLevel().setBlock(loc, Block.get(Block.AIR));
 					}
 				}
 			}
 		}
+		//tool.setDamage(tool.getDamage() - new Random().nextInt(30) + lvl);
+		player.getInventory().setItemInHand(tool);
+		player.sendActionBar(TextFormat.colorize("&l&cJACKHAMMER!!!"));
 	}
 
-	public boolean runExplosive(Player player, Block block, BlockBreakEvent e) {
+
+	public void runExplosive(Player player, Block block, BlockBreakEvent e) {
 		Location location = block.getLocation();
 		Item tool = player.getInventory().getItemInHand();
 		int lvl = CEUtils.getLevelOfEnchantByDisplayName(StringUtils.translateColors("&cExplosive"), tool);
 		int rand = NumberUtils.random(1, 100);
 		if (rand > lvl) {
-			return false;
+			return;
 		}
 		int particles = 10;
 		for (int rep = 0; rep <= particles; rep++) {
@@ -588,6 +339,5 @@ public class EnchantListener implements Listener {
 				}
 			}
 		}
-		return true;
 	}
 }

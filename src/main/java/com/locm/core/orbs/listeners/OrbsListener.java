@@ -15,6 +15,8 @@ import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.item.Item;
 
+import java.util.Random;
+
 public class OrbsListener implements Listener {
 
 	@EventHandler
@@ -63,10 +65,13 @@ public class OrbsListener implements Listener {
 					}
 				}
 			} else {
-				if (!EventsListener.playersOrbsBooster.containsKey(p)) {
-					OrbEconomyUtils.addPlayerBalance(p, 1);
-				} else {
-					OrbEconomyUtils.addPlayerBalance(p, 1 * EventsListener.playersOrbsBooster.get(p));
+				Random rd = new Random();
+				if(rd.nextInt(3) == 1){
+					if (!EventsListener.playersOrbsBooster.containsKey(p)) {
+						OrbEconomyUtils.addPlayerBalance(p, 1);
+					} else {
+						OrbEconomyUtils.addPlayerBalance(p, 1 * EventsListener.playersOrbsBooster.get(p));
+					}
 				}
 			}
 		}

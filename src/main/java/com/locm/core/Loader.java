@@ -86,7 +86,12 @@ public class Loader extends PluginBase {
 		loadWorlds();
 		startClearLagTask();
 		startScoreTask();
+		startMineResetThread();
 		new Announ().runAnnoun();
+	}
+
+	public static void startMineResetThread(){
+
 	}
 
 	public static void runCooldowns() {

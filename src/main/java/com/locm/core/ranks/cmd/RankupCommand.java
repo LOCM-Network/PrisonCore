@@ -1,5 +1,6 @@
 package com.locm.core.ranks.cmd;
 
+import cn.nukkit.utils.TextFormat;
 import com.locm.core.ranks.obj.Rank;
 import com.locm.core.event.player.PlayerRankUpEvent;
 import com.locm.core.ranks.storage.RankStorage;
@@ -17,7 +18,7 @@ import me.onebone.economyapi.EconomyAPI;
 public class RankupCommand extends Command {
 
 	public RankupCommand() {
-		super("rankup");
+		super("rankup", "Nâng cấp khu mỏ!");
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class RankupCommand extends Command {
 								+ RankUtils.getPrestigeLevelForPlayer(p) + " &fPrestige"));
 						Server.getInstance().broadcastMessage(StringUtils.color("&l&e" + p.getName() + "&f vừa nhận được &e"
 									+ RankUtils.getPrestigeLevelForPlayer(p) + " &fPrestige"));
-					}
+					}else p.sendMessage(TextFormat.colorize("&l&cKhông đủ tiền!"));
 				}
 			}
 		}

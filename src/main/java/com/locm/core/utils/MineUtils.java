@@ -3,7 +3,9 @@ package com.locm.core.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import cn.nukkit.Player;
 import com.locm.core.Loader;
 import com.locm.core.mines.obj.Mine;
 import com.locm.core.mines.obj.MineBlock;
@@ -14,8 +16,10 @@ import cn.nukkit.block.Block;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.Config;
+import com.locm.core.ranks.obj.Rank;
 
 public class MineUtils {
+
 	public static Config minescfg = Loader.getLoader().getMinesCfg();
 	public static File minesFile = Loader.getLoader().getMinesFile();
 
@@ -68,6 +72,16 @@ public class MineUtils {
 		return null;
 	}
 
+	public static boolean testMine(Player player, Location loc){
+		Mine mine = mineByLoc(loc);
+		Rank rank = RankUtils.getRankByPlayer(player);
+		assert mine != null;
+		int mine_oder = Objects.requireNonNull(RankUtils.getRankByName(mine.getMineName())).getOrder();
+		assert rank != null;
+		int rank_oder = rank.getOrder();
+		return mine_oder > rank_oder;
+	}
+
 	public static boolean isLocInMine(Location loc) {
 		for (Mine m : getAllMinesFromConfig()) {
 			if (m.getRegion().isInRegion(loc)) {
@@ -75,6 +89,15 @@ public class MineUtils {
 			}
 		}
 		return false;
+	}
+
+	public static String getMineByLoc(Location loc){
+		for (Mine m : getAllMinesFromConfig()) {
+			if (m.getRegion().isInRegion(loc)) {
+				return m.getMineName();
+			}
+		}
+		return null;
 	}
 
 	public static Mine getMineByName(String name) throws NullPointerException {
@@ -90,6 +113,7 @@ public class MineUtils {
 		List<Position> locs = new ArrayList<>();
 		if (mineByLoc(loc) != null) {
 			Mine m = mineByLoc(loc);
+			assert m != null;
 			Position cornerOne = m.getRegion().getLocMax().setComponents(m.getRegion().getLocMax().getX(), loc.getY(), m.getRegion().getLocMax().getZ());
 			Position cornerTwo = m.getRegion().getLocMin().setComponents(m.getRegion().getLocMin().getX(), loc.getY(), m.getRegion().getLocMin().getZ());
 			locs.add(cornerOne);
