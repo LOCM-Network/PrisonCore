@@ -8,7 +8,7 @@ public class Gears extends CustomEnchant {
 	private int level;
 
 	public Gears(int level) {
-		super("Gears", level, 3, StringUtils.translateColors("&3Gears"), "Nhận được hiệu ứng nhanh khi đào.", 40,
+		super("Gears", level, 3, StringUtils.translateColors("&3Gears"), "Nhận được hiệu ứng nhanh khi đào.", 50,
 				EnchantType.CUSTOM);
 		this.level = level;
 	}

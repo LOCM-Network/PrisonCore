@@ -1,12 +1,7 @@
 package com.locm.core;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
 import com.locm.core.ah.listeners.AuctionListener;
@@ -23,7 +18,6 @@ import com.locm.core.general.cmd.SellCommand;
 import com.locm.core.general.cmd.TPSCommand;
 import com.locm.core.general.cmd.HubCommand;
 import com.locm.core.general.cmd.KickAllCommand;
-import com.locm.core.general.cmd.MenuCommand;
 import com.locm.core.general.cmd.AdminCommand;
 import com.locm.core.kits.KitHandler;
 import com.locm.core.kits.cmd.CreateKitCommand;
@@ -62,7 +56,6 @@ public class Loader extends PluginBase {
 	private Config kitsCfg;
 	private File kitsFile;
 	private Config chatCfg;
-	private File formatFile;
 	public static PlaceholderAPI api = PlaceholderAPI.getInstance();
 	public static HashMap<Mine, Integer> mineReset = new HashMap<>();
 
@@ -73,9 +66,13 @@ public class Loader extends PluginBase {
 		getDataFolder().mkdirs();
 		registerfiles();
 		GeneralUtils.setupWorthFile();
-		api.visitorSensitivePlaceholder("playerorbs", (p, T) -> OrbEconomyUtils.getPlayersTokenBalance(p));
-		api.visitorSensitivePlaceholder("prisonrank", (p, T) -> RankUtils.getRankByPlayer(p).getName());
-		api.visitorSensitivePlaceholder("prestige", (p, T) -> RankUtils.getPrestigeLevelForPlayer(p));
+
+		api.builder("playerorbs", Integer.class)
+				.visitorLoader(entry -> OrbEconomyUtils.getPlayersTokenBalance(entry.getPlayer())).build();
+		api.builder("prestige", Integer.class)
+				.visitorLoader(entry -> RankUtils.getPrestigeLevelForPlayer(entry.getPlayer()));
+		api.builder("prisonrank", String.class)
+				.visitorLoader(entry -> Objects.requireNonNull(RankUtils.getRankByPlayer(entry.getPlayer())).getName());
 		startFeautures();
 	}
 
@@ -115,7 +112,7 @@ public class Loader extends PluginBase {
 		dataCfg = new Config(dataFile);
 		kitsFile = new File(getDataFolder(), "kits.yml");
 		kitsCfg = new Config(kitsFile);
-		formatFile = new File(getDataFolder(), "chatformat.yml");
+		File formatFile = new File(getDataFolder(), "chatformat.yml");
 		chatCfg = new Config(formatFile);
 	}
 
@@ -198,12 +195,9 @@ public class Loader extends PluginBase {
 		getServer().getCommandMap().register("ptop", new PrestigeTopCmd());
 		getServer().getCommandMap().register("bomb", new BombCommand());
 		getServer().getCommandMap().register("invsee", new InvseeCommand());
-		//getServer().getCommandMap().register("echest", new EchestCommand());
 		getServer().getCommandMap().register("hub", new HubCommand());
 		getServer().getCommandMap().register("kickall", new KickAllCommand());
 		getServer().getCommandMap().register("admin", new AdminCommand());
-		getServer().getCommandMap().register("menu", new MenuCommand());
-		//getServer().getCommandMap().register("rtag", new RTagCmd());
 	}
 
 	public void registerEvents() {
@@ -221,7 +215,7 @@ public class Loader extends PluginBase {
 	public void loadWorlds() {
 		int count = 0;
 		try {
-			for (File fs : new File(new File("").getCanonicalPath() + "/worlds/").listFiles()) {
+			for (File fs : Objects.requireNonNull(new File(new File("").getCanonicalPath() + "/worlds/").listFiles())) {
 				if ((fs.isDirectory() && !getServer().isLevelLoaded(fs.getName()))) {
 					getServer().loadLevel(fs.getName());
 					count++;

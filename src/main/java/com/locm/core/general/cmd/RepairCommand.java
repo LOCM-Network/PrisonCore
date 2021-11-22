@@ -10,7 +10,7 @@ import me.onebone.economyapi.EconomyAPI;
 public class RepairCommand extends Command {
 
 	public RepairCommand() {
-		super("repairhand", "Sửa chữa vật phẩm (theo dộ hỏng)", "/repairhand");
+		super("repairhand", "Sửa chữa vật phẩm (theo dộ hỏng)", "/repairhand", new String[]{"fix"});
 	}
 
 	@Override

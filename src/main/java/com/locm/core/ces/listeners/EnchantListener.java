@@ -227,10 +227,10 @@ public class EnchantListener implements Listener {
 		Position pos = block.getLocation();
 		Item tool = player.getInventory().getItemInHand();
 		int lvl = CEUtils.getLevelOfEnchantByDisplayName(StringUtils.translateColors("&eJackHammer"), tool);
-		int chance = new Random().nextInt(6 - lvl);
+		int chance = new Random().nextInt(8 - lvl);
 		if(chance != 0) return;
 		int xFrom = (int) (pos.getX() - lvl);
-		int yFrom = (int) (pos.getY() - new Random().nextInt(lvl - 1));
+		int yFrom = (int) (pos.getY());
 		int zFrom = (int) (pos.getZ() - new Random().nextInt(lvl));
 		if(lvl >= 4){
 			yFrom = (int) (pos.getY() - new Random().nextInt(lvl - 1));
@@ -250,6 +250,7 @@ public class EnchantListener implements Listener {
 					}
 					Location loc = new Location(x, y, z, block.getLevel());
 					temp = block.getLevel().getBlock(loc);
+					if(temp.getId() == Item.WOOD) continue;
 					if(MineUtils.isLocInMine(loc)){
 						if(temp.getId() == Block.AIR) continue;
 						if (CEUtils.containsEnchantment(tool,
@@ -263,7 +264,14 @@ public class EnchantListener implements Listener {
 				}
 			}
 		}
-		//tool.setDamage(tool.getDamage() - new Random().nextInt(30) + lvl);
+		int durability = 0;
+		if (tool.hasEnchantment(Enchantment.ID_DURABILITY)) {
+			durability += tool.getEnchantment(17).getLevel() * 3;
+		}
+
+		int damage = tool.getDamage() + (35 - durability) + lvl;
+
+		tool.setDamage(damage);
 		player.getInventory().setItemInHand(tool);
 		player.sendActionBar(TextFormat.colorize("&l&cJACKHAMMER!!!"));
 	}
@@ -309,9 +317,9 @@ public class EnchantListener implements Listener {
 						}
 						if (MineUtils.isLocInMine(loc)) {
 							if (CEUtils.containsEnchantment(tool,
-									CEUtils.getCEByDisplayName(StringUtils.translateColors("&fMagnet")))) {
+									Objects.requireNonNull(CEUtils.getCEByDisplayName(StringUtils.translateColors("&fMagnet"))))) {
 								if (!CEUtils.containsEnchantment(tool,
-										CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell")))) {
+										Objects.requireNonNull(CEUtils.getCEByDisplayName(StringUtils.translateColors("&dAutoSell"))))) {
 									if (b.getId() != 19) {
 										PlayerInventory inventoryAutoAdd = e.getPlayer().getInventory();
 										Item[] itemToAdd = e.getDrops();
