@@ -3,3 +3,4 @@ api: ["1.0.0"]
 author: phuongaz
 main: com.locm.core.Loader
 version: "1.0"
+loadbefore: ["PlaceholderAPI"]
