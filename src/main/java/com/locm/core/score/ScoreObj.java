@@ -17,6 +17,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.utils.TextFormat;
 import java.util.HashMap;
 import java.util.Map;
+import me.phuongaz.fishing.api.CustomFishingAPI;
 
 public class ScoreObj implements Listener{
 
@@ -53,8 +54,12 @@ public class ScoreObj implements Listener{
 		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 4);
 		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
-
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 5);
+		int crf = 0;
+		try{
+			 crf = CustomFishingAPI.getMax(p) - CustomFishingAPI.getPlayerAmount(p);
+		}catch (NullPointerException ignored){}
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLuợt câu cá&b " + crf), 5);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 6);
 
 		String rank = "";
 		try{
@@ -63,11 +68,11 @@ public class ScoreObj implements Listener{
 			rank = "A";
 		}
 
-		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu mỏ&b " + rank), 6);
+		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu mỏ&b " + rank), 7);
 		Rank nextrank = RankUtils.getNextRankByPlayer(p);
 		
 		if (RankUtils.getRankByPlayer(p).isLastRank()) {
-			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &eMày là trùm"), 7);
+			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &eMày là trùm"), 8);
 		} else {
 			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu kế&b "+ nextrank.getCost() +" &fxu"), 7);
 		}

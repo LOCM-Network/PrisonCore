@@ -3,7 +3,7 @@ package com.locm.core;
 import java.io.File;
 import java.util.*;
 
-import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
+//import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
 import com.locm.core.ah.listeners.AuctionListener;
 import com.locm.core.ces.listeners.EnchantListener;
 import com.locm.core.general.listeners.EventsListener;
@@ -56,7 +56,7 @@ public class Loader extends PluginBase {
 	private Config kitsCfg;
 	private File kitsFile;
 	private Config chatCfg;
-	public static PlaceholderAPI api = PlaceholderAPI.getInstance();
+	//public static PlaceholderAPI api = PlaceholderAPI.getInstance();
 	public static HashMap<Mine, Integer> mineReset = new HashMap<>();
 
 	@Override
@@ -66,13 +66,13 @@ public class Loader extends PluginBase {
 		getDataFolder().mkdirs();
 		registerfiles();
 		GeneralUtils.setupWorthFile();
-
+/*
 		api.builder("playerorbs", Integer.class)
 				.visitorLoader(entry -> OrbEconomyUtils.getPlayersTokenBalance(entry.getPlayer())).build();
 		api.builder("prestige", Integer.class)
 				.visitorLoader(entry -> RankUtils.getPrestigeLevelForPlayer(entry.getPlayer()));
 		api.builder("prisonrank", String.class)
-				.visitorLoader(entry -> Objects.requireNonNull(RankUtils.getRankByPlayer(entry.getPlayer())).getName());
+				.visitorLoader(entry -> Objects.requireNonNull(RankUtils.getRankByPlayer(entry.getPlayer())).getName());*/
 		startFeautures();
 	}
 

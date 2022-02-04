@@ -42,7 +42,8 @@ public class ChatFormat implements Listener{
 		String message = event.getMessage();
 		Player player = event.getPlayer();
 		String perm = getGroup(player);
-		String format = (config.getString("Chat."+perm)
+
+		String format = config.getString("Chat."+perm)
 				.replace("%%n", "\n")
 				.replace("%%r", "\r")
 				.replace("%%t", "\t")
@@ -50,8 +51,16 @@ public class ChatFormat implements Listener{
 				.replace("%rank%", getPrisonRank(player))
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm)
-				.replace("%msg%", message));
-		format = Loader.api.translateString(format, player);
+				.replace("%msg%", message);
+
+		if(player.hasPermission("police.perm")){
+			format = format.replace("%staff_rank%", config.getString("police.chat"));
+		}else if(player.hasPermission("helper.perm")){
+			format = format.replace("%staff_rank%", config.getString("helper.chat"));
+		}else{
+			format = format.replace("%staff_rank%", "");
+		}
+		//format = Loader.api.translateString(format, player);
 		event.setFormat(TextFormat.colorize('&', format));
 	}
 
@@ -67,7 +76,14 @@ public class ChatFormat implements Listener{
 				.replace("%rank%", getPrisonRank(player))
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm));
-		format = Loader.api.translateString(format, player);
+		if(player.hasPermission("police.perm")){
+			format = format.replace("%staff_rank%", TextFormat.colorize(config.getString("police.nametag")));
+		}else if(player.hasPermission("helper.perm")){
+			format = format.replace("%staff_rank%", TextFormat.colorize(config.getString("helper.nametag")));
+		}else{
+			format = format.replace("%staff_rank%", "");
+		}
+		//format = Loader.api.translateString(format, player);
 		player.setNameTag(TextFormat.colorize('&', format));
 	}
 
@@ -81,7 +97,7 @@ public class ChatFormat implements Listener{
 				.replace("%rank%", getPrisonRank(player))
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm));
-		format = Loader.api.translateString(format, player);
+		//format = Loader.api.translateString(format, player);
 		return format;
 	}
 
