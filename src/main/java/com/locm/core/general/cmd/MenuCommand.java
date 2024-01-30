@@ -21,9 +21,7 @@ public class MenuCommand extends Command{
         Loader.getInstance().getConfig().getSection("menu").getAll().getKeys(false).forEach(key -> {
             String button = Loader.getInstance().getConfig().getString("menu." + key + ".name");
             String cmd = Loader.getInstance().getConfig().getString("menu." + key + ".cmd");
-            form.addButton(TextFormat.colorize(button), (p, btn) -> {
-                Server.getInstance().dispatchCommand(p, cmd.replace("{player}", p.getName()));
-            });
+            form.addButton(TextFormat.colorize(button), (p, btn) -> Server.getInstance().dispatchCommand(p, cmd.replace("{player}", p.getName())));
         });
         form.send((Player) sender);
         return true;

@@ -2,6 +2,7 @@ package com.locm.core.ah.listeners;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -107,16 +108,13 @@ public class AuctionListener implements Listener {
 								} else {
 									dataCfg.set("Listings." + id + ".item.customName", item.getName());
 								}
-								List<String> lore = new ArrayList<String>();
-								for (int it = 0; it < item.getLore().length; it++) {
-									lore.add(item.getLore()[it]);
-								}
+								List<String> lore = new ArrayList<>(Arrays.asList(item.getLore()));
 								dataCfg.set("Listings." + id + ".item.lore", lore);
 								if (item.hasEnchantments()) {
 									for (int i1 = 0; i1 < item.getEnchantments().length; i1++) {
 										Enchantment e1 = item.getEnchantments()[i1];
 										dataCfg.set("Listings." + id + ".item.enchants." + e1.getId(),
-												Integer.valueOf(e1.getLevel()));
+												e1.getLevel());
 									}
 								}
 								dataCfg.save(dataFile);

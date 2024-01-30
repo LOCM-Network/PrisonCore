@@ -20,29 +20,33 @@ public class AdminCommand extends Command {
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		if (sender.hasPermission("locm.admin")) {
-			if(args[0].equals("fecthgroup")) {
-				ChatFormat.fecthGroup();
-				sender.sendMessage("Fecth succesfully");
-			}else if(args[0].equals("reload")){
-				Loader.getInstance().reloadConfig();
-				sender.sendMessage("Reload all config..");
-			}else if(args[0].equals("citem")){
-				CustomForm form = new CustomForm("Custom item");
-				form.addElement("name", new Input("Ten"));
-				form.addElement("lore", new Input("lore # de xuong hang"));
-				form.setHandler((p, response) -> {
-					Item item = ((Player) sender).getInventory().getItemInHand();
-					String name = response.getInput("name").getValue();
-					String lore = response.getInput("lore").getValue();
-					if(!name.equals("")){
-						item.setCustomName(TextFormat.colorize(name));
-					}
-					if(!lore.equals("")){
-						item.setLore(lore.replace("#", "\n"));
-					}
-					((Player) sender).getInventory().setItemInHand(item);
-				});
-				form.send((Player) sender);
+			switch (args[0]) {
+				case "fecthgroup":
+					ChatFormat.fecthGroup();
+					sender.sendMessage("Fecth succesfully");
+					break;
+				case "reload":
+					Loader.getInstance().reloadConfig();
+					sender.sendMessage("Reload all config..");
+					break;
+				case "citem":
+					CustomForm form = new CustomForm("Custom item");
+					form.addElement("name", new Input("Ten"));
+					form.addElement("lore", new Input("lore # de xuong hang"));
+					form.setHandler((p, response) -> {
+						Item item = ((Player) sender).getInventory().getItemInHand();
+						String name = response.getInput("name").getValue();
+						String lore = response.getInput("lore").getValue();
+						if (!name.equals("")) {
+							item.setCustomName(TextFormat.colorize(name));
+						}
+						if (!lore.equals("")) {
+							item.setLore(lore.replace("#", "\n"));
+						}
+						((Player) sender).getInventory().setItemInHand(item);
+					});
+					form.send((Player) sender);
+					break;
 			}
 		}
 		return true;

@@ -28,42 +28,46 @@ public class BombCommand extends Command {
 			if (args[0].equals("give")) {
 				Player t = Loader.getLoader().getServer().getPlayer(args[1]);
 				if (t != null) {
-					if (args[3].equals("small")) {
-						try {
-							Item bomb = ItemStorage.smallBomb();
-							sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " x" + args[2]
-									+ " small bomb.");
-							t.sendMessage(StringUtils.getPrefix() + "Given a small bomb.");
-							bomb.setCount(Integer.parseInt(args[2]));
-							t.getInventory().addItem(bomb);
-						} catch (NumberFormatException e) {
-							sender.sendMessage(StringUtils.getPrefix()
-									+ "Incorrect usage, must be integer for amount and multiplier.");
-						}
-					} else if (args[3].equals("medium")) {
-						try {
-							Item bomb = ItemStorage.mediumBomb();
-							sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " x" + args[2]
-									+ " medium bomb.");
-							t.sendMessage(StringUtils.getPrefix() + "Given a medium sized bomb.");
-							bomb.setCount(Integer.parseInt(args[2]));
-							t.getInventory().addItem(bomb);
-						} catch (NumberFormatException e) {
-							sender.sendMessage(StringUtils.getPrefix()
-									+ "Incorrect usage, must be integer for amount and multiplier.");
-						}
-					}else if (args[3].equals("large")) {
-						try {
-							Item bomb = ItemStorage.largeBomb();
-							sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " x" + args[2]
-									+ " large bomb.");
-							t.sendMessage(StringUtils.getPrefix() + "Given a large sized bomb.");
-							bomb.setCount(Integer.parseInt(args[2]));
-							t.getInventory().addItem(bomb);
-						} catch (NumberFormatException e) {
-							sender.sendMessage(StringUtils.getPrefix()
-									+ "Incorrect usage, must be integer for amount and multiplier.");
-						}
+					switch (args[3]) {
+						case "small":
+							try {
+								Item bomb = ItemStorage.smallBomb();
+								sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " x" + args[2]
+										+ " small bomb.");
+								t.sendMessage(StringUtils.getPrefix() + "Given a small bomb.");
+								bomb.setCount(Integer.parseInt(args[2]));
+								t.getInventory().addItem(bomb);
+							} catch (NumberFormatException e) {
+								sender.sendMessage(StringUtils.getPrefix()
+										+ "Incorrect usage, must be integer for amount and multiplier.");
+							}
+							break;
+						case "medium":
+							try {
+								Item bomb = ItemStorage.mediumBomb();
+								sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " x" + args[2]
+										+ " medium bomb.");
+								t.sendMessage(StringUtils.getPrefix() + "Given a medium sized bomb.");
+								bomb.setCount(Integer.parseInt(args[2]));
+								t.getInventory().addItem(bomb);
+							} catch (NumberFormatException e) {
+								sender.sendMessage(StringUtils.getPrefix()
+										+ "Incorrect usage, must be integer for amount and multiplier.");
+							}
+							break;
+						case "large":
+							try {
+								Item bomb = ItemStorage.largeBomb();
+								sender.sendMessage(StringUtils.getPrefix() + "Gave " + t.getName() + " x" + args[2]
+										+ " large bomb.");
+								t.sendMessage(StringUtils.getPrefix() + "Given a large sized bomb.");
+								bomb.setCount(Integer.parseInt(args[2]));
+								t.getInventory().addItem(bomb);
+							} catch (NumberFormatException e) {
+								sender.sendMessage(StringUtils.getPrefix()
+										+ "Incorrect usage, must be integer for amount and multiplier.");
+							}
+							break;
 					}
 				}
 			}

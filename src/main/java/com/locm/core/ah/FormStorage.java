@@ -1,6 +1,7 @@
 package com.locm.core.ah;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.locm.core.Loader;
@@ -75,16 +76,13 @@ public class FormStorage {
 		StringBuilder str2 = new StringBuilder();
 		if (listing.getItem().hasEnchantments()) {
 			for (Enchantment e : listing.getItem().getEnchantments()) {
-				str.append(e.getName() + " " + e.getLevel() + " ");
+				str.append(e.getName()).append(" ").append(e.getLevel()).append(" ");
 			}
 			fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lVanillaEnchants: &r&7" + str)));
 		}
-		List<String> lor = new ArrayList<>();
-		for (String s : listing.getItem().getLore()) {
-			lor.add(s);
-		}
+		List<String> lor = new ArrayList<>(Arrays.asList(listing.getItem().getLore()));
 		for (String s : lor) {
-			str2.append(s + " ");
+			str2.append(s).append(" ");
 		}
 		fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lChi tiết: &r&7" + str2)));
 		fc.addElement(new ElementLabel(StringUtils.translateColors("&b&lGía: &r&7$" + listing.getPricing())));

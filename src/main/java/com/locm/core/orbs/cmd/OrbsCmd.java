@@ -25,50 +25,57 @@ public class OrbsCmd extends Command {
 		}
 		if (sender.hasPermission("locm.owner")) {
 			if (args.length == 3) {
-				if (args[0].equals("give")) {
-					Player target = Loader.getLoader().getServer().getPlayer(args[1]);
-					if (target != null) {
-						try {
-							int amount = Integer.parseInt(args[2]);
-							OrbEconomyUtils.addPlayerBalance(target, amount);
-							target.sendMessage(StringUtils.color("&l&eBạn vừa nhận được&f " + amount + "&e orbs!"));
-							sender.sendMessage(
-									StringUtils.getPrefix() + "Gave " + target.getName() + " " + amount + " orbs!");
-						} catch (NumberFormatException e) {
-							sender.sendMessage(StringUtils.getPrefix() + "You must specify a number for amount.");
+				switch (args[0]) {
+					case "give": {
+						Player target = Loader.getLoader().getServer().getPlayer(args[1]);
+						if (target != null) {
+							try {
+								int amount = Integer.parseInt(args[2]);
+								OrbEconomyUtils.addPlayerBalance(target, amount);
+								target.sendMessage(StringUtils.color("&l&eBạn vừa nhận được&f " + amount + "&e orbs!"));
+								sender.sendMessage(
+										StringUtils.getPrefix() + "Gave " + target.getName() + " " + amount + " orbs!");
+							} catch (NumberFormatException e) {
+								sender.sendMessage(StringUtils.getPrefix() + "You must specify a number for amount.");
+							}
+						} else {
+							sender.sendMessage(StringUtils.getPrefix() + "That player is not online.");
 						}
-					} else {
-						sender.sendMessage(StringUtils.getPrefix() + "That player is not online.");
+						break;
 					}
-				} else if (args[0].equals("remove")) {
-					Player target = Loader.getLoader().getServer().getPlayer(args[1]);
-					if (target != null) {
-						try {
-							int amount = Integer.parseInt(args[2]);
-							OrbEconomyUtils.removePlayerBalance(target, amount);
-							target.sendMessage(StringUtils.color("&l&fBạn vừa bị trừ&e " + amount
-									+ " &forb!&7 (&fNgười xóa:&a "+ sender.getName() +"&7)"));
-							sender.sendMessage(StringUtils.getPrefix() + "Removed " + amount + " orbs from"
-									+ target.getName() + "'s balance. ");
-						} catch (NumberFormatException e) {
-							sender.sendMessage(StringUtils.getPrefix() + "You must specify a number for amount.");
+					case "remove": {
+						Player target = Loader.getLoader().getServer().getPlayer(args[1]);
+						if (target != null) {
+							try {
+								int amount = Integer.parseInt(args[2]);
+								OrbEconomyUtils.removePlayerBalance(target, amount);
+								target.sendMessage(StringUtils.color("&l&fBạn vừa bị trừ&e " + amount
+										+ " &forb!&7 (&fNgười xóa:&a " + sender.getName() + "&7)"));
+								sender.sendMessage(StringUtils.getPrefix() + "Removed " + amount + " orbs from"
+										+ target.getName() + "'s balance. ");
+							} catch (NumberFormatException e) {
+								sender.sendMessage(StringUtils.getPrefix() + "You must specify a number for amount.");
+							}
+						} else {
+							sender.sendMessage(StringUtils.getPrefix() + "That player is not online.");
 						}
-					} else {
-						sender.sendMessage(StringUtils.getPrefix() + "That player is not online.");
+						break;
 					}
-				} else if (args[0].equals("set")) {
-					Player target = Loader.getLoader().getServer().getPlayer(args[1]);
-					if (target != null) {
-						try {
-							int amount = Integer.parseInt(args[2]);
-							OrbEconomyUtils.setPlayerBalance(target, amount);
-							sender.sendMessage(
-									StringUtils.getPrefix() + "Set " + target.getName() + "'s orbs to amount " + amount);
-						} catch (NumberFormatException e) {
-							sender.sendMessage(StringUtils.getPrefix() + "You must specify a number for amount.");
+					case "set": {
+						Player target = Loader.getLoader().getServer().getPlayer(args[1]);
+						if (target != null) {
+							try {
+								int amount = Integer.parseInt(args[2]);
+								OrbEconomyUtils.setPlayerBalance(target, amount);
+								sender.sendMessage(
+										StringUtils.getPrefix() + "Set " + target.getName() + "'s orbs to amount " + amount);
+							} catch (NumberFormatException e) {
+								sender.sendMessage(StringUtils.getPrefix() + "You must specify a number for amount.");
+							}
+						} else {
+							sender.sendMessage(StringUtils.getPrefix() + "That player is not online.");
 						}
-					} else {
-						sender.sendMessage(StringUtils.getPrefix() + "That player is not online.");
+						break;
 					}
 				}
 			} else if (args.length == 4) {

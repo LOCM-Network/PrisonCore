@@ -50,6 +50,7 @@ public class OrbsListener implements Listener {
 		Item i = p.getInventory().getItemInHand();
 		if(!MineUtils.isLocInMine(p)) return;
 		if (i.getId() == 278) {
+
 			if (CEUtils.containsEnchantment(i, CEUtils.getCEByDisplayName(StringUtils.translateColors("&aGreed")))) {
 				if (MineUtils.isLocInMine(e.getBlock().getLocation())) {
 					if (!EventsListener.playersOrbsBooster.containsKey(p)) {
@@ -67,11 +68,7 @@ public class OrbsListener implements Listener {
 			} else {
 				Random rd = new Random();
 				if(rd.nextInt(3) == 1){
-					if (!EventsListener.playersOrbsBooster.containsKey(p)) {
-						OrbEconomyUtils.addPlayerBalance(p, 1);
-					} else {
-						OrbEconomyUtils.addPlayerBalance(p, 1 * EventsListener.playersOrbsBooster.get(p));
-					}
+					OrbEconomyUtils.addPlayerBalance(p, EventsListener.playersOrbsBooster.getOrDefault(p, 1));
 				}
 			}
 		}

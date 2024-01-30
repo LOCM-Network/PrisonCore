@@ -44,16 +44,16 @@ public class ScoreObj implements Listener{
 		ScoreboardDisplay scoreboardDisplay = scoreboard.addDisplay(DisplaySlot.SIDEBAR, "dumy", tile);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &b " +p.getName()), 0);
 
-		Integer orbs = OrbEconomyUtils.getPlayersTokenBalance(p);
+		int orbs = OrbEconomyUtils.getPlayersTokenBalance(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fOrb&b "+ orbs), 1);
 
-		Double money = EconomyAPI.getInstance().myMoney(p);
+		double money = EconomyAPI.getInstance().myMoney(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fXu &b"+ money), 2);
-		Double coin = me.locm.economyapi.EconomyAPI.getInstance().myCoin(p);
+		double coin = me.locm.economyapi.EconomyAPI.getInstance().myCoin(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLCoin &b"+ coin), 3);
-		Integer prestige = RankUtils.getPrestigeLevelForPlayer(p);
+		int prestige = RankUtils.getPrestigeLevelForPlayer(p);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fPrestige&b "+prestige), 4);
-		Integer onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
+		int onlines = Server.getInstance().getOnlinePlayers().values().toArray().length;
 		int crf = 0;
 		try{
 			 crf = CustomFishingAPI.getMax(p) - CustomFishingAPI.getPlayerAmount(p);
@@ -61,7 +61,7 @@ public class ScoreObj implements Listener{
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fLuợt câu cá&b " + crf), 5);
 		scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fTrực tuyến&b "+ onlines), 6);
 
-		String rank = "";
+		String rank;
 		try{
 			rank = RankUtils.getRankByPlayer(p).getName();
 		}catch(NullPointerException npt){
@@ -74,7 +74,9 @@ public class ScoreObj implements Listener{
 		if (RankUtils.getRankByPlayer(p).isLastRank()) {
 			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &eMày là trùm"), 8);
 		} else {
-			scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu kế&b "+ nextrank.getCost() +" &fxu"), 7);
+			if(nextrank != null) {
+				scoreboardDisplay.addLine(TextFormat.colorize("&l&6٭ &fKhu kế&b "+ nextrank.getCost() +" &fxu"), 7);
+			}
 		}
 		ScoreboardAPI.setScoreboard(p, scoreboard);
 		scoreboards.put(p, scoreboard);

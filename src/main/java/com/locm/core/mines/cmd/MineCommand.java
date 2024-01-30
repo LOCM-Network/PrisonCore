@@ -45,68 +45,78 @@ public class MineCommand extends Command {
 
 		if (sender.hasPermission("locm.admin")) {
 			if (args.length == 2) {
-				if (args[0].equals("setup")) {
-					if (sender instanceof Player) {
-						Player p = (Player) sender;
-						if (playersInSetupModeMine.values().size() < 1) {
-							playersInSetupModeMine.put(p, args[1]);
-							p.sendMessage(StringUtils.getPrefix() + "Now in Mine Setup Mode!");
-							p.sendMessage(StringUtils.getPrefix()
-									+ "Please break two blocks to mark the region for mine: " + args[1] + ".");
-							p.sendMessage(StringUtils.getPrefix()
-									+ StringUtils.translateColors("&cType 'cancel' without '' to cancel setup."));
-							p.getInventory().addItem(ItemStorage.mineSetupWand());
-							mines.set("Mines." + args[1] + ".name", args[1]);
-							mines.set("Mines." + args[1] + ".tpLocX", p.getLocation().getX());
-							mines.set("Mines." + args[1] + ".tpLocY", p.getLocation().getY());
-							mines.set("Mines." + args[1] + ".tpLocZ", p.getLocation().getZ());
-							mines.set("Mines." + args[1] + ".tpYaw", p.getLocation().getYaw());
-							mines.set("Mines." + args[1] + ".tpPitch", p.getLocation().getPitch());
-							mines.set("Mines." + args[1] + ".tpLocLevelName", p.getLevel().getName());
-							mines.save(minesFile);
-						} else {
-							p.sendMessage(StringUtils.getPrefix() + "Another player is already setting up mines!");
+				switch (args[0]) {
+					case "setup":
+						if (sender instanceof Player) {
+							Player p = (Player) sender;
+							if (playersInSetupModeMine.values().size() < 1) {
+								playersInSetupModeMine.put(p, args[1]);
+								p.sendMessage(StringUtils.getPrefix() + "Now in Mine Setup Mode!");
+								p.sendMessage(StringUtils.getPrefix()
+										+ "Please break two blocks to mark the region for mine: " + args[1] + ".");
+								p.sendMessage(StringUtils.getPrefix()
+										+ StringUtils.translateColors("&cType 'cancel' without '' to cancel setup."));
+								p.getInventory().addItem(ItemStorage.mineSetupWand());
+								mines.set("Mines." + args[1] + ".name", args[1]);
+								mines.set("Mines." + args[1] + ".tpLocX", p.getLocation().getX());
+								mines.set("Mines." + args[1] + ".tpLocY", p.getLocation().getY());
+								mines.set("Mines." + args[1] + ".tpLocZ", p.getLocation().getZ());
+								mines.set("Mines." + args[1] + ".tpYaw", p.getLocation().getYaw());
+								mines.set("Mines." + args[1] + ".tpPitch", p.getLocation().getPitch());
+								mines.set("Mines." + args[1] + ".tpLocLevelName", p.getLevel().getName());
+								mines.save(minesFile);
+							} else {
+								p.sendMessage(StringUtils.getPrefix() + "Another player is already setting up mines!");
+							}
 						}
-					}
-				} else if (args[0].equals("reset")) {
-					if (sender instanceof Player) {
-						Player p = (Player) sender;
-						if (MineUtils.getMineByName(args[1]) != null) {
-							Mine m = MineUtils.getMineByName(args[1]);
-							m.resetMine();
-							p.sendMessage(StringUtils.getPrefix() + "Reset mine!");
-						} else {
-							p.sendMessage(StringUtils.getPrefix() + "Mine non existant!");
+						break;
+					case "reset":
+						if (sender instanceof Player) {
+							Player p = (Player) sender;
+							if (MineUtils.getMineByName(args[1]) != null) {
+								Mine m = MineUtils.getMineByName(args[1]);
+								if(m == null) {
+									p.sendMessage(StringUtils.getPrefix() + "Mine non existant!");
+									return false;
+								}
+								m.resetMine();
+								p.sendMessage(StringUtils.getPrefix() + "Reset mine!");
+							} else {
+								p.sendMessage(StringUtils.getPrefix() + "Mine non existant!");
+							}
 						}
-					}
-				} else if (args[0].equals("settp")) {
-					if (sender instanceof Player) {
-						Player p = (Player) sender;
-						if (MineUtils.getMineByName(args[1]) != null) {
-							mines.set("Mines." + args[1] + ".tpLocX", p.getLocation().getX());
-							mines.set("Mines." + args[1] + ".tpLocY", p.getLocation().getY());
-							mines.set("Mines." + args[1] + ".tpLocZ", p.getLocation().getZ());
-							mines.set("Mines." + args[1] + ".tpYaw", p.getLocation().getYaw());
-							mines.set("Mines." + args[1] + ".tpPitch", p.getLocation().getPitch());
-							mines.set("Mines." + args[1] + ".tpLocLevelName", p.getLevel().getName());
-							mines.save(minesFile);
-							p.sendMessage(StringUtils.getPrefix() + "Set tp location!");
-						} else {
-							p.sendMessage(StringUtils.getPrefix() + "Mine non existant!");
+						break;
+					case "settp":
+						if (sender instanceof Player) {
+							Player p = (Player) sender;
+							if (MineUtils.getMineByName(args[1]) != null) {
+								mines.set("Mines." + args[1] + ".tpLocX", p.getLocation().getX());
+								mines.set("Mines." + args[1] + ".tpLocY", p.getLocation().getY());
+								mines.set("Mines." + args[1] + ".tpLocZ", p.getLocation().getZ());
+								mines.set("Mines." + args[1] + ".tpYaw", p.getLocation().getYaw());
+								mines.set("Mines." + args[1] + ".tpPitch", p.getLocation().getPitch());
+								mines.set("Mines." + args[1] + ".tpLocLevelName", p.getLevel().getName());
+								mines.save(minesFile);
+								p.sendMessage(StringUtils.getPrefix() + "Set tp location!");
+							} else {
+								p.sendMessage(StringUtils.getPrefix() + "Mine non existant!");
+							}
 						}
-					}
-				}else if(args[0].equals("setnpc")){
-					String geometry = "button";
-					Path path = Loader.getInstance().getDataFolder().toPath();
-					Path skinPath = path.resolve("button.png");
-					Path geometryPath = path.resolve("geometry.json");
-					try{
-						Skin skin = ModelUtils.createSkin(geometry, skinPath, geometryPath);
-						CustomModel model = ModelUtils.createModel((Player) sender, skin);
-						model.spawnToAll();
-						model.setNameTag(TextFormat.colorize(args[1]));
-						model.setNameTagAlwaysVisible();
-					}catch(IOException exception){}
+						break;
+					case "setnpc":
+						String geometry = "button";
+						Path path = Loader.getInstance().getDataFolder().toPath();
+						Path skinPath = path.resolve("button.png");
+						Path geometryPath = path.resolve("geometry.json");
+						try {
+							Skin skin = ModelUtils.createSkin(geometry, skinPath, geometryPath);
+							CustomModel model = ModelUtils.createModel((Player) sender, skin);
+							model.spawnToAll();
+							model.setNameTag(TextFormat.colorize(args[1]));
+							model.setNameTagAlwaysVisible();
+						} catch (IOException ignored) {
+						}
+						break;
 				}
 			}
 		}

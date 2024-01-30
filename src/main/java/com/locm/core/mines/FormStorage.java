@@ -10,6 +10,8 @@ import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.window.FormWindowSimple;
 import ru.contentforge.formconstructor.form.SimpleForm;
 
+import java.util.Objects;
+
 public class FormStorage {
 
 	public static void sendForm(Player player, String content){
@@ -17,6 +19,10 @@ public class FormStorage {
 		form.setContent(StringUtils.color(content));
 		form.addButton(StringUtils.color("&l&2Làm mới khu mỏ của bạn"), (p, button) -> {
 			Mine mine = MineUtils.getMineByName(RankUtils.getRankByPlayer(p).getName());
+			if(mine == null) {
+				p.sendMessage(StringUtils.color("&l&cLỗi: &fKhông tìm thấy khu mỏ của bạn!"));
+				return;
+			}
 			if(mine.isSmaller(25)){
 				mine.resetMine();
 				sendForm(player, "&l&fĐã làm mới khu mỏ!");
@@ -29,6 +35,10 @@ public class FormStorage {
 		});
 		form.addButton(StringUtils.color("&l&2Dịch chuyển tới khu mỏ"), (p, button) -> {
 			Mine mine = MineUtils.getMineByName(RankUtils.getRankByPlayer(p).getName());
+			if(mine == null) {
+				p.sendMessage(StringUtils.color("&l&cLỗi: &fKhông tìm thấy khu mỏ của bạn!"));
+				return;
+			}
 			p.teleport(mine.getTpLocation());
 			p.sendActionBar(StringUtils.color("&l&eĐang dịch chuyển !!!"));
 		});
@@ -39,7 +49,11 @@ public class FormStorage {
 		FormWindowSimple fs = new FormWindowSimple(StringUtils.translateColors("&b&lLOCM &d&lPrisons"),
 				StringUtils.translateColors("&b&l&nChoose a Mine to teleport to!"));
 		for (Mine mine : MineUtils.getAllMinesFromConfig()) {
-			int order = RankUtils.getRankByName(mine.getMineName()).getOrder();
+			if(mine == null) {
+				p.sendMessage(StringUtils.color("&l&cLỗi: &fKhông tìm thấy khu mỏ của bạn!"));
+				return null;
+			}
+			int order = Objects.requireNonNull(RankUtils.getRankByName(mine.getMineName())).getOrder();
 			int porder = RankUtils.getRankByPlayer(p).getOrder();
 			if(porder >= order) {
 				fs.addButton(new ElementButton(StringUtils.color("&l&0" + mine.getMineName() + "\n &aＯＰＥＮ")));

@@ -68,11 +68,10 @@ public class KitsListener implements Listener {
 										kit.giveKitToPlayer(p);
 										p.removeAllWindows();
 										p.sendMessage(StringUtils.getPrefix() + "Redeemed kit " + kit.getName() + ".");
-										break;
 									} else {
 										p.sendMessage(StringUtils.getPrefix() + "You chose to deny the kit.");
-										break;
 									}
+									break;
 								}
 							}
 						}

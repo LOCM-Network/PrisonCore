@@ -1,7 +1,5 @@
 package com.locm.core.general.cmd;
 
-import java.io.File;
-
 import com.locm.core.Loader;
 import com.locm.core.general.listeners.EventsListener;
 import com.locm.core.utils.StringUtils;
@@ -17,7 +15,7 @@ import me.onebone.economyapi.EconomyAPI;
 public class SellCommand extends Command {
 
 	public static Config worth = Loader.getLoader().getWorthCfg();
-	public static File worthFile = Loader.getLoader().getWorthFile();
+	//public static File worthFile = Loader.getLoader().getWorthFile();
 
 	public SellCommand() {
 		super("sell", "Sell all mine item");
@@ -49,7 +47,7 @@ public class SellCommand extends Command {
 					p.getInventory().remove(i);
 				}
 			}
-			Double sell = Loader.getInstance().getConfig().getDouble("sell") * total;
+			double sell = Loader.getInstance().getConfig().getDouble("sell") * total;
 			EconomyAPI.getInstance().addMoney(p, sell);
 			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + sell + "&f xu."));
 		} else {
@@ -64,9 +62,9 @@ public class SellCommand extends Command {
 					p.getInventory().remove(i);
 				}
 			}
-			Double sell = (int)Loader.getInstance().getConfig().getDouble("sell")  * multiplier * total;
+			double sell = (int)Loader.getInstance().getConfig().getDouble("sell")  * multiplier * total;
 			EconomyAPI.getInstance().addMoney(p, sell);
-			double total2 = (multiplier*total);
+			//double total2 = (multiplier*total);
 			p.sendMessage(TextFormat.colorize("&l&fBán các tài nguyên nhận được &e" + sell + "&f xu &7(&fBạn đang có &ex"+multiplier+"&f)"));
 		}
 	}

@@ -18,7 +18,7 @@ public class RepairCommand extends Command {
 		EconomyAPI api = EconomyAPI.getInstance();
 		Player p = (Player) sender;
 		Item i = p.getInventory().getItemInHand();
-		Integer price = i.getDamage() * 45;
+		int price = i.getDamage() * 45;
 		if (i.isArmor() || i.isPickaxe() || i.isSword() || i.isAxe() || i.isShears() || i.isPickaxe() || i.isShovel()) {
 			if (api.myMoney(p) >= price){
 				api.reduceMoney(p, price);

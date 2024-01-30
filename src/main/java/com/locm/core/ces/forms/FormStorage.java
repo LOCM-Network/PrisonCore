@@ -32,13 +32,9 @@ public class FormStorage {
 
 	public void sendEnchantForm(Player player){
 		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eENCHANT SHOP"));
-		form.addButton(StringUtils.translateColors("&l&f●&0 Orbs &l&f●&0"), (p, button) -> {
-			this.sendEnchantXu(player);
-		});
+		form.addButton(StringUtils.translateColors("&l&f●&0 Orbs &l&f●&0"), (p, button) -> this.sendEnchantXu(player));
 
-		form.addButton(StringUtils.translateColors("&l&f●&0 LCoin &l&f●&0"), (p, button) -> {
-			this.sendEnchantLCoin(player);
-		});
+		form.addButton(StringUtils.translateColors("&l&f●&0 LCoin &l&f●&0"), (p, button) -> this.sendEnchantLCoin(player));
 		form.addButton(StringUtils.color("&l&f●&c Lưu ý Trước khi phù phép &l&f●&0"), (p, button) -> noticeForm(p));
 		form.send(player);
 	}
@@ -57,9 +53,7 @@ public class FormStorage {
 		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eEnchant Orbs"));
 		for(CustomEnchant enchant : EnchantHandler.getAllEnchants()){
 			if(enchant.getType() == EnchantType.VANILLA){
-				form.addButton(StringUtils.color("&l&f●&0 "+enchant.getNameOfEnchantment() + " &l&f●&0"), (p, button) -> {
-					this.enchantForm(player, enchant);
-				});
+				form.addButton(StringUtils.color("&l&f●&0 "+enchant.getNameOfEnchantment() + " &l&f●&0"), (p, button) -> this.enchantForm(player, enchant));
 			}
 		}
 		form.send(player);
@@ -69,9 +63,7 @@ public class FormStorage {
 		SimpleForm form = new SimpleForm(StringUtils.translateColors("&l&eEnchant LCoin"));
 		for(CustomEnchant enchant : EnchantHandler.getAllEnchants()){
 			if(enchant.getType() == EnchantType.CUSTOM){
-				form.addButton(StringUtils.color("&l&f●&0 "+enchant.getNameOfEnchantment() +" &l&f●&0"), (p, button) -> {
-					this.enchantForm(player, enchant);
-				});
+				form.addButton(StringUtils.color("&l&f●&0 "+enchant.getNameOfEnchantment() +" &l&f●&0"), (p, button) -> this.enchantForm(player, enchant));
 			}
 		}
 		form.send(player);

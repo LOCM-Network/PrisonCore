@@ -14,6 +14,8 @@ import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
 
+import java.util.Objects;
+
 public class ChatFormat implements Listener{
 
 	private static LuckPerms api;
@@ -89,7 +91,8 @@ public class ChatFormat implements Listener{
 
 	public static String getNameTag(Player player) {
 		String perm = getGroup(player);
-		String format = (config.getString("NameTag."+perm)
+		//format = Loader.api.translateString(format, player);
+		return (config.getString("NameTag."+perm)
 				.replace("%%n", "\n")
 				.replace("%%r", "\r")
 				.replace("%%t", "\t")
@@ -97,12 +100,10 @@ public class ChatFormat implements Listener{
 				.replace("%rank%", getPrisonRank(player))
 				.replace("%disname%", player.getDisplayName())
 				.replace("%group%", perm));
-		//format = Loader.api.translateString(format, player);
-		return format;
 	}
 
 	public static String getGroup(Player player) {
-		return api.getUserManager().getUser(player.getUniqueId()).getPrimaryGroup();
+		return Objects.requireNonNull(api.getUserManager().getUser(player.getUniqueId())).getPrimaryGroup();
 	}
 
 	public static String getPrisonRank(Player player) {

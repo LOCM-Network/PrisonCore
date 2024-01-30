@@ -23,13 +23,13 @@ public class RankUtils {
 		players.save(playersFile);
 	}
 
-	public static Rank getRankByPlayer(Player p) throws NullPointerException {
+	public static Rank getRankByPlayer(Player p)  {
 		for (Rank r : RankStorage.getAllRanks()) {
 			if (r.getName().equals(players.getString("Players." + p.getName() + ".rank"))) {
 				return r;
 			}
 		}
-		return null;
+		return getDefaultRank();
 	}
 
 	public static Rank getRankByName(String name) {
@@ -62,6 +62,10 @@ public class RankUtils {
 	public static void setRankByPlayer(Player p, Rank rank) {
 		players.set("Players." + p.getName() + ".rank", rank.getName());
 		players.save(playersFile);
+	}
+
+	public static Rank getDefaultRank() {
+		return getRankByOrder(1);
 	}
 	
 }
