@@ -76,7 +76,11 @@ public class MineUtils {
 		Mine mine = mineByLoc(loc);
 		Rank rank = RankUtils.getRankByPlayer(player);
 		assert mine != null;
-		int mine_oder = Objects.requireNonNull(RankUtils.getRankByName(mine.getMineName())).getOrder();
+		Rank mineRank = RankUtils.getRankByName(mine.getMineName());
+		if(mineRank == null){
+			return false;
+		}
+		int mine_oder = mineRank.getOrder();
 		assert rank != null;
 		int rank_oder = rank.getOrder();
 		return mine_oder > rank_oder;
