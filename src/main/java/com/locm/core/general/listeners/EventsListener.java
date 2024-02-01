@@ -5,6 +5,8 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import cn.nukkit.event.player.*;
+import cn.nukkit.item.ItemHoeGold;
+import cn.nukkit.item.ItemTool;
 import com.locm.core.Loader;
 import com.locm.core.event.player.PlayerPushButtonEvent;
 import com.locm.core.event.player.PlayerRankUpEvent;
@@ -124,7 +126,9 @@ public class EventsListener implements Listener {
 				}
 			}
 		}
-		mine.resetMine();
+		if(mine != null){
+			mine.resetMine();
+		}
 	}
 
 	@EventHandler
@@ -216,7 +220,7 @@ public class EventsListener implements Listener {
 		}
 		Position pos = Server.getInstance().getDefaultLevel().getSafeSpawn();
 		Random randpos = new Random();
-		Integer facing = randpos.nextInt(4);
+		int facing = randpos.nextInt(2);
 		if(facing == 0) {
 			pos.add(2.0D, 0.0D, 0.0D);
 		}
@@ -369,7 +373,7 @@ public class EventsListener implements Listener {
 	}
 
 	public EntityItem createItemEntity(Location loc, CompoundTag itemTag, Vector3 v3, Player p) {
-		EntityItem itemEntity = new EntityItem(
+		return new EntityItem(
 				p.getLevel().getChunk((int) loc.getX() >> 4, (int) loc.getZ() >> 4, true),
 				new CompoundTag()
 						.putList(new ListTag<DoubleTag>("Pos").add(new DoubleTag("", loc.getX()))
@@ -379,11 +383,10 @@ public class EventsListener implements Listener {
 								.add(new DoubleTag("", v3.y)).add(new DoubleTag("", v3.z)))
 
 						.putList(new ListTag<FloatTag>("Rotation")
-								.add(new FloatTag("", new java.util.Random().nextFloat() * 360))
+								.add(new FloatTag("", new Random().nextFloat() * 360))
 								.add(new FloatTag("", 0)))
 
 						.putShort("Health", 5).putCompound("Item", itemTag).putShort("PickupDelay", Integer.MAX_VALUE));
-		return itemEntity;
 	}
 
 	public void detonatebomb(Vector3 v3, int lvl, PlayerInteractEvent e, Player p) {
@@ -420,12 +423,21 @@ public class EventsListener implements Listener {
 								OrbEconomyUtils.addPlayerBalance(e.getPlayer(), 1);
 							} else {
 								OrbEconomyUtils.addPlayerBalance(e.getPlayer(),
-										1 * EventsListener.playersOrbsBooster.get(e.getPlayer()));
+										EventsListener.playersOrbsBooster.get(e.getPlayer()));
 							}
 						}
 					}
 				}
 			}
+		}
+	}
+
+	@EventHandler
+	public void onUseItem(PlayerItemConsumeEvent event) {
+		int flintAndSteel = ItemID.FLINT_AND_STEEL;
+		String world = event.getPlayer().getLevel().getFolderName();
+		if (!world.startsWith("skyblock") && !event.getPlayer().isOp()) {
+			event.setCancelled(true);
 		}
 	}
 
@@ -477,6 +489,15 @@ public class EventsListener implements Listener {
 						i1--;
 					}
 				}.runTaskTimer(Loader.getLoader(), 0, 20);
+			}
+		}
+
+		String world = e.getPlayer().getLevel().getFolderName();
+		if (!world.startsWith("skyblock") && !e.getPlayer().isOp()) {
+			Item handItem = e.getPlayer().getInventory().getItemInHand();
+			if(handItem instanceof ItemTool) {
+				e.setCancelled(true);
+				e.getPlayer().sendPopup(StringUtils.color("&l&cBạn không thể sử dụng công cụ ở đây!"));
 			}
 		}
 	}
