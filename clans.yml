@@ -1,0 +1,161 @@
+clans:
+  admins:
+    name: Admins
+    tag: '&cAdmin'
+    friendly: true
+    managers:
+    - admin
+    members:
+    - admin2
+  Kit: null
+  test:
+    name: test
+    tag: test
+    friendly: false
+    managers:
+    - phuongaz
+    members:
+    - KsViperYT
+  lcKit: null
+  a:
+    name: a
+    tag: a
+    friendly: false
+    managers:
+    - Anhkhoaaaa9443
+  Lucifer:
+    name: Lucifer
+    tag: Lucifer
+    friendly: false
+    managers:
+    - Khang_Lucifer
+  KaiTo:
+    name: KaiTo
+    tag: KaiTo
+    friendly: false
+    managers:
+    - KaiToMC3717
+    home:
+      x: 4
+      y: 5
+      z: 2886
+  ? ''
+  : name: ''
+    tag: ''
+    friendly: false
+    managers:
+    - KsViperYT
+  aLaoNguyencLOCM:
+    name: aLaoNguyencLOCM
+    tag: aLaoNguyencLOCM
+    friendly: false
+    managers:
+    - Laonguyenk2
+  SBTC:
+    name: SBTC
+    tag: SBTC
+    friendly: false
+    managers:
+    - NMTDZ324
+  leHarlescKingdom:
+    name: leHarlescKingdom
+    tag: leHarlescKingdom
+    friendly: false
+    managers:
+    - HarlesTom2006
+  clan:
+    name: clan
+    tag: clan
+    friendly: false
+    managers:
+    - baoproV
+    home:
+      x: 15
+      y: 5
+      z: 5446
+  idolbminh:
+    name: idolbminh
+    tag: idolbminh
+    friendly: false
+    managers:
+    - idolbminh
+  FBI:
+    name: FBI
+    tag: FBI
+    friendly: false
+    managers:
+    - TUITENLOC
+    home:
+      x: 7
+      y: 5
+      z: 19847
+  Piratebit:
+    name: Piratebit
+    tag: Piratebit
+    friendly: false
+    managers:
+    - IndigoHurdle546
+  L:
+    name: L
+    tag: L
+    friendly: false
+    managers:
+    - SpeciousSheep85
+    home:
+      x: 204
+      y: 132
+      z: 46
+  helper:
+    name: helper
+    tag: helper
+    friendly: false
+    managers:
+    - enderdragon3591
+    home:
+      x: 20
+      y: 22
+      z: 27549
+  AYE: null
+  Newbie:
+    name: Newbie
+    tag: Newbie
+    friendly: false
+    managers:
+    - Tatatarr
+  H:
+    name: H
+    tag: H
+    friendly: false
+    managers:
+    - Soidemsc
+    home:
+      x: 8
+      y: 5
+      z: 8
+  Ae: null
+  AeSGy: null
+  dn: null
+  Dn: null
+  LOCMDANCHOI:
+    name: LOCMDANCHOI
+    tag: LOCMDANCHOI
+    friendly: false
+    managers:
+    - Riot_MC4342
+    home:
+      x: 12
+      y: 5
+      z: 85439
+  Play: null
+  PF:
+    name: PF
+    tag: PF
+    friendly: false
+    managers:
+    - Kurot26
+  RedZone:
+    name: RedZone
+    tag: RedZone
+    friendly: false
+    managers:
+    - NuzCow_VN

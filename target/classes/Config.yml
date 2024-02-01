@@ -1,0 +1,51 @@
+---
+broadcast:
+  - "abc"
+  - "abc"
+
+luckyrewards: []
+
+join:
+  - "&l&e=================="
+  - ""
+  - "&l&fＬＯＣＭ &bＰＲＩＳＯＮ"
+  - ""
+  - "&l&epri.locmvn.net"
+  - ""
+  - "&l&e==================="
+
+first-join:
+  - "&l&e=================="
+  - ""
+  - "&l&fＬＯＣＭ &bＰＲＩＳＯＮ"
+  - ""
+  - "&l&epri.locmvn.net"
+  - ""
+  - "&l&d/lcoin&f để xem cách thức donate"
+  - "&l&d/mine&f để vào khu mỏ"
+  - ""
+  - "&l&e==================="
+menu:
+  1:
+    cmd: "skyplot"
+    name: "&l&eSkyPlot"
+  2:
+    cmd: "mine"
+    name: "&l&eKhu mỏ"
+  3:
+    cmd: "shop"
+    name: "&l&eCửa hàng vật phẩm"
+  4:
+    cmd: "lcoinshop"
+    name: "&l&eCửa hàng LCoin"
+  5:
+    cmd: "napthe"
+    name: "&l&eNạp Thẻ"
+  6:
+    cmd: "lcoin"
+    name: "&l&eLCoin"
+
+notice-enchantment:
+  - "abc"
+  - "xyz"
+...

@@ -75,7 +75,9 @@ public class MineUtils {
 	public static boolean testMine(Player player, Location loc){
 		Mine mine = mineByLoc(loc);
 		Rank rank = RankUtils.getRankByPlayer(player);
-		assert mine != null;
+		if(mine == null) {
+			return player.isOp();
+		}
 		Rank mineRank = RankUtils.getRankByName(mine.getMineName());
 		if(mineRank == null){
 			return false;
