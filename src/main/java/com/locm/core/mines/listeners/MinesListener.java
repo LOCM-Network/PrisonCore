@@ -60,7 +60,6 @@ public class MinesListener implements Listener {
 				}
 			}
 		}
-
 	}
 
 	@EventHandler

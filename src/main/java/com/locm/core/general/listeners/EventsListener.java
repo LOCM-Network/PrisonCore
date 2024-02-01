@@ -372,6 +372,21 @@ public class EventsListener implements Listener {
 		}
 	}
 
+	@EventHandler
+	public void onUseTool(PlayerInteractEvent event) {
+		Player p = event.getPlayer();
+		Item hand = p.getInventory().getItemInHand();
+
+		String world = p.getLevel().getName();
+
+		if(!world.startsWith("ps") && !world.startsWith("skyblock")) {
+			if(!p.isOp()) {
+				event.setCancelled();
+				p.sendPopup(StringUtils.color("&l&cBạn không thể dùng item này ở đây!"));
+			}
+		}
+	}
+
 	public EntityItem createItemEntity(Location loc, CompoundTag itemTag, Vector3 v3, Player p) {
 		return new EntityItem(
 				p.getLevel().getChunk((int) loc.getX() >> 4, (int) loc.getZ() >> 4, true),
@@ -480,15 +495,6 @@ public class EventsListener implements Listener {
 						i1--;
 					}
 				}.runTaskTimer(Loader.getLoader(), 0, 20);
-			}
-		}
-
-		String world = e.getPlayer().getLevel().getFolderName();
-		if (!world.startsWith("skyblock") || !world.startsWith("ps") && !e.getPlayer().isOp()) {
-			Item handItem = e.getPlayer().getInventory().getItemInHand();
-			if(handItem instanceof ItemTool) {
-				e.setCancelled(true);
-				e.getPlayer().sendPopup(StringUtils.color("&l&cBạn không thể sử dụng công cụ ở đây!"));
 			}
 		}
 	}
