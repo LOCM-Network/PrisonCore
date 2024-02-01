@@ -433,15 +433,6 @@ public class EventsListener implements Listener {
 	}
 
 	@EventHandler
-	public void onUseItem(PlayerItemConsumeEvent event) {
-		int flintAndSteel = ItemID.FLINT_AND_STEEL;
-		String world = event.getPlayer().getLevel().getFolderName();
-		if (!world.startsWith("skyblock") && !event.getPlayer().isOp()) {
-			event.setCancelled(true);
-		}
-	}
-
-	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		Item i = p.getInventory().getItemInHand();
@@ -493,7 +484,7 @@ public class EventsListener implements Listener {
 		}
 
 		String world = e.getPlayer().getLevel().getFolderName();
-		if (!world.startsWith("skyblock") && !e.getPlayer().isOp()) {
+		if (!world.startsWith("skyblock") || !world.startsWith("ps") && !e.getPlayer().isOp()) {
 			Item handItem = e.getPlayer().getInventory().getItemInHand();
 			if(handItem instanceof ItemTool) {
 				e.setCancelled(true);

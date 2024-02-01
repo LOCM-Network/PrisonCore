@@ -1,0 +1,202 @@
+global-kick-message: '&c&lBạn đã bị Kick vì: &e%check%'
+global-kick-delay: 0
+global-violations-kick-message: '%prefix% &b%player%&f đã bị Kick vì &c%check%&f trong
+  &e%time%&f .'
+global-ban-message: '&c&lBạn đã bị Ban vì: &e%check%'
+global-ban-delay: 0
+global-ban-type: NAME
+global-ban-length-type: DAYS
+global-ban-length: 30
+global-broadcast-ban: false
+global-broadcast-ban-message: '%prefix% &b%player%&f đã bị Ban vì:&c %check% với&e
+  %time% %type%'
+global-violations-ban-message: '%prefix% &b%player%&f đã bị Ban vì:&e %check%&f trong
+  &e%time% giây.'
+violation-notify-message: '%prefix% &9%player%&f bị cảnh báo vì &c%check%&8 (&c%level%&8)&7'
+arc-command-no-permission-message: Unknown command. Type /help for help.
+arc-prefix: '&l&aＬＯＣＭ－Ａｎｔｉ'
+violation-data-timeout: 30
+enable-event-api: true
+enable-check-timings: true
+op-can-bypass: true
+op-can-view-violations: true
+reset-violation-data-after: 10
+FastUse:
+  enabled: false
+  cancel: true
+  cancel-level: 0
+  notify: true
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+  consume-time-ms: 1400
+MorePackets:
+  enabled: false
+  cancel: false
+  cancel-level: 0
+  notify: true
+  notify-every: 1
+  ban: true
+  ban-level: 20
+  kick: false
+  kick-level: 0
+  max-moves-per-second: 25
+  kick-if-threshold-reached: true
+  packet-kick-threshold: 50
+Flight:
+  enabled: false
+  cancel: true
+  cancel-level: 0
+  notify: true
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+  max-jump-distance: 0.42
+  max-climbing-speed-up: 0.21
+  max-climbing-speed-down: 0.21
+  climbing-cooldown: 7
+  max-ascend-time: 7
+  ascend-cooldown: 3
+  jump-boost-ascend-amplifier: 3
+  ground-distance-threshold: 2.0
+  ground-distance-horizontal-cap: 0.5
+  max-in-air-hover-time: 6
+  no-glide-difference-max: 2
+  no-reset-ascend-ground-distance-threshold: 1
+  max-no-reset-ascend-moves: 10
+  glide-descend-time-min: 5
+  glide-descend-distance-min: 1.6
+  glide-max-difference: 0.01
+Speed:
+  enabled: false
+  cancel: true
+  cancel-level: 0
+  notify: true
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+  base-move-speed-sprint: 0.289
+  minimum-on-ground-time: 10
+  max-initial-jump-boost: 0.5
+  max-move-speed-web: 0.099
+  block-ice-speed-max: 1.2
+  max-move-speed-stairs: 0.6
+  minimum-vertical: 0.05
+  max-ice-speed-reached-min: 0.4
+  max-ice-speed-reached-cooldown-modifier: 20
+  max-ice-speed-reached-cooldown: 25
+  max-block-low-jump-speed: 0.68
+  max-block-low-jump-speed-reached-min: 0.35
+  max-block-low-jump-speed-reached-cooldown-modifier: 5
+  max-block-low-jump-speed-reached-cooldown: 15
+  time-required-since-last-jump-boost: 1000
+  minimum-off-ice-time: 8
+  minimum-off-modifier-time: 12
+  setback-location-update-distance-criteria: 3.0
+  setback-location-update-last-violation-criteria: 1500
+Nuker:
+  enabled: true
+  cancel: true
+  cancel-level: 0
+  notify: true
+  notify-every: 4
+  ban: true
+  ban-level: 1000
+  kick: true
+  kick-level: 500
+  packet-check: true
+  creative-only: true
+  max-breaks-per-second: 15
+  min-delta-between-breaks: 50
+  min-delta-between-breaks-threshold: 5
+  check-packets: true
+  max-break-packets-per-second: 50
+  kick-if-threshold-reached: false
+  packet-kick-threshold: 100
+Reach:
+  enabled: true
+  cancel: true
+  cancel-level: 0
+  notify: true
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+  max-survival-distance: 2.66
+  max-creative-distance: 6
+  ignore-vertical-axis: true
+  subtract-eye-height: true
+  default-eye-height: 1.75
+  subtract-player-velocity: true
+  subtract-entity-velocity: true
+FastBreak:
+  enabled: true
+  cancel: true
+  cancel-level: 0
+  notify: true
+  notify-every: 2
+  ban: false
+  ban-level: 0
+  kick: true
+  kick-level: 20
+  max-break-delta: 100
+KillAura:
+  enabled: false
+  cancel: false
+  cancel-level: 0
+  notify: false
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+  max-yaw-difference: 50.0
+  max-pitch-difference: 50.0
+FastClick:
+  enabled: false
+  cancel: false
+  cancel-level: 0
+  notify: true
+  notify-every: 2
+  ban: false
+  ban-level: 0
+  kick: true
+  kick-level: 20
+  max-swing-packets-per-second: 12
+  max-block-swing-packets: 30
+  min-swing-delta: 50
+  min-last-block-interact-required: 500
+  cancel-attacks: true
+Phase:
+  enabled: false
+  cancel: false
+  cancel-level: 0
+  notify: false
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+LiquidWalk:
+  enabled: false
+  cancel: false
+  cancel-level: 0
+  notify: true
+  notify-every: 1
+  ban: false
+  ban-level: 0
+  kick: false
+  kick-level: 0
+  time-in-liquid-required: 3
+  max-no-vertical-count: 5
+  min-vertical-ascend: 0.1
+  max-small-vertical-movement-count: 5
+  max-setback-distance: 2
+  min-swim-time: 1000

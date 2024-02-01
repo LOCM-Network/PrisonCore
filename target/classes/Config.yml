@@ -1,51 +1,136 @@
----
-broadcast:
-  - "abc"
-  - "abc"
-
-luckyrewards: []
-
-join:
-  - "&l&e=================="
-  - ""
-  - "&l&fＬＯＣＭ &bＰＲＩＳＯＮ"
-  - ""
-  - "&l&epri.locmvn.net"
-  - ""
-  - "&l&e==================="
-
-first-join:
-  - "&l&e=================="
-  - ""
-  - "&l&fＬＯＣＭ &bＰＲＩＳＯＮ"
-  - ""
-  - "&l&epri.locmvn.net"
-  - ""
-  - "&l&d/lcoin&f để xem cách thức donate"
-  - "&l&d/mine&f để vào khu mỏ"
-  - ""
-  - "&l&e==================="
-menu:
-  1:
-    cmd: "skyplot"
-    name: "&l&eSkyPlot"
-  2:
-    cmd: "mine"
-    name: "&l&eKhu mỏ"
-  3:
-    cmd: "shop"
-    name: "&l&eCửa hàng vật phẩm"
-  4:
-    cmd: "lcoinshop"
-    name: "&l&eCửa hàng LCoin"
-  5:
-    cmd: "napthe"
-    name: "&l&eNạp Thẻ"
-  6:
-    cmd: "lcoin"
-    name: "&l&eLCoin"
-
-notice-enchantment:
-  - "abc"
-  - "xyz"
-...
+# Separate the data with a colon like this:
+# Name:ID:Meta:Price
+# You can find block ids here: https://minecraft.gamepedia.com/Bedrock_Edition_data_value
+ShopForm:
+  §l§f•§0 Dụng Cụ và Giáp §f•:
+    - Kiếm Gỗ:268:0:100
+    - Cúp Gỗ:270:0:100
+    - Rìu Gỗ:271:0:100
+    - Nón Da:298:0:150
+    - Giáp Da:299:0:150
+    - Quần Da:300:0:150
+    - Giày Da:301:0:150
+    - Cúp Đá:274:0:200
+    - Rìu Đá:275:0:200
+  §l§f•§0 Đồ Ăn §f•:
+    - Bánh Mì:297:0:10
+    - Táo Dai:260:0:10
+    - Canh Nấm:282:0:15
+    - Súp Củ Dền:436:0:15
+    - Canh Thịt Thỏ:413:0:25
+    - Khoai Tây Nướng:393:0:10
+    - Bánh Quy:357:0:10
+    - Thịt Bò Nướng:364:0:20
+    - Thịt Cừu Nướng:424:0:20
+    - Thịt Heo Nướng:320:0:20
+    - Gà Nguyên Con:366:0:20
+    - Táo Vàng:322:0:30
+  §l§f•§0 Trồng Trọt §f•:
+    - Hạt Giống Lúa:295:0:40
+    - Cà Rốt:391:0:80
+    - Khoai Tây:392:0:80
+    - Hạt Củ Dền:458:0:80
+    - Bí Ngô:86:0:50
+    - Dưa Hấu:103:0:40
+    - Bướu Địa Ngục:372:0:75
+    - Mía:338:0:80
+    - Xương Rồng:81:0:60
+    - Mầm Cây Sồi:6:0:150
+    - Mầm Cây Vân Sam:6:1:150
+    - Mầm Cây Bạch Dương:6:2:150
+    - Mầm Cây Rừng:6:3:150
+    - Mầm Cây Keo:6:4:150
+    - Mầm Cây Sồi Đen:6:5:150
+    - Mầm cây Cherry:802:0:150000
+    - Cây tre:418:0:1000
+    - Dây leo xoắn:542:0:1000
+    - Lá Bèo Nước:111:0:1000
+    - Nước:8:0:1500
+    - Dung Nham:10:0:1500
+  §l§f•§0 Đặc Biệt §f•:
+    - Tổ ong:473:0:3000
+    - Thịt Thối:367:0:500
+    - Mắt Nhện:375:0:500
+    - Xương Chó:352:0:150
+    - Nước Mắt:370:0:2000
+    - Chân Thỏ:414:0:1000
+    - Vỏ Ốc:465:0:1000
+    - Nón Rùa:469:0:5000
+    - Ngọc Ender:368:0:5000
+    - Bình Kinh Nghiệm:384:0:1000
+    - Dây Leo:106:0:100
+    - Bèo:111:0:100
+    - Rương Ender:130:0:10000
+    - Gậy Quỷ Đỏ:369:0:5000
+    - Lông Gà:288:0:100
+    - Tơ Nhện:30:0:100
+    - Chậu Hoa:140:0:100
+    - Màu Trắng:351:7:100
+    - Màu Xám:351:8:100
+    - Màu Đen:351:0:100
+    - Màu Nâu:351:3:100
+    - Màu Lục Lam:351:10:100
+    - Màu Xanh Lam:351:6:100
+    - Màu Hồng:351:9:100
+    - Màu Hồng Đậm:351:13:100
+    - Màu Xanh Lá:351:2:100
+    - Thạch Anh:406:0:35
+    - Đèn Kết Thúc:208:0:100
+  §l§f•§0 Khối §f•:
+    - Đá Cuội:4:0:10
+    - Đá:1:0:20
+    - Hắc Diện Thạch:49:0:500
+    - Đá Cát:24:0:20
+    - Đèn Biển:169:0:100
+    - Khối Âm Nhạc:25:0:50
+    - Gạch:45:0:20
+    - Khối Nấm Nâu:99:0:15
+    - Khối Nấm Đỏ:100:14:15
+    - Khối Nấm:99:0:15
+    - Cuống Cây Nấm:99:15:15
+    - Đá Địa Ngục:87:0:15
+    - Lăng Trụ Biển:168:0:30
+    - Lăng Trụ Biển Trơn:168:1:40
+    - Mắc Ma:213:0:30
+    - Đá Kết Thúc:121:0:30
+    - Băng:79:0:30
+    - Len Trắng:35:0:10
+    - Đá Tím:201:0:50
+    - Cỏ:2:0:20
+    - Đất:3:0:10
+    - Ti Thể:110:0:10
+    - Đất Podzol:243:0:10
+    - Đất Thô:3:1:10
+    - Sỏi:13:0:10
+    - Đất Sét:82:0:15
+    - Bê Tông:251:0:200
+    - Đá Hoa Cương:1:1:15
+    - Đá Diorit:1:3:15
+    - Đá Andesite:1:5:15
+    - Kính:20:0:50
+    - Kệ Sách:47:0:20
+    - Cát:12:0:15
+    - Cát Đỏ:12:1:15
+    - Cát Linh Hồn:88:0:20
+    - Đá Phát Sáng:89:0:100
+    - Đèn lòng:463:0:2000
+  §l§f• §0Hoa §f•:
+    - Hoa Hồng:38:0:50
+    - Hoa Phong Lan Xanh:38:1:50
+    - Hoa Đại Hành Tím:38:2:50
+    - Hoa Lam:38:3:50
+    - Tulip Đỏ:38:4:50
+    - Tulip Cam:38:5:50
+    - Tulip Trắng:38:6:50
+    - Tulip Hồng:38:7:50
+    - Hoa Cúc Mắt Bò:38:8:50
+    - Nấm Đỏ:40:0:15
+    - Nấm Nâu:39:0:15
+    - Cây đỗ uyên:592:0:1500
+    - Hoa đỗ uyên:593:0:2000
+    - Hoa tử bột:576:0:60000
+Commands:
+  Shop:
+    Name: "shop"
+    Description: "Buy items"
+    Aliases: [ "playershop" ]
